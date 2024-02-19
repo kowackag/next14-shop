@@ -1,16 +1,21 @@
 import { ProductItemType } from "../types";
 import { formatMoney } from "@/utils";
+import { ProductCounter } from "./ProductCounter";
 type ProductListItemInfoProps = {
 	product: ProductItemType;
 };
-export const ProductListItemInfo = ({ product: { name, price } }: ProductListItemInfoProps) => {
+export const ProductListItemInfo = ({
+	product: { name, price },
+}: ProductListItemInfoProps) => {
 	return (
-		<div>
-			<h3>{name}</h3>
-			<p>
-				<span className="sr-only">Cena:</span>
-				{formatMoney(price/100)}
+		<div className="pb-3 pt-5 text-sm">
+			<p className="text-xs text-stone-600">Clothes</p>
+			<h3 className="pb-4 uppercase text-stone-800">{name}</h3>
+			<p className="font-light text-stone-600">
+				<span className="sr-only">Price:</span>
+				{formatMoney(price / 100)}
 			</p>
+			<ProductCounter />
 		</div>
 	);
 };

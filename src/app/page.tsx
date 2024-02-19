@@ -40,10 +40,8 @@ const products: ProductItemType[] = [
 ];
 export default function Home() {
 	return (
-		<main className="px-8 py-8">
-			<section>
-				<ProductList products={products} />
-			</section>
-		</main>
+		<section>
+			<ProductList products={products} />
+		</section>
 	);
 }
