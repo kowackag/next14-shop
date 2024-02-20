@@ -23,7 +23,7 @@ export const ProductCounter = () => {
 				readOnly
 				id="product-amount"
 				value={productAmount}
-				className="inline-block border-slate-100 px-2"
+				className="inline-block border-zinc-100 px-2"
 			/>
 			<button onClick={increaseAmount}>+</button>
 		</div>

@@ -6,7 +6,7 @@ export const ProductImage = ({ alt, src }: { alt: string; src: string }) => {
 				src={src}
 				width={180}
 				height={220}
-				className="h-full w-full object-cover object-center group-hover:scale-120"
+				className="h-full w-full object-cover object-center group-hover:scale-105 transition-all"
 			/>
 		</div>
 	);

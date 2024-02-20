@@ -1,6 +1,6 @@
-import { ProductItemType } from "../types";
+import { type ProductItemType } from "../types";
+// import { ProductCounter } from "./ProductCounter";
 import { formatMoney } from "@/utils";
-import { ProductCounter } from "./ProductCounter";
 type ProductListItemInfoProps = {
 	product: ProductItemType;
 };
@@ -15,7 +15,7 @@ export const ProductListItemInfo = ({
 				<span className="sr-only">Price:</span>
 				{formatMoney(price / 100)}
 			</p>
-			<ProductCounter />
+			{/* <ProductCounter /> */}
 		</div>
 	);
 };

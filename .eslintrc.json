@@ -4,7 +4,7 @@
 	"parserOptions": {
 		"project": "tsconfig.json"
 	},
-	"workingDirectories": ["<rootDir>/src"] ,
+	"workingDirectories": ["<rootDir>/src"],
 	"extends": [
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -72,7 +72,10 @@
 			{ "allowNumber": true, "allowBoolean": true }
 		],
 
-		"@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
+		"@typescript-eslint/no-misused-promises": [
+			"error",
+			{ "checksVoidReturn": false }
+		],
 
 		"no-restricted-imports": [
 			"error",
