@@ -1,3 +1,7 @@
+"use client";
+
+import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
+
 export default async function BlogPage({
 	params: { date, slug },
 }: {
@@ -7,8 +11,12 @@ export default async function BlogPage({
 
 	return (
 		<div>
-			Blog:
-			{date} / {slug}
+			<p>
+				Blog:{date} / {slug}
+			</p>
+			<AnimatedButton onClick={(e) => console.log(e)}>
+				Add to cart
+			</AnimatedButton>
 		</div>
 	);
 }

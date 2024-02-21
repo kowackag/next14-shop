@@ -1,4 +1,4 @@
-import { SingleProductTemplate } from "@/ui/organisms/SingleProductTemplate";
+// import { SingleProductTemplate } from "@/ui/organisms/SingleProductTemplate";
 
 export default async function SingleProductPage({
 	params,
