@@ -22,7 +22,7 @@ export default function RootLayout({
 					<MobileMenuButton />
 					<div>basket</div>
 				</header>
-				<main className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl lg:max-w-7xl">
+				<main className="mx-auto max-w-md p-8 sm:max-w-2xl sm:p-16 md:max-w-4xl lg:max-w-7xl">
 					{children}
 				</main>
 				<footer>

@@ -4,9 +4,9 @@ export const ProductImage = ({ alt, src }: { alt: string; src: string }) => {
 			<img
 				alt={alt}
 				src={src}
-				width={180}
-				height={220}
-				className="h-full w-full object-cover object-center group-hover:scale-105 transition-all"
+				width={320}
+				height={320}
+				className="h-80 w-full object-contain object-center transition-all group-hover:scale-105"
 			/>
 		</div>
 	);

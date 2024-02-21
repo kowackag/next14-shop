@@ -7,9 +7,13 @@ import { usePathname } from "next/navigation";
 export const ActiveLink = ({
 	href,
 	children,
+	// className,
+	// activeClassName,
 }: {
 	href: string;
 	children: React.ReactNode;
+	// className: string;
+	// activeClassName: string;
 }) => {
 	const pathname = usePathname();
 	const isActive = href === pathname;

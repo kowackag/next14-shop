@@ -1,20 +1,23 @@
+import { getProductById } from "@/api/products";
+import { SuspectedProductsList } from "@/ui/organisms/SuspectedProductsList";
+import { Suspense } from "react";
+
 export default async function SingleProductPage({
 	params,
-	searchParams,
 }: {
 	params: { productId: string };
 	searchParams: { [key: string]: string | string[] };
 }) {
-	// const product = await getProductById(params.productId);
-	// const referral = Object.values(searchParams).toString();
-	const referral = searchParams.referral?.toString();
-
-	console.log(referral);
-	console.log(searchParams);
+	const generateStaticParams = async () => {
+		
+	}
+	const product = await getProductById(params.productId);
 	return (
 		<div>
-			{params.productId}
-			{/* <SingleProductTemplate product={product} /> */}
+			<p>{product.name} </p>
+			<Suspense>
+				<SuspectedProductsList />
+			</Suspense>
 		</div>
 	);
 }
