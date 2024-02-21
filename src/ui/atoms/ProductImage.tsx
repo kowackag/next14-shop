@@ -1,12 +1,12 @@
 export const ProductImage = ({ alt, src }: { alt: string; src: string }) => {
 	return (
-		<div className="overflow-hidden">
+		<div className="overflow-hidden h-full w-full">
 			<img
 				alt={alt}
 				src={src}
-				width={320}
-				height={320}
-				className="h-80 w-full object-contain object-center transition-all group-hover:scale-105"
+				width={220}
+				height={220}
+				className="h-full w-full object-cover object-center transition-all group-hover:scale-105"
 			/>
 		</div>
 	);
