@@ -31,6 +31,8 @@ export const getProductById = async (id: ProductResponseItem["id"]) => {
 	const productResponse = (await res.json()) as ProductResponseItem;
 
 	const product = productResponseItemToProductItemType(productResponse);
+	console.log(productResponse);
+	console.log(product);
 
 	return product;
 };
