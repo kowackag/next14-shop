@@ -20,7 +20,6 @@ export const ActiveLink = <T extends string>({
 	className,
 	exact,
 }: ActiveLinkProps<T>) => {
-	console.log(exact);
 	const pathname = usePathname();
 	const isActive = exact ? pathname === href : pathname.startsWith(href);
 
@@ -30,10 +29,7 @@ export const ActiveLink = <T extends string>({
 			className={clsx([className], {
 				[activeClassName]: isActive,
 			})}
-			// className={clsx("", {
-			// 	[className]: true,
-			// 	[activeClassName]: isActive,
-			// })}
+			aria-current={isActive ? "true" : "false"}
 			aria-label={`Open the ${children} page`}
 		>
 			{children}
