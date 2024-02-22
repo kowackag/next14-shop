@@ -17,7 +17,11 @@
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
+	color: rgb(39 39 42);
+}
+
+img {
+	height: 0;
 }
 
 @layer utilities {
