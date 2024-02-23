@@ -19,6 +19,7 @@ export const ActiveLink = <T extends string>({
 	activeClassName,
 	className,
 	exact,
+	...props
 }: ActiveLinkProps<T>) => {
 	const pathname = usePathname();
 	const isActive = exact ? pathname === href : pathname.startsWith(href);
@@ -30,7 +31,7 @@ export const ActiveLink = <T extends string>({
 				[activeClassName]: isActive,
 			})}
 			aria-current={isActive ? "true" : "false"}
-			aria-label={`Open the ${children} page`}
+		   {...props}
 		>
 			{children}
 		</Link>
