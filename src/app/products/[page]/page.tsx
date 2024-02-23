@@ -8,7 +8,8 @@ type ProductPageType = {
 	readonly searchParams: { [key: string]: string | string[] };
 };
 export default async function ProductsPage({ params }: ProductPageType) {
-	const products = await getProducts();
+	const offset = (Number(params.page) - 1) * 8 + 1;
+	const products = await getProducts(offset);
 	const productsOnPage = selectProductsOnPage(products, Number(params.page));
 
 	return (

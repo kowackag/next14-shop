@@ -1,5 +1,5 @@
-import { ProductImage } from "../atoms/ProductImage";
-import { AddToCartForm } from "../molecules/AddToCartForm";
+import { ProductImage } from "@/ui/atoms/ProductImage";
+import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
 import { type ProductItemType } from "../types";
 import { formatMoney } from "@/utils";
 export const ProductDetailsCart = ({
@@ -13,7 +13,7 @@ export const ProductDetailsCart = ({
 				<ProductImage src={product.image.src} alt={product.image.alt} />
 			</div>
 			<div className="mb-8 w-full">
-				<h1 className="mb-6 text-3xl">{product.name} </h1>
+				<h1 className="mb-6 text-3xl">{product.name}</h1>
 				<p className="mb-6">Rating: {product.rating.rate}</p>
 				<p className="mb-6 text-2xl">{formatMoney(product.price / 100)}</p>
 				<p className="mb-8">{product.longDescription}</p>
