@@ -1,11 +1,10 @@
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { Paths } from "@/paths";
 
 const navigationLinks = [
-	{ name: "Home", href: Paths.HOME, exact: true },
-	{ name: "All", href: Paths.PRODUCTS },
-	{ name: "About us", href: Paths.ABOUT },
-	{ name: "Contact", href: Paths.CONTACT },
+	{ name: "Home", href: "/", exact: true },
+	{ name: "All", href: "/products" },
+	// { name: "About us", href: Paths.ABOUT },
+	// { name: "Contact", href: Paths.CONTACT },
 ];
 
 export const NavBar = () => {
@@ -15,11 +14,10 @@ export const NavBar = () => {
 				{navigationLinks.map((link) => (
 					<li className="px-4" key={link.href}>
 						<ActiveLink
-							href={link.href}
+							href="/products"
 							className=""
 							activeClassName="underline underline-offset-4"
 							exact={link.exact ?? false}
-							aria-label={`Page ${link.href}`}
 						>
 							{link.name}
 						</ActiveLink>

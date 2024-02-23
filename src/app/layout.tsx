@@ -17,12 +17,12 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<header className="flex items-center justify-between p-4 shadow-md">
-					<p className="text-3xl font-semibold sm:text-4xl">eminent</p>
+					{/* <p className="text-3xl font-semibold sm:text-4xl">eminent</p> */}
 					<NavBar />
 					<MobileMenuButton />
 					<div>basket</div>
 				</header>
-				<main className="mx-auto py-8 px-6 sm:p-16 lg:max-w-7xl">
+				<main className="mx-auto px-6 py-8 sm:p-16 lg:max-w-7xl">
 					{children}
 				</main>
 				<footer>
