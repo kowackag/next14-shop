@@ -44,6 +44,7 @@ const productResponseItemToProductItemType = (
 	category: product.category,
 	price: product.price,
 	rating: product.rating,
+	description: product.description,
 	longDescription: product.description,
 	image: {
 		src: product.image,

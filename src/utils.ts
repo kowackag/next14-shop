@@ -1,5 +1,4 @@
 import { ProductItemType } from "./ui/types";
-import { type Route } from "next";
 const PRODUCTS_PER_PAGE = 8;
 
 export const formatMoney = (amount: number) => {

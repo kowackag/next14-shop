@@ -22,12 +22,15 @@ export async function generateMetadata({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> {
-	const res = await fetch(
-		`https://naszsklep-api.vercel.app/api/products/${params.productId}`,
-	);
-	const product = (await res.json()) as { title: string; description: string };
+	const product = await getProductById(params.productId);
 	return {
-		title: product.title,
+		title: product.name,
+		description: product.description,
+		openGraph: {
+			title: product.name,
+			description: product.description,
+			images: product.image.src,
+		},
 	};
 }
 
