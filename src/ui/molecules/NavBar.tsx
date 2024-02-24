@@ -1,4 +1,5 @@
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { Route } from "next";
 
 const navigationLinks = [
 	{ name: "Home", href: "/", exact: true },
@@ -14,7 +15,7 @@ export const NavBar = () => {
 				{navigationLinks.map((link) => (
 					<li className="px-4" key={link.href}>
 						<ActiveLink
-							href="/products"
+							href={link.href as Route}
 							className=""
 							activeClassName="underline underline-offset-4"
 							exact={link.exact ?? false}

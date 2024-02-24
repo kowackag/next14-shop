@@ -7,6 +7,7 @@ export type ProductItemType = {
 		rate: number;
 		count: number;
 	};
+	description: string;
 	longDescription: string;
 	image: {
 		alt: string;

@@ -1,4 +1,4 @@
-import { getProducts } from "@/api/products";
+import { getProductsByPage } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { selectProductsOnPage } from "@/utils";
@@ -8,7 +8,8 @@ type ProductPageType = {
 	readonly searchParams: { [key: string]: string | string[] };
 };
 export default async function ProductsPage({ params }: ProductPageType) {
-	const products = await getProducts();
+	const offset = (Number(params.page) - 1) * 8 + 1;
+	const products = await getProductsByPage({ offset });
 	const productsOnPage = selectProductsOnPage(products, Number(params.page));
 
 	return (

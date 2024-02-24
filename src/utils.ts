@@ -1,5 +1,4 @@
 import { ProductItemType } from "./ui/types";
-import { type Route } from "next";
 const PRODUCTS_PER_PAGE = 8;
 
 export const formatMoney = (amount: number) => {
@@ -9,7 +8,7 @@ export const formatMoney = (amount: number) => {
 	}).format(amount);
 };
 
-export const createPaginationLinks = (length: number, path: Route) => {
+export const createPaginationLinks = (length: number, path: string) => {
 	const pages = Math.ceil(length / PRODUCTS_PER_PAGE);
 	const links = new Array(pages).fill(0).map((_, index) => ({
 		href: `/${path}/${index + 1}`,
