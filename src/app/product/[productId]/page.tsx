@@ -10,7 +10,7 @@ type ProductPageType = {
 };
 
 export const generateStaticParams = async () => {
-	const products = await getProducts(0);
+	const products = await getProducts();
 
 	return products.map((product) => ({
 		productId: product.id,

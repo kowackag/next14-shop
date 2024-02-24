@@ -13,7 +13,23 @@ type ProductResponseItem = {
 	image: string;
 	longDescription: string;
 };
-export const getProducts = async (offset: number) => {
+export const getProducts = async () => {
+	const PER_PAGE = 20;
+	const res = await fetch(
+		`https://naszsklep-api.vercel.app/api/products?take=${PER_PAGE}`,
+	);
+	const productsResponse = (await res.json()) as ProductResponseItem[];
+
+	const products = productsResponse.map(productResponseItemToProductItemType);
+
+	return products;
+};
+
+export const getProductsByPage = async ({
+	offset = 0,
+}: {
+	offset?: number;
+}) => {
 	const PER_PAGE = 20;
 	const res = await fetch(
 		`https://naszsklep-api.vercel.app/api/products?take=${PER_PAGE}&offset=${offset}`,
