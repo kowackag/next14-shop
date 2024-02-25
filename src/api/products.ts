@@ -1,7 +1,8 @@
 import {
-	TypedDocumentString,
 	ProductsGetListDocument,
 	ProductGetByIdDocument,
+	ProductsGetCategoriesDocument,
+	ProductsGetByCategorySlugDocument,
 } from "@/gql/graphql";
 import { ProductItemType } from "@/ui/types";
 import { notFound } from "next/navigation";
@@ -9,6 +10,7 @@ import { executeGraphql } from "./graphqlApi";
 
 type ProductResponseItem = {
 	id: string;
+	slug:string;
 	title: string;
 	price: number;
 	description: string;
@@ -69,8 +71,6 @@ export const getProductById = async (
 			count: 123,
 		},
 	};
-
-	// return product;
 };
 
 export const getProductsByPage = async ({
@@ -94,7 +94,7 @@ const productResponseItemToProductItemType = (
 ): ProductItemType => ({
 	id: product.id,
 	name: product.title,
-	category: "product.category",
+	category: product.category,
 	price: product.price,
 	rating: product.rating,
 	description: product.description,
@@ -104,3 +104,43 @@ const productResponseItemToProductItemType = (
 		alt: product.category,
 	},
 });
+
+export const getProductsCategories = async (): Promise<any[]> => {
+	const graphqlResponse = await executeGraphql(
+		ProductsGetCategoriesDocument,
+		{},
+	);
+	return graphqlResponse.categories.map((cat) => ({
+		id: cat.id,
+		slug: cat.slug,
+		name: cat.name,
+		image: {
+			src: cat.products[0]?.images[0]?.url,
+			alt: cat.name,
+		},
+	}));
+};
+
+export const getProductsByCategorySlug = async (
+	slug: ProductResponseItem["slug"],
+): Promise<any[]> => {
+	const graphqlResponse = await executeGraphql(
+		ProductsGetByCategorySlugDocument,
+		{
+			slug,
+		},
+	);
+	const products = graphqlResponse.categories.map((cat) => ({
+		categoryName: cat.name,
+		products: cat.products.map((product) => ({
+			id: product.id,
+			name: product.name,
+			price: product.price,
+			image: {
+				src: product.images[0]?.url,
+				alt: product.name,
+			},
+		})),
+	}));
+	return products;
+};

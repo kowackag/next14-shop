@@ -26,6 +26,7 @@ export async function generateMetadata({
 	const product = await getProductById(params.productId);
 
 	return {
+		metadataBase: new URL("http://localhost:3000"),
 		title: product.name,
 		description: product.description,
 		openGraph: {
@@ -39,7 +40,7 @@ export async function generateMetadata({
 export default async function SingleProductPage({ params }: ProductPageType) {
 	const product = await getProductById(params.productId);
 	if (!product) {
-		throw notFound()
+		throw notFound();
 	}
 	return (
 		<div className="mx-auto lg:max-w-screen-xl">

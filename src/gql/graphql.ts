@@ -10769,6 +10769,18 @@ export type ProductGetByIdQueryVariables = Exact<{
 
 export type ProductGetByIdQuery = { product?: { id: string, name: string, price: number, slug: string, description: string, categories: Array<{ id: string, name: string }>, images: Array<{ url: string, height?: number | null, width?: number | null }> } | null };
 
+export type ProductsGetByCategorySlugQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type ProductsGetByCategorySlugQuery = { categories: Array<{ name: string, products: Array<{ id: string, name: string, price: number, images: Array<{ url: string }> }> }> };
+
+export type ProductsGetCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsGetCategoriesQuery = { categories: Array<{ id: string, name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> };
+
 export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -10809,6 +10821,35 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
+export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
+    query ProductsGetByCategorySlug($slug: String) {
+  categories(where: {slug: $slug}) {
+    name
+    products {
+      id
+      name
+      price
+      images(first: 1) {
+        url
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+export const ProductsGetCategoriesDocument = new TypedDocumentString(`
+    query ProductsGetCategories {
+  categories {
+    id
+    name
+    slug
+    products(first: 1) {
+      images(first: 1) {
+        url
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetCategoriesQuery, ProductsGetCategoriesQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
   products(first: 10) {
