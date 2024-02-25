@@ -9,7 +9,7 @@ export type ProductItemType = {
 	};
 	description: string;
 	longDescription: string;
-	image: {
+	image?: {
 		alt: string;
 		src: string;
 	};

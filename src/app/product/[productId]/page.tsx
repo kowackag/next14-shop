@@ -1,6 +1,7 @@
 import { getProductById, getProducts } from "@/api/products";
 import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 // import { SuspectedProductsList } from "@/ui/organisms/SuspectedProductsList";
 // import { Suspense } from "react";
 
@@ -23,19 +24,23 @@ export async function generateMetadata({
 	params: { productId: string };
 }): Promise<Metadata> {
 	const product = await getProductById(params.productId);
+
 	return {
 		title: product.name,
 		description: product.description,
 		openGraph: {
 			title: product.name,
 			description: product.description,
-			images: product.image.src,
+			images: product.image?.src,
 		},
 	};
 }
 
 export default async function SingleProductPage({ params }: ProductPageType) {
 	const product = await getProductById(params.productId);
+	if (!product) {
+		throw notFound()
+	}
 	return (
 		<div className="mx-auto lg:max-w-screen-xl">
 			<ProductDetailsCart product={product} />

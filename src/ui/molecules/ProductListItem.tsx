@@ -13,7 +13,9 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 			<Link href={`${Paths.PRODUCT}/${product.id}`}>
 				<article>
 					<div className="h-80">
-						<ProductImage src={product.image.src} alt={product.image.alt} />
+						{product.image && (
+							<ProductImage src={product.image.src} alt={product.image.alt} />
+						)}
 					</div>
 					<ProductListItemInfo product={product} />
 				</article>

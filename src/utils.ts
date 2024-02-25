@@ -1,5 +1,5 @@
 import { ProductItemType } from "./ui/types";
-const PRODUCTS_PER_PAGE = 8;
+const PRODUCTS_PER_PAGE = 4;
 
 export const formatMoney = (amount: number) => {
 	return new Intl.NumberFormat("en-US", {
@@ -19,8 +19,8 @@ export const createPaginationLinks = (length: number, path: string) => {
 
 export const selectProductsOnPage = (
 	products: ProductItemType[],
-	page: number,
+	page: number | string,
 ) => {
-	const start = (page - 1) * PRODUCTS_PER_PAGE;
+	const start = (Number(page) - 1) * PRODUCTS_PER_PAGE;
 	return products.slice(start, PRODUCTS_PER_PAGE + start);
 };
