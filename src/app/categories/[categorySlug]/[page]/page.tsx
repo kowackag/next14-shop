@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import {
 	getProductsByCategorySlug,
 	getProductsCategories,
@@ -5,8 +7,12 @@ import {
 import { Pagination } from "@/ui/molecules/Pagination";
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
+import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
-import { notFound } from "next/navigation";
+export const metadata: Metadata = {
+	title: "Categories",
+	description: "Modern products",
+};
 
 type ProductPageType = {
 	readonly params: { categorySlug: string };
@@ -14,19 +20,20 @@ type ProductPageType = {
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
-	const [category] = await getProductsByCategorySlug(params.categorySlug);
-
-	if (!category) {
-		throw notFound();
-	}
 	const allCategories = await getProductsCategories();
 	if (!allCategories) {
 		throw notFound();
 	}
 
+	const [category] = await getProductsByCategorySlug(params.categorySlug);
+
+	if (!category) {
+		throw notFound();
+	}
+
 	return (
-		<section className="px-6 py-8 sm:px-16">
-			<h1 className="mb-6 text-2xl sm:text-3xl">Our categories</h1>
+		<SectionContainer>
+			<h2 className="mb-6 text-2xl sm:text-3xl">Categories</h2>
 			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
@@ -38,6 +45,6 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				productsNumberOnPage={2}
 				path={`categories/${params.categorySlug}`}
 			/>
-		</section>
+		</SectionContainer>
 	);
 }

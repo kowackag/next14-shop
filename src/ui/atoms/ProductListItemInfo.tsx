@@ -1,7 +1,7 @@
-import { type ProductItemType } from "../types";
+import { type ProductListItemType } from "../types";
 import { formatMoney } from "@/utils";
 type ProductListItemInfoProps = {
-	product: ProductItemType;
+	product: ProductListItemType;
 };
 export const ProductListItemInfo = ({
 	product: { name, price, category },

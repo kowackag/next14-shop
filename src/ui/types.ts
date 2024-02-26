@@ -14,3 +14,13 @@ export type ProductItemType = {
 		src: string;
 	};
 };
+export type ProductListItemType = {
+	id: string;
+	name: string;
+	price: number;
+	category: string;
+	image?: {
+		alt: string;
+		src: string;
+	};
+};

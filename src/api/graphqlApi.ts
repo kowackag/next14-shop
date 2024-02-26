@@ -31,3 +31,15 @@ export const executeGraphql = async <TResult, TVariables>(
 	}
 	return graphqlResponse.data;
 };
+
+export type ProductResponseItem = {
+	id: string;
+	slug: string;
+	title: string;
+	price: number;
+	category: string;
+	image: {
+		src: string;
+		alt: string;
+	};
+};

@@ -1,4 +1,4 @@
-import { ProductItemType } from "./ui/types";
+import { ProductListItemType } from "./ui/types";
 
 export const formatMoney = (amount: number) => {
 	return new Intl.NumberFormat("en-US", {
@@ -21,7 +21,7 @@ export const createPaginationLinks = (
 };
 
 export const selectProductsOnPage = (
-	products: ProductItemType[],
+	products: ProductListItemType[],
 	page: number | string,
 	perPage: number,
 ) => {
