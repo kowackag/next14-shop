@@ -17,7 +17,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body>
 				<header className="flex items-center justify-between p-4 shadow-md">
-					{/* <p className="text-3xl font-semibold sm:text-4xl">eminent</p> */}
+					<p className="text-3xl font-semibold sm:text-4xl">eminent</p>
 					<NavBar />
 					<MobileMenuButton />
 					<div>basket</div>

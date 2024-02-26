@@ -1,9 +1,7 @@
-import { getProductById, getProducts } from "@/api/products";
-import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-// import { SuspectedProductsList } from "@/ui/organisms/SuspectedProductsList";
-// import { Suspense } from "react";
+import { getProductById, getProducts } from "@/api/products";
+import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
 
 type ProductPageType = {
 	readonly params: { page: string; productId: string };
@@ -45,9 +43,6 @@ export default async function SingleProductPage({ params }: ProductPageType) {
 	return (
 		<div className="mx-auto lg:max-w-screen-xl">
 			<ProductDetailsCart product={product} />
-			{/* <Suspense>
-				<SuspectedProductsList />
-			</Suspense> */}
 		</div>
 	);
 }
