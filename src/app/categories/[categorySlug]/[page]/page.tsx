@@ -14,30 +14,30 @@ type ProductPageType = {
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
-	const [categories] = await getProductsByCategorySlug(params.categorySlug);
+	const [category] = await getProductsByCategorySlug(params.categorySlug);
 
-	if (!categories) {
+	if (!category) {
 		throw notFound();
 	}
-	const categoriesa = await getProductsCategories();
-	if (!categoriesa) {
+	const allCategories = await getProductsCategories();
+	if (!allCategories) {
 		throw notFound();
 	}
 
 	return (
-		<div className="mx-auto lg:max-w-screen-xl">
+		<section className="px-6 py-8 sm:px-16">
 			<h1 className="mb-6 text-2xl sm:text-3xl">Our categories</h1>
 			<CategoriesList
-				categories={categoriesa}
+				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<h2 className="mb-6 text-2xl sm:text-3xl">{categories.categoryName}</h2>
-			<ProductList products={categories.products} />
+			<h2 className="mb-6 text-2xl sm:text-3xl">{category.categoryName}</h2>
+			<ProductList products={category.products} />
 			<Pagination
-				pages={categories.products.length}
+				pages={category.products.length}
 				productsNumberOnPage={2}
 				path={`categories/${params.categorySlug}`}
 			/>
-		</div>
+		</section>
 	);
 }

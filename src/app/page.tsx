@@ -18,8 +18,19 @@ export default async function HomePage() {
 	}
 	return (
 		<section>
-			<h2 className="mb-6 text-2xl sm:text-3xl">Our categories</h2>
-			<CategoriesList categories={categories} />
+			<div className="md:px-6 md:py-6">
+				<img
+					className="h-[400px] w-full object-cover md:h-[500px] lg:h-[600px] xl:h-[740px]"
+					src="/portrait-home-page.jpg"
+					alt="fassion"
+					width="100%"
+					height="600px"
+				/>
+			</div>
+			<div className="px-6 sm:px-16">
+				<h2 className="my-6 text-2xl sm:text-3xl ">Our categories</h2>
+				<CategoriesList categories={categories} />
+			</div>
 		</section>
 	);
 }

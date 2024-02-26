@@ -17,7 +17,7 @@ export default async function CategoriesPage() {
 		throw notFound();
 	}
 	return (
-		<section>
+		<section className="px-6 py-8 sm:px-16">
 			<h1 className="mb-6 text-2xl sm:text-3xl">Our categories</h1>
 			<CategoriesList categories={categories} />
 		</section>

@@ -41,8 +41,8 @@ export default async function SingleProductPage({ params }: ProductPageType) {
 		throw notFound();
 	}
 	return (
-		<div className="mx-auto lg:max-w-screen-xl">
+		<section className="px-6 py-8 sm:px-16">
 			<ProductDetailsCart product={product} />
-		</div>
+		</section>
 	);
 }

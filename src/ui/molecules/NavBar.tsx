@@ -13,13 +13,13 @@ const navigationLinks = [
 export const NavBar = () => {
 	return (
 		<nav className="hidden w-2/3 md:flex md:justify-center">
-			<ul className="my-2 flex items-center justify-center">
+			<ul className="flex items-center justify-center">
 				{navigationLinks.map((link) => (
-					<li className="px-4" key={link.href}>
+					<li className="px-2" key={link.href}>
 						<ActiveLink
 							href={link.href as Route}
-							className=""
-							activeClassName="underline underline-offset-4"
+							className="inline-block border-b-4 border-transparent px-2 py-6 hover:border-cyan-600"
+							activeClassName="text-cyan-700 font-semibold"
 							exact={link.exact ?? false}
 						>
 							{link.name}
