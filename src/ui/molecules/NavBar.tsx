@@ -4,10 +4,10 @@ import { Paths } from "@/paths";
 
 const navigationLinks = [
 	{ name: "Home", href: "/", exact: true },
-	{ name: "All", href: "/products" },
-	{ name: "Categories", href: "/categories" },
 	{ name: "About us", href: Paths.ABOUT },
 	{ name: "Contact", href: Paths.CONTACT },
+	{ name: "All", href: "/products" },
+	{ name: "Categories", href: "/categories" },
 ];
 
 export const NavBar = () => {

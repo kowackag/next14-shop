@@ -10,7 +10,7 @@ import { executeGraphql } from "./graphqlApi";
 
 type ProductResponseItem = {
 	id: string;
-	slug:string;
+	slug: string;
 	title: string;
 	price: number;
 	description: string;
@@ -58,7 +58,7 @@ export const getProductById = async (
 	return {
 		id: product.id,
 		name: product.name,
-		category: product.categories[0]?.name || "",
+		category: product.categories[0]?.name ?? "",
 		price: product.price,
 		description: product.description,
 		longDescription: product.description,
@@ -83,9 +83,7 @@ export const getProductsByPage = async ({
 		`https://naszsklep-api.vercel.app/api/products?take=${PER_PAGE}&offset=${offset}`,
 	);
 	const productsResponse = (await res.json()) as ProductResponseItem[];
-
 	const products = productsResponse.map(productResponseItemToProductItemType);
-
 	return products;
 };
 
@@ -132,6 +130,7 @@ export const getProductsByCategorySlug = async (
 	);
 	const products = graphqlResponse.categories.map((cat) => ({
 		categoryName: cat.name,
+		categorySlug: slug,
 		products: cat.products.map((product) => ({
 			id: product.id,
 			name: product.name,
