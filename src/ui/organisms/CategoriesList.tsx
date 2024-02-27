@@ -1,4 +1,4 @@
-import { ProductsGetCategoriesQuery } from "@/gql/graphql";
+import { type ProductsGetCategoriesQuery } from "@/gql/graphql";
 import { CategoryListItem } from "@/ui/molecules/CategoryListItem";
 
 export const CategoriesList = ({

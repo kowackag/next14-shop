@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@/api/products";
 import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";

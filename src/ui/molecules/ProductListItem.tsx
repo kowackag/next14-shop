@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductListItemInfo } from "@/ui/atoms/ProductListItemInfo";
-import Link from "next/link";
 import { Paths } from "@/paths";
 import { type ProductListItemFragment } from "@/gql/graphql";
 

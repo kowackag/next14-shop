@@ -1,9 +1,9 @@
+import { executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetByCategorySlugDocument,
 	ProductsGetCategoriesDocument,
-	ProductsGetCategoriesQuery,
+	type ProductsGetCategoriesQuery,
 } from "@/gql/graphql";
-import { executeGraphql } from "./graphqlApi";
 
 // export const getProductsCategories = async (): Promise<ProductsGetCategoriesQuery["categories"]> => {
 // 	const graphqlResponse = await executeGraphql(

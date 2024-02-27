@@ -1,9 +1,9 @@
+import { type ProductResponseItem, executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetByCollectionSlugDocument,
 	ProductsGetCollectionDocument,
-	ProductsGetCollectionQuery,
+	type ProductsGetCollectionQuery,
 } from "@/gql/graphql";
-import { ProductResponseItem, executeGraphql } from "./graphqlApi";
 
 export const getProductsCollections = async (): Promise<
 	ProductsGetCollectionQuery["collections"]

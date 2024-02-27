@@ -1,6 +1,6 @@
-import { createPaginationLinks } from "@/utils";
-import { ActiveLink } from "../atoms/ActiveLink";
 import { type Route } from "next";
+import { ActiveLink } from "../atoms/ActiveLink";
+import { createPaginationLinks } from "@/utils";
 
 export const Pagination = ({
 	pages,

@@ -1,4 +1,4 @@
-import { ProductGetByIdQuery } from "@/gql/graphql";
+import { type ProductGetByIdQuery } from "@/gql/graphql";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
 import { formatMoney } from "@/utils";

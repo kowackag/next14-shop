@@ -1,9 +1,10 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import { Header } from "@/ui/organisms/Header";
 
 import "./globals.css";
-import { Suspense } from "react";
+
 import { Loading } from "@/ui/atoms/Loading";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
 			<body>
 				<Header />
 				<main>
-					<Suspense fallback={<Loading/>}>{children}</Suspense>
+					<Suspense fallback={<Loading />}>{children}</Suspense>
 				</main>
 				<footer>
 					<p>created by: M.Kowacka</p>

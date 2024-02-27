@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetListDocument,
 	ProductGetByIdDocument,
@@ -7,7 +8,6 @@ import {
 	type ProductGetByIdQuery,
 } from "@/gql/graphql";
 
-import { executeGraphql } from "./graphqlApi";
 
 export const getProducts = async () => {
 	const graphqlResponse = await executeGraphql(ProductsGetListDocument, {});

@@ -85,6 +85,10 @@
 			}
 		]
 	},
+	"env": {
+		"browser": true,
+		"node": true
+	},
 	"overrides": [
 		{
 			"files": ["src/app/**/*.ts?(x)", "middleware.ts"],
