@@ -25,12 +25,12 @@ export async function generateMetadata({
 
 	return {
 		metadataBase: new URL("http://localhost:3000"),
-		title: product.name,
-		description: product.description,
+		title: product?.name,
+		description: product?.description,
 		openGraph: {
-			title: product.name,
-			description: product.description,
-			images: product.image?.src,
+			title: product?.name,
+			description: product?.description,
+			images: product?.images[0]?.url,
 		},
 	};
 }

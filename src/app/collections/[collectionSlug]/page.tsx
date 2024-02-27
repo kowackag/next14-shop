@@ -1,11 +1,12 @@
+import { notFound } from "next/navigation";
+
 import { ProductList } from "@/ui/organisms/ProductList";
-import { CategoriesList } from "@/ui/organisms/CategoriesList";
+import { SectionContainer } from "@/ui/atoms/SectionContainer";
+
 import {
 	getProductsByCollectionSlug,
 	getProductsCollections,
 } from "@/api/collections";
-import { notFound } from "next/navigation";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
 type CollectionsPageType = {
 	readonly params: { collectionSlug: string };

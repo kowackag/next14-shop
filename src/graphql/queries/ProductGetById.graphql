@@ -11,8 +11,6 @@ query ProductGetById($id: ID!) {
 		}
 		images {
 			url
-			height
-			width
 		}
 	}
 }

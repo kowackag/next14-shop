@@ -20,7 +20,7 @@ export default async function ProductsPage({ params }: ProductPageType) {
 
 	return (
 		<SectionContainer>
-			<h2 className="mb-6 text-2xl sm:text-3xl">Our products</h2>
+			<h1 className="mb-6 text-2xl sm:text-3xl">Our products</h1>
 			<ProductList products={productsOnPage} />
 			<Pagination
 				pages={products.length}

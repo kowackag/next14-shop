@@ -9,6 +9,15 @@ import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
+// export const generateStaticParams = async () => {
+// 	const categories = await getProductsCategories();
+// 	return categories.map((category) => ({
+// 		slug: category.slug,
+// 		name: category.name,
+// 		image: category.image,
+// 	}));
+// };
+
 export const metadata: Metadata = {
 	title: "Categories",
 	description: "Modern products",
@@ -25,7 +34,7 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 		throw notFound();
 	}
 
-	const [category] = await getProductsByCategorySlug(params.categorySlug);
+	const category = await getProductsByCategorySlug(params.categorySlug);
 
 	if (!category) {
 		throw notFound();
@@ -33,16 +42,16 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 
 	return (
 		<SectionContainer>
-			<h2 className="mb-6 text-2xl sm:text-3xl">Categories</h2>
+			<h1 className="mb-6 text-2xl sm:text-3xl">Categories</h1>
 			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<h2 className="mb-6 text-2xl sm:text-3xl">{category.categoryName}</h2>
+			<h2 className="mb-6 text-2xl sm:text-3xl">{category.name}</h2>
 			<ProductList products={category.products} />
 			<Pagination
 				pages={category.products.length}
-				productsNumberOnPage={2}
+				productsNumberOnPage={4}
 				path={`categories/${params.categorySlug}`}
 			/>
 		</SectionContainer>

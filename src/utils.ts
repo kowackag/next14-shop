@@ -1,4 +1,4 @@
-import { ProductListItemType } from "./ui/types";
+import { type ProductListItemFragment } from "./gql/graphql";
 
 export const formatMoney = (amount: number) => {
 	return new Intl.NumberFormat("en-US", {
@@ -21,7 +21,7 @@ export const createPaginationLinks = (
 };
 
 export const selectProductsOnPage = (
-	products: ProductListItemType[],
+	products: ProductListItemFragment[],
 	page: number | string,
 	perPage: number,
 ) => {

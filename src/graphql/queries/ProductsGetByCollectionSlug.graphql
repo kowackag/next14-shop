@@ -2,12 +2,7 @@ query ProductsGetByCollectionSlug($slug: String) {
 	collections(where: { slug: $slug }) {
 		name
 		products {
-			id
-			name
-			price
-			images(first: 1) {
-				url
-			}
+			...ProductListItem
 		}
 	}
 }

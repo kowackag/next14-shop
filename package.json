@@ -11,6 +11,7 @@
 		"codegen": "graphql-codegen --config .graphqlrc.ts"
 	},
 	"dependencies": {
+		"@parcel/watcher": "^2.4.1",
 		"clsx": "^2.1.0",
 		"graphql": "^16.8.1",
 		"next": "14.1.0",
