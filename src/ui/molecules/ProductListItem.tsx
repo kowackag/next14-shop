@@ -1,11 +1,11 @@
-import { type ProductItemType } from "../types";
+import Link from "next/link";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductListItemInfo } from "@/ui/atoms/ProductListItemInfo";
-import Link from "next/link";
 import { Paths } from "@/paths";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductListItemProps = {
-	product: ProductItemType;
+	product: ProductListItemFragment;
 };
 export const ProductListItem = ({ product }: ProductListItemProps) => {
 	return (
@@ -13,7 +13,9 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 			<Link href={`${Paths.PRODUCT}/${product.id}`}>
 				<article>
 					<div className="h-80">
-						<ProductImage src={product.image.src} alt={product.image.alt} />
+						{product.images[0] && (
+							<ProductImage src={product.images[0].url} alt={product.name} />
+						)}
 					</div>
 					<ProductListItemInfo product={product} />
 				</article>

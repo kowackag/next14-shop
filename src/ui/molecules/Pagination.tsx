@@ -1,9 +1,21 @@
-import { createPaginationLinks } from "@/utils";
-import { ActiveLink } from "../atoms/ActiveLink";
 import { type Route } from "next";
+import { ActiveLink } from "../atoms/ActiveLink";
+import { createPaginationLinks } from "@/utils";
 
-export const Pagination = ({ pages }: { pages: number }) => {
-	const paginationPagelinks = createPaginationLinks(Number(pages), "products");
+export const Pagination = ({
+	pages,
+	path,
+	productsNumberOnPage,
+}: {
+	pages: number;
+	path:string;
+	productsNumberOnPage: number;
+}) => {
+	const paginationPagelinks = createPaginationLinks(
+		Number(pages),
+		path,
+		productsNumberOnPage,
+	);
 
 	return (
 		<nav

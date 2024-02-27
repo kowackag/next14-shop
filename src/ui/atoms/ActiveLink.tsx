@@ -1,6 +1,6 @@
 "use client";
 
-import Link, { LinkProps } from "next/link";
+import Link, { type LinkProps } from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { type Route } from "next";

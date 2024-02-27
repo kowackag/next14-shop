@@ -10,6 +10,7 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "always"
 	},
+	"eslint.workingDirectories": ["frontend", "backend"],
 	"graphql-config.dot.Env.Path": "./.env.local",
 	"graphql-config.load.configName": "graphql",
 	"editor.quickSuggestions": {
