@@ -14,7 +14,7 @@ type CollectionsPageType = {
 export const generateMetadata = async ({ params }: CollectionsPageType) => {
 	const [collection] = await getProductsByCollectionSlug(params.collectionSlug);
 	return {
-		title: collection.name,
+		title: collection && collection.name,
 	};
 };
 

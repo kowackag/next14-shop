@@ -1,6 +1,7 @@
 import { type ProductResponseItem, executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetByCollectionSlugDocument,
+	type ProductsGetByCollectionSlugQuery,
 	ProductsGetCollectionDocument,
 	type ProductsGetCollectionQuery,
 } from "@/gql/graphql";
@@ -18,7 +19,7 @@ export const getProductsCollections = async (): Promise<
 
 export const getProductsByCollectionSlug = async (
 	slug: ProductResponseItem["slug"],
-): Promise<any[]> => {
+): Promise<ProductsGetByCollectionSlugQuery["collections"]> => {
 	const graphqlResponse = await executeGraphql(
 		ProductsGetByCollectionSlugDocument,
 		{

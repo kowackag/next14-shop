@@ -4,7 +4,7 @@
 	"parserOptions": {
 		"project": "tsconfig.json"
 	},
-	"workingDirectories": ["<rootDir>/src"],
+
 	"extends": [
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
@@ -13,6 +13,7 @@
 		"prettier",
 		"next/core-web-vitals"
 	],
+
 	"rules": {
 		// sort imports
 		"import/order": "error",
@@ -41,7 +42,7 @@
 				"disallowTypeAnnotations": false
 			}
 		],
-
+		"workingDirectories": 0,
 		"import/no-duplicates": ["error", { "prefer-inline": true }],
 
 		// false negatives
