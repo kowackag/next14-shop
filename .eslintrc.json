@@ -13,7 +13,9 @@
 		"prettier",
 		"next/core-web-vitals"
 	],
-
+	"env": {
+		"node": true
+	},
 	"rules": {
 		// sort imports
 		"import/order": "error",
@@ -42,7 +44,7 @@
 				"disallowTypeAnnotations": false
 			}
 		],
-		"workingDirectories": 0,
+
 		"import/no-duplicates": ["error", { "prefer-inline": true }],
 
 		// false negatives
@@ -85,10 +87,6 @@
 				"message": "Please use next/navigation instead."
 			}
 		]
-	},
-	"env": {
-		"browser": true,
-		"node": true
 	},
 	"overrides": [
 		{
