@@ -1,3 +1,4 @@
+import { ProductsGetCategoriesQuery } from "@/gql/graphql";
 import { CategoryListItem } from "@/ui/molecules/CategoryListItem";
 
 export const CategoriesList = ({
@@ -5,14 +6,7 @@ export const CategoriesList = ({
 	activeCategory
 }: {
 	activeCategory?:string;
-	categories: {
-		name: string;
-		slug: string;
-		image: {
-			src: string;
-			alt: string;
-		};
-	}[];
+	categories: ProductsGetCategoriesQuery["categories"];
 }) => {
 	return (
 		<ul className="grid w-full grid-cols-1 gap-8 sm:grid sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">

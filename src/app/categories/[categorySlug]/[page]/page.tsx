@@ -1,23 +1,28 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-	getProductsByCategorySlug,
-	getProductsCategories,
-} from "@/api/products";
-import { Pagination } from "@/ui/molecules/Pagination";
+
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
+import { Pagination } from "@/ui/molecules/Pagination";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
 
-// export const generateStaticParams = async () => {
-// 	const categories = await getProductsCategories();
-// 	return categories.map((category) => ({
-// 		slug: category.slug,
-// 		name: category.name,
-// 		image: category.image,
-// 	}));
-// };
+import {
+	getProductsByCategorySlug,
+	getProductsCategories,
+} from "@/api/categories";
+
+export const generateStaticParams = async () => {
+	const categories = await getProductsCategories();
+	return categories.map((category) => ({
+		slug: category.slug,
+		name: category.name,
+		images:
+			category.products[0] &&
+			category.products[0].images[0] &&
+			category.products[0].images[0].url,
+	}));
+};
 
 export const metadata: Metadata = {
 	title: "Categories",
@@ -48,7 +53,7 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<h2 className="mb-6 text-2xl sm:text-3xl">{category.name}</h2>
+			<h2 className="my-6 text-2xl">{category.name}</h2>
 			<ProductList products={category.products} />
 			<Pagination
 				pages={category.products.length}

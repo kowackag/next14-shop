@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+
+import { Header } from "@/ui/organisms/Header";
+
 import "./globals.css";
-import { NavBar } from "@/ui/molecules/NavBar";
-import { MobileMenuButton } from "@/ui/atoms/MobileMenuButton";
+import { Suspense } from "react";
+import { Loading } from "@/ui/atoms/Loading";
 
 export const metadata: Metadata = {
 	title: "Fashion",
@@ -16,14 +19,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<header className="flex items-center justify-between px-4 shadow-md">
-					<p className="pb-2 text-3xl font-semibold sm:text-4xl">eminent</p>
-					<NavBar />
-					<MobileMenuButton />
-					<div className="py-6">basket</div>
-				</header>
-				{/* className=" px-6 sm:px-16 " */}
-				<main >{children}</main>
+				<Header />
+				<main>
+					<Suspense fallback={<Loading/>}>{children}</Suspense>
+				</main>
 				<footer>
 					<p>created by: M.Kowacka</p>
 				</footer>
