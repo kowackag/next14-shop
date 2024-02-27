@@ -8,6 +8,7 @@ import { Pagination } from "@/ui/molecules/Pagination";
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Title } from "@/ui/atoms/Title";
 
 // export const generateStaticParams = async () => {
 // 	const categories = await getProductsCategories();
@@ -42,7 +43,7 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 
 	return (
 		<SectionContainer>
-			<h1 className="mb-6 text-2xl sm:text-3xl">Categories</h1>
+			<Title>Categories</Title>
 			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}

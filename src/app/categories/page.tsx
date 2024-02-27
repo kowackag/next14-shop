@@ -1,6 +1,10 @@
-import { getProductsCategories } from "@/api/products";
-import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { notFound } from "next/navigation";
+
+import { CategoriesList } from "@/ui/organisms/CategoriesList";
+import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Title } from "@/ui/atoms/Title";
+
+import { getProductsCategories } from "@/api/products";
 
 // export const generateStaticParams = async () => {
 // 	const categories = await getProductsCategories();
@@ -17,9 +21,9 @@ export default async function CategoriesPage() {
 		throw notFound();
 	}
 	return (
-		<section className="px-6 py-8 sm:px-16">
-			<h1 className="mb-6 text-2xl sm:text-3xl">Our categories</h1>
+		<SectionContainer>
+			<Title>Our categories</Title>
 			<CategoriesList categories={categories} />
-		</section>
+		</SectionContainer>
 	);
 }

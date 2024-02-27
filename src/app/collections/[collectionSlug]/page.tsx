@@ -7,6 +7,7 @@ import {
 	getProductsByCollectionSlug,
 	getProductsCollections,
 } from "@/api/collections";
+import { Title } from "@/ui/atoms/Title";
 
 type CollectionsPageType = {
 	readonly params: { collectionSlug: string };
@@ -27,7 +28,7 @@ export default async function CollectionsPage({ params }: CollectionsPageType) {
 
 	return (
 		<SectionContainer>
-			<h2 className="mb-6 text-2xl sm:text-3xl">Collections</h2>
+			<Title>Collections</Title>
 			{/* <CategoriesList
 				categories={allCollection}
 				activeCategory={params.collectionSlug}
@@ -35,7 +36,7 @@ export default async function CollectionsPage({ params }: CollectionsPageType) {
 			{allCollection.map((collection) => (
 				<p key={collection.slug}>{collection.name}</p>
 			))}
-			<h2 className="mb-6 text-2xl sm:text-3xl">{collection.collectionName}</h2>
+			<h2 className="my-6 text-2xl sm:text-3xl">{collection.collectionName}</h2>
 			<ProductList products={collection.products} />
 		</SectionContainer>
 	);

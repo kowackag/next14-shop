@@ -2,6 +2,7 @@ import { ProductGetByIdQuery } from "@/gql/graphql";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
 import { formatMoney } from "@/utils";
+import { Title } from "@/ui/atoms/Title";
 export const ProductDetailsCart = ({
 	product,
 }: {
@@ -18,7 +19,7 @@ export const ProductDetailsCart = ({
 				)}
 			</div>
 			<div className="mb-8 w-full">
-				<h1 className="mb-6 text-3xl">{product.name}</h1>
+				<Title>{product.name}</Title>
 				<p className="mb-6">Rating: {Math.floor(Math.random() * 5) + 1}</p>
 				<p className="mb-6 text-2xl">{formatMoney(product.price / 100)}</p>
 				<p className="mb-8">{product.description}</p>

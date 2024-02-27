@@ -3,6 +3,7 @@ import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { selectProductsOnPage } from "@/utils";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Title } from "@/ui/atoms/Title";
 
 type ProductPageType = {
 	readonly params: { page: string };
@@ -20,7 +21,7 @@ export default async function ProductsPage({ params }: ProductPageType) {
 
 	return (
 		<SectionContainer>
-			<h1 className="mb-6 text-2xl sm:text-3xl">Our products</h1>
+			<Title>Our products</Title>
 			<ProductList products={productsOnPage} />
 			<Pagination
 				pages={products.length}
