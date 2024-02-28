@@ -1,5 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
+
+import { Header } from "@/ui/organisms/Header";
+
 import "./globals.css";
+
+import { Loading } from "@/ui/atoms/Loading";
 
 export const metadata: Metadata = {
 	title: "Fashion",
@@ -14,9 +20,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<header>shop</header>
-				<main className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl lg:max-w-7xl">
-					{children}
+				<Header />
+				<main>
+					<Suspense fallback={<Loading />}>{children}</Suspense>
 				</main>
 				<footer>
 					<p>created by: M.Kowacka</p>

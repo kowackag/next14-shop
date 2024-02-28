@@ -1,17 +1,25 @@
+import Link from "next/link";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductListItemInfo } from "@/ui/atoms/ProductListItemInfo";
-import { type ProductItemType } from "../types";
+import { Paths } from "@/paths";
+import { type ProductListItemFragment } from "@/gql/graphql";
 
 type ProductListItemProps = {
-	product: ProductItemType;
+	product: ProductListItemFragment;
 };
 export const ProductListItem = ({ product }: ProductListItemProps) => {
 	return (
-		<li className="group w-auto max-w-80 p-3 shadow-sm sm:max-w-max">
-			<article>
-				<ProductImage src={product.image.src} alt={product.image.alt} />
-				<ProductListItemInfo product={product} />
-			</article>
+		<li className="group w-auto border-[1px] border-solid border-zinc-100 p-3  transition-shadow hover:shadow-md">
+			<Link href={`${Paths.PRODUCT}/${product.id}`}>
+				<article>
+					<div className="h-80">
+						{product.images[0] && (
+							<ProductImage src={product.images[0].url} alt={product.name} />
+						)}
+					</div>
+					<ProductListItemInfo product={product} />
+				</article>
+			</Link>
 		</li>
 	);
 };

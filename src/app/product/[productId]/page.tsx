@@ -1,22 +1,48 @@
-// import { SingleProductTemplate } from "@/ui/organisms/SingleProductTemplate";
+import { type Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getProductById, getProducts } from "@/api/products";
+import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
 
-export default async function SingleProductPage({
+type ProductPageType = {
+	readonly params: { page: string; productId: string };
+	readonly searchParams: { [key: string]: string | string[] };
+};
+
+export const generateStaticParams = async () => {
+	const products = await getProducts();
+
+	return products.map((product) => ({
+		productId: product.id,
+	}));
+};
+
+export async function generateMetadata({
 	params,
-	searchParams,
 }: {
 	params: { productId: string };
-	searchParams: { [key: string]: string | string[] };
-}) {
-	// const product = await getProductById(params.productId);
-	// const referral = Object.values(searchParams).toString();
-	const referral = searchParams.referral?.toString();
+}): Promise<Metadata> {
+	const product = await getProductById(params.productId);
 
-	console.log(referral);
-	console.log(searchParams);
+	return {
+		metadataBase: new URL("http://localhost:3000"),
+		title: product?.name,
+		description: product?.description,
+		openGraph: {
+			title: product?.name,
+			description: product?.description,
+			images: product?.images[0]?.url,
+		},
+	};
+}
+
+export default async function SingleProductPage({ params }: ProductPageType) {
+	const product = await getProductById(params.productId);
+	if (!product) {
+		throw notFound();
+	}
 	return (
-		<div>
-			{params.productId}
-			{/* <SingleProductTemplate product={product} /> */}
-		</div>
+		<section className="px-6 py-8 sm:px-16">
+			<ProductDetailsCart product={product} />
+		</section>
 	);
 }
