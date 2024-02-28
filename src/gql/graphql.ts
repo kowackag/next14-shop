@@ -10800,6 +10800,14 @@ export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProductsGetListQuery = { products: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> };
 
+export type ProductsGetRelatedListQueryVariables = Exact<{
+  cat?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type ProductsGetRelatedListQuery = { products: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -10930,3 +10938,18 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     url
   }
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+export const ProductsGetRelatedListDocument = new TypedDocumentString(`
+    query ProductsGetRelatedList($cat: String, $id: ID) {
+  products(first: 10, where: {categories_some: {name: $cat}, id_not: $id}) {
+    id
+    name
+    price
+    categories(first: 1) {
+      name
+    }
+    images(first: 1) {
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetRelatedListQuery, ProductsGetRelatedListQueryVariables>;

@@ -1,7 +1,13 @@
-import { type Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { getProductById, getProducts } from "@/api/products";
+import { type Metadata } from "next";
+
 import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
+import { RelatedProductsList } from "@/ui/organisms/RelatedProductsList";
+import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Loading } from "@/ui/atoms/Loading";
+
+import { getProductById, getProducts } from "@/api/products";
 
 type ProductPageType = {
 	readonly params: { page: string; productId: string };
@@ -41,8 +47,18 @@ export default async function SingleProductPage({ params }: ProductPageType) {
 		throw notFound();
 	}
 	return (
-		<section className="px-6 py-8 sm:px-16">
-			<ProductDetailsCart product={product} />
-		</section>
+		<>
+			<SectionContainer>
+				<ProductDetailsCart product={product} />
+			</SectionContainer>
+			<SectionContainer>
+				<Suspense fallback={<Loading />}>
+					<RelatedProductsList
+						category={product.categories[0]?.name}
+						id={params.productId}
+					/>
+				</Suspense>
+			</SectionContainer>
+		</>
 	);
 }
