@@ -6,8 +6,8 @@ import {
 	ProductGetByIdDocument,
 	type ProductListItemFragment,
 	type ProductGetByIdQuery,
+	ProductsGetRelatedListDocument,
 } from "@/gql/graphql";
-
 
 export const getProducts = async () => {
 	const graphqlResponse = await executeGraphql(ProductsGetListDocument, {});
@@ -25,4 +25,18 @@ export const getProductById = async (
 	}
 
 	return product;
+};
+
+export const getRelatedProducts = async ({
+	category,
+	id,
+}: {
+	category: string;
+	id: string;
+}) => {
+	const graphqlResponse = await executeGraphql(ProductsGetRelatedListDocument, {
+		cat: category,
+		id,
+	});
+	return graphqlResponse.products;
 };

@@ -21,7 +21,9 @@ import {
 // 	}));
 // };
 
-export const getProductsCategories = async (): Promise<ProductsGetCategoriesQuery["categories"]> => {
+export const getProductsCategories = async (): Promise<
+	ProductsGetCategoriesQuery["categories"]
+> => {
 	const graphqlResponse = await executeGraphql(
 		ProductsGetCategoriesDocument,
 		{},
