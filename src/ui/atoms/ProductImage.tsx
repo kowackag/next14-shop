@@ -1,3 +1,5 @@
+import NextImage from "next/image";
+
 export const ProductImage = ({
 	alt,
 	src,
@@ -9,7 +11,7 @@ export const ProductImage = ({
 }) => {
 	return (
 		<div className="m-auto h-full w-full items-center overflow-hidden marker:max-w-96">
-			<img
+			<NextImage
 				alt={alt}
 				src={src}
 				width={320}

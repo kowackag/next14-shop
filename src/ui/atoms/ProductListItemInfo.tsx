@@ -11,7 +11,7 @@ export const ProductListItemInfo = ({
 			{categories[0] && (
 				<p className="text-xs text-stone-600">{categories[0].name}</p>
 			)}
-			<h3 className="pb-4 uppercase text-stone-800">{name}</h3>
+			<p className="pb-4 uppercase text-stone-800">{name}</p>
 			<p className="font-light text-stone-600">
 				<span className="sr-only">Price:</span>
 				{formatMoney(price / 100)}
