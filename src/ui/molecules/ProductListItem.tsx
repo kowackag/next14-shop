@@ -9,10 +9,10 @@ type ProductListItemProps = {
 };
 export const ProductListItem = ({ product }: ProductListItemProps) => {
 	return (
-		<li className="group w-auto border-[1px] border-solid border-zinc-100 p-3  transition-shadow hover:shadow-md">
+		<li className="m-auto max-w-sm group w-auto border-[1px] border-solid border-zinc-100 p-3  transition-shadow hover:shadow-md">
 			<Link href={`${Paths.PRODUCT}/${product.id}`}>
 				<article>
-					<div className="h-80">
+					<div>
 						{product.images[0] && (
 							<ProductImage src={product.images[0].url} alt={product.name} />
 						)}

@@ -5,7 +5,7 @@ import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
-import { Title } from "@/ui/atoms/Title";
+import { SubTitle, Title } from "@/ui/atoms/Title";
 
 import {
 	getProductsByCategorySlug,
@@ -53,7 +53,7 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<h2 className="my-6 text-2xl">{category.name}</h2>
+			<SubTitle>{category.name}</SubTitle>
 			<ProductList products={category.products} />
 			<Pagination
 				pages={category.products.length}

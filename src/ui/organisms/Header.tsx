@@ -1,5 +1,6 @@
 import { NavBar } from "@/ui/molecules/NavBar";
 import { MobileMenuButton } from "@/ui/atoms/MobileMenuButton";
+import { SearchField } from "../atoms/SearchField";
 
 export const Header = () => {
 	return (
@@ -8,6 +9,7 @@ export const Header = () => {
 				<p className="pb-2 text-3xl font-semibold sm:text-4xl">eminent</p>
 				<NavBar />
 				<MobileMenuButton />
+				<SearchField />
 				<div className="py-6">basket</div>
 			</div>
 		</header>

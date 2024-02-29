@@ -16,7 +16,7 @@ export const ProductImage = ({
 				src={src}
 				width={320}
 				height={320}
-				className={`h-full w-full object-contain object-center transition-all group-hover:scale-105 ${className}`}
+				className={`h-full w-full object-contain object-center transition-all group-hover:scale-105 ${className ?? ""}`}
 			/>
 		</div>
 	);

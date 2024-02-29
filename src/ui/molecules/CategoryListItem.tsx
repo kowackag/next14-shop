@@ -19,7 +19,7 @@ export const CategoryListItem = ({
 }) => {
 	return (
 		<li
-			className={`border-solid  p-3 transition-shadow hover:shadow-md ${activeCategory === slug ? "border-2 border-cyan-600" : "border-[1px]  border-zinc-200"}`}
+			className={`max-w-sm m-auto border-solid  p-3 transition-shadow hover:shadow-md ${activeCategory === slug ? "border-2 border-cyan-600" : "border-[1px]  border-zinc-200"}`}
 			key={slug}
 		>
 			<Link
@@ -30,7 +30,10 @@ export const CategoryListItem = ({
 					<p className="z-10 m-auto font-semibold">{name}</p>
 				</div>
 				{products[0] && products[0].images[0] && (
-					<ProductImage src={products[0].images[0].url} alt={slug} />
+					<ProductImage
+						src={products[0].images[0].url}
+						alt={`category's ${name} product`}
+					/>
 				)}
 			</Link>
 		</li>

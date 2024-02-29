@@ -28,17 +28,17 @@ export const CollectionListItem = ({
 
 	return (
 		<li
-			className="max-h-60 w-1/2 border-[1px] border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md"
+			className="w-1/2 border-[1px] border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md"
 			key={slug}
 		>
 			<Link
-				className="relative inline-block h-full w-full"
+				className="relative inline-block w-full"
 				href={`${Paths.COLLECTIONS}/${slug}`}
 			>
-				<h3 className="z-10 m-auto font-semibold">{name}</h3>
+				<h3 className="z-10 m-auto py-2 font-semibold">{name}</h3>
 				<div className="flex h-full">
 					{dataCollection.images.length ? (
-						dataCollection.images.map((img) => (
+						dataCollection.images.slice(-2).map((img) => (
 							<ProductImage
 								key={img}
 								src={img}

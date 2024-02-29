@@ -38,6 +38,7 @@ export default async function HomePage() {
 					alt="woman wearing dress"
 					width={1536}
 					height={600}
+					priority={true}
 				/>
 			</div>
 			<SectionContainer>
