@@ -2,6 +2,7 @@ import { NavBar } from "@/ui/molecules/NavBar";
 import { MobileMenuButton } from "@/ui/atoms/MobileMenuButton";
 import { SearchField } from "@/ui/atoms/SearchField";
 // import { Suspense } from "react";
+// import { Loading } from "../atoms/Loading";
 
 export const Header = () => {
 	return (
@@ -10,7 +11,7 @@ export const Header = () => {
 				<p className="pb-2 text-3xl font-semibold sm:text-4xl">eminent</p>
 				<NavBar />
 				<MobileMenuButton />
-				{/* <Suspense> */}
+				{/* <Suspense fallback={<Loading />}> */}
 				<SearchField />
 				{/* </Suspense> */}
 
