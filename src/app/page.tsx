@@ -8,6 +8,8 @@ import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { getProductsCollections } from "@/api/collections";
 import { getProductsCategories } from "@/api/categories";
 import { SubTitle } from "@/ui/atoms/Title";
+import { ProductList } from "@/ui/organisms/ProductList";
+import { getProducts } from "@/api/products";
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();
@@ -24,8 +26,8 @@ export const generateStaticParams = async () => {
 export default async function HomePage() {
 	const allCategories = await getProductsCategories();
 	const allCollection = await getProductsCollections();
-
-	if (!allCategories || !allCollection) {
+	const products = await getProducts();
+	if (!allCategories || !allCollection || !products) {
 		throw notFound();
 	}
 
@@ -38,8 +40,13 @@ export default async function HomePage() {
 					alt="woman wearing dress"
 					width={1536}
 					height={600}
+					priority={true}
 				/>
 			</div>
+			<SectionContainer>
+				<SubTitle>Our products</SubTitle>
+				<ProductList products={products.slice(-4)} />
+			</SectionContainer>
 			<SectionContainer>
 				<SubTitle>Our categories</SubTitle>
 				<CategoriesList categories={allCategories} />
