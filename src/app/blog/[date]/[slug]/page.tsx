@@ -1,5 +1,6 @@
 "use client";
 
+
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
 
 export default async function BlogPage({

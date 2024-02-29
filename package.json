@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@parcel/watcher": "^2.4.1",
+		"@types/lodash": "^4.14.202",
 		"clsx": "^2.1.0",
 		"graphql": "^16.8.1",
 		"next": "14.1.0",
