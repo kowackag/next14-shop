@@ -1,10 +1,8 @@
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 
 import { ProductList } from "@/ui/organisms/ProductList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
-import { Loading } from "@/ui/atoms/Loading";
 
 import { getProductsByQuery } from "@/api/products";
 
@@ -26,9 +24,7 @@ export default async function ProductsPage({
 		<SectionContainer>
 			<Title>Searching: </Title>
 			{products.length ? (
-				<Suspense fallback={<Loading />}>
-					<ProductList products={products} />
-				</Suspense>
+				<ProductList products={products} />
 			) : (
 				<p>{`No results for phrase: ${query}`}</p>
 			)}
