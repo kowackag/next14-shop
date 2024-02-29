@@ -5,6 +5,8 @@ import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
 
 import { getProductsByQuery } from "@/api/products";
+// import { Suspense } from "react";
+// import { Loading } from "@/ui/atoms/Loading";
 
 type ProductSearchPageType = {
 	// readonly params: { page: string };
@@ -22,10 +24,12 @@ export default async function ProductsPage({
 
 	return (
 		<SectionContainer>
-			<Title>Searching: </Title>
+			<Title>{`Products for phrase: ${query}`}</Title>
 			{products.length ? (
+				// <Suspense fallback={<Loading />}>
 				<ProductList products={products} />
 			) : (
+				// </Suspense>
 				<p>{`No results for phrase: ${query}`}</p>
 			)}
 		</SectionContainer>
