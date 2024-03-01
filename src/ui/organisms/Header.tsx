@@ -1,7 +1,8 @@
+import { Suspense } from "react";
+
 import { NavBar } from "@/ui/molecules/NavBar";
 import { MobileMenuButton } from "@/ui/atoms/MobileMenuButton";
 import { SearchField } from "@/ui/atoms/SearchField";
-import { Suspense } from "react";
 
 export const Header = () => {
 	return (
@@ -13,8 +14,7 @@ export const Header = () => {
 				<Suspense>
 					<SearchField />
 				</Suspense>
-
-				<div className="py-6">basket</div>
+				<div className="py-6">Cart</div>
 			</div>
 		</header>
 	);

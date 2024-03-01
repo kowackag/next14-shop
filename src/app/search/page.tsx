@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 
+import { Suspense } from "react";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
 
 import { getProductsByQuery } from "@/api/products";
-import { Suspense } from "react";
 import { Loading } from "@/ui/atoms/Loading";
 
 type ProductSearchPageType = {

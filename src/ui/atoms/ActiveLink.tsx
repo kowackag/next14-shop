@@ -1,9 +1,9 @@
 "use client";
 
 import Link, { type LinkProps } from "next/link";
-import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { type Route } from "next";
+import clsx from "clsx";
 
 type ActiveLinkProps<T extends string> = {
 	href: Route<T>;

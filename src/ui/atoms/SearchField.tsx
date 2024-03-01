@@ -10,12 +10,10 @@ export const SearchField = () => {
 
 	const searchParams = useSearchParams();
 	const query = searchParams.get("query") ?? "";
-
 	const [searchPhrase, setSearchPhrase] = useState(query);
 	// const [searchPhrase, setSearchPhrase] = useState("");
 
 	const debouncedPhrase = useDebounce<string>(searchPhrase, 500);
-
 	// const params = new URLSearchParams(searchParams.toString());
 
 	useEffect(() => {

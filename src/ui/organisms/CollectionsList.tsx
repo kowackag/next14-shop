@@ -1,5 +1,6 @@
-import { type ProductsGetCollectionQuery } from "@/gql/graphql";
 import { CollectionListItem } from "@/ui/molecules/CollectionListItem";
+
+import { type ProductsGetCollectionQuery } from "@/gql/graphql";
 
 export const CollectionsList = ({
 	collections,
@@ -7,7 +8,7 @@ export const CollectionsList = ({
 	collections: ProductsGetCollectionQuery["collections"];
 }) => {
 	return (
-		<ul className="flex max-w-1/2 gap-8">
+		<ul className="max-w-1/2 flex gap-8">
 			{collections.map((collection) => (
 				<CollectionListItem key={collection.slug} collection={collection} />
 			))}
