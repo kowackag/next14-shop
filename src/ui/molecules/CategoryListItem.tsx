@@ -1,6 +1,9 @@
 import Link from "next/link";
-import { Paths } from "@/paths";
+
 import { ProductImage } from "@/ui/atoms/ProductImage";
+
+import { Paths } from "@/paths";
+
 export const CategoryListItem = ({
 	category: { name, slug, products },
 	activeCategory,
@@ -19,7 +22,7 @@ export const CategoryListItem = ({
 }) => {
 	return (
 		<li
-			className={`max-w-sm m-auto border-solid  p-3 transition-shadow hover:shadow-md ${activeCategory === slug ? "border-2 border-cyan-600" : "border-[1px]  border-zinc-200"}`}
+			className={`m-auto max-w-sm border-solid  p-3 transition-shadow hover:shadow-md ${activeCategory === slug ? "border-2 border-cyan-600" : "border-[1px]  border-zinc-200"}`}
 			key={slug}
 		>
 			<Link

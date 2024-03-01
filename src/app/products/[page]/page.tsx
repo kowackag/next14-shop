@@ -1,7 +1,7 @@
 import { getProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
-import { selectProductsOnPage } from "@/utils";
+import { selectProductsOnPage } from "@/utils/helpers";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
 

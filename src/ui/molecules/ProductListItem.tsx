@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { ProductListItemInfo } from "@/ui/atoms/ProductListItemInfo";
+
 import { Paths } from "@/paths";
 import { type ProductListItemFragment } from "@/gql/graphql";
 
@@ -9,7 +10,7 @@ type ProductListItemProps = {
 };
 export const ProductListItem = ({ product }: ProductListItemProps) => {
 	return (
-		<li className="m-auto max-w-sm group w-auto border-[1px] border-solid border-zinc-100 p-3  transition-shadow hover:shadow-md">
+		<li className="group m-auto w-auto max-w-sm border-[1px] border-solid border-zinc-100 p-3  transition-shadow hover:shadow-md">
 			<Link href={`${Paths.PRODUCT}/${product.id}`}>
 				<article>
 					<div>
