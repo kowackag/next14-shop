@@ -10,7 +10,6 @@ export const CategoryListItem = ({
 }: {
 	activeCategory?: string;
 	category: {
-		id: string;
 		name: string;
 		slug: string;
 		products: {
@@ -37,7 +36,7 @@ export const CategoryListItem = ({
 						src={products[0].images[0].url}
 						alt={`category's ${name} product`}
 					/>
-				)}
+				)} 
 			</Link>
 		</li>
 	);

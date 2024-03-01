@@ -3,6 +3,11 @@ query CategoriesGetList {
 		data {
 			name
 			slug
+			products {
+				images {
+					url
+				}
+			}
 		}
 	}
 }

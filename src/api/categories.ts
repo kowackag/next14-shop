@@ -1,33 +1,14 @@
 import { executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetByCategorySlugDocument,
-	ProductsGetCategoriesDocument,
-	type ProductsGetCategoriesQuery,
+	CategoriesGetListDocument,
+	type CategoriesGetListQuery,
 } from "@/gql/graphql";
 
-// export const getProductsCategories = async (): Promise<ProductsGetCategoriesQuery["categories"]> => {
-// 	const graphqlResponse = await executeGraphql(
-// 		ProductsGetCategoriesDocument,
-// 		{},
-// 	);
-// 	return graphqlResponse.categories.map((cat) => ({
-// 		id: cat.id,
-// 		slug: cat.slug,
-// 		name: cat.name,
-// 		image: {
-// 			src: cat.products[0]?.images[0]?.url,
-// 			alt: cat.name,
-// 		},
-// 	}));
-// };
-
 export const getProductsCategories = async (): Promise<
-	ProductsGetCategoriesQuery["categories"]
+	CategoriesGetListQuery["categories"]
 > => {
-	const graphqlResponse = await executeGraphql(
-		ProductsGetCategoriesDocument,
-		{},
-	);
+	const graphqlResponse = await executeGraphql(CategoriesGetListDocument, {});
 	return graphqlResponse.categories;
 };
 
@@ -38,5 +19,5 @@ export const getProductsByCategorySlug = async (slug: string) => {
 			slug,
 		},
 	);
-	return graphqlResponse.categories[0];
+	return graphqlResponse.category;
 };

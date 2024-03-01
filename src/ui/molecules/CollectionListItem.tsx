@@ -8,7 +8,6 @@ export const CollectionListItem = ({
 	collection: { slug, name, products },
 }: {
 	collection: {
-		id: string;
 		name: string;
 		slug: string;
 		products: {

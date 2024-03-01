@@ -275,12 +275,12 @@ export type SortDirection =
 export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CategoriesGetListQuery = { categories: { data: Array<{ name: string, slug: string }> } };
+export type CategoriesGetListQuery = { categories: { data: Array<{ name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> } };
 
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionsGetListQuery = { collections: { data: Array<{ name: string, slug: string }> } };
+export type CollectionsGetListQuery = { collections: { data: Array<{ name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> } };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -358,6 +358,11 @@ export const CategoriesGetListDocument = new TypedDocumentString(`
     data {
       name
       slug
+      products {
+        images {
+          url
+        }
+      }
     }
   }
 }
@@ -368,6 +373,11 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
     data {
       name
       slug
+      products {
+        images {
+          url
+        }
+      }
     }
   }
 }

@@ -3,6 +3,11 @@ query CollectionsGetList {
 		data {
 			name
 			slug
+			products {
+				images {
+					url
+				}
+			}
 		}
 	}
 }

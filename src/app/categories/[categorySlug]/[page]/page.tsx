@@ -14,7 +14,7 @@ import {
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();
-	return categories.map((category) => ({
+	return categories.data.map((category) => ({
 		slug: category.slug,
 		name: category.name,
 		images:
@@ -40,11 +40,11 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 		throw notFound();
 	}
 
-	const category = await getProductsByCategorySlug(params.categorySlug);
+	// const category = await getProductsByCategorySlug(params.categorySlug);
 
-	if (!category) {
-		throw notFound();
-	}
+	// if (!category) {
+	// 	throw notFound();
+	// }
 
 	return (
 		<SectionContainer>
@@ -53,13 +53,13 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<SubTitle>{category.name}</SubTitle>
+			{/* <SubTitle>{category.name}</SubTitle>
 			<ProductList products={category.products} />
 			<Pagination
 				pages={category.products.length}
 				productsNumberOnPage={4}
 				path={`categories/${params.categorySlug}`}
-			/>
+			/> */}
 		</SectionContainer>
 	);
 }
