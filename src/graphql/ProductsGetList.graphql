@@ -1,5 +1,7 @@
 query ProductsGetList {
-	products(first: 40) {
-		...ProductListItem
+	products(take: 40) {
+		data {
+			...ProductListItem
+		}
 	}
 }

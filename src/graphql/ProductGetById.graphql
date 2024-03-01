@@ -1,10 +1,11 @@
 query ProductGetById($id: ID!) {
-	product(where: { id: $id }) {
+	product(id: $id) {
 		id
 		name
 		price
 		slug
 		description
+		rating
 		categories {
 			id
 			name
