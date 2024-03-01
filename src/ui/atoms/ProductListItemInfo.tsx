@@ -1,5 +1,5 @@
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { formatMoney } from "@/utils";
+import { formatMoney } from "@/utils/helpers";
 type ProductListItemInfoProps = {
 	product: ProductListItemFragment;
 };

@@ -1,4 +1,4 @@
-import { type ProductListItemFragment } from "./gql/graphql";
+import { type ProductListItemFragment } from "../gql/graphql";
 
 export const formatMoney = (amount: number) => {
 	return new Intl.NumberFormat("en-US", {

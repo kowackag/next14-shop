@@ -1,13 +1,13 @@
 import { type Route } from "next";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
-// import { Paths } from "@/paths";
+import { Paths } from "@/paths";
 
 const navigationLinks = [
-	{ name: "Home", href: "/", exact: true },
+	{ name: "Home", href: Paths.HOME, exact: true },
 	// { name: "About us", href: Paths.ABOUT },
 	// { name: "Contact", href: Paths.CONTACT },
-	{ name: "All", href: "/products" },
-	{ name: "Categories", href: "/categories" },
+	{ name: "All", href: Paths.PRODUCTS },
+	{ name: "Categories", href: Paths.CATEGORIES },
 ];
 
 export const NavBar = () => {
