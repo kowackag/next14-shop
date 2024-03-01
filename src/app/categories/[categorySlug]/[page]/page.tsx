@@ -36,15 +36,11 @@ type ProductPageType = {
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
 	const allCategories = await getProductsCategories();
-	if (!allCategories) {
+	const category = await getProductsByCategorySlug(params.categorySlug);
+
+	if (!category || !allCategories) {
 		throw notFound();
 	}
-
-	// const category = await getProductsByCategorySlug(params.categorySlug);
-
-	// if (!category) {
-	// 	throw notFound();
-	// }
 
 	return (
 		<SectionContainer>
@@ -53,13 +49,13 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			{/* <SubTitle>{category.name}</SubTitle>
+			<SubTitle>{category.name}</SubTitle>
 			<ProductList products={category.products} />
 			<Pagination
 				pages={category.products.length}
 				productsNumberOnPage={4}
 				path={`categories/${params.categorySlug}`}
-			/> */}
+			/>
 		</SectionContainer>
 	);
 }
