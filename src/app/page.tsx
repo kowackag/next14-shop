@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-// import NextImage from "next/image";
+import NextImage from "next/image";
 
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { CollectionsList } from "@/ui/organisms/CollectionsList";
@@ -10,17 +10,16 @@ import { getProductsCategories } from "@/api/categories";
 import { SubTitle } from "@/ui/atoms/Title";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@/api/products";
-// import { Suspense } from "react";
+import { Suspense } from "react";
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();
-	return categories.map((category) => ({
+	return categories.data.map((category) => ({
 		slug: category.slug,
 		name: category.name,
-		images:
-			category.products[0] && category.products[0].images[0]
-				? category.products[0].images[0].url
-				: "Fassion",
+		images: category.products[0]
+			? category.products[0].images[0]?.url
+			: "Fassion",
 	}));
 };
 
@@ -28,6 +27,7 @@ export default async function HomePage() {
 	const allCategories = await getProductsCategories();
 	const allCollection = await getProductsCollections();
 	const products = await getProducts();
+
 	if (!allCategories || !allCollection || !products) {
 		throw notFound();
 	}
@@ -35,20 +35,19 @@ export default async function HomePage() {
 	return (
 		<div>
 			<div className="relative md:px-6 md:py-6">
-				{/* <NextImage
+				<NextImage
 					className="m-auto h-[400px] w-full  max-w-screen-2xl object-cover object-center md:h-[500px] lg:h-[600px] xl:h-[800px]"
 					src="/portrait-home-page.jpg"
 					alt="woman wearing dress"
 					width={1536}
 					height={600}
 					priority={true}
-				/> */}
+				/>
 			</div>
 			<SectionContainer>
 				<SubTitle>Our products</SubTitle>
-				{/* <Suspense> */}
-				<ProductList products={products.slice(-4)} />
-				{/* </Suspense> */}
+
+				<ProductList products={products.data.slice(-4)} />
 			</SectionContainer>
 			<SectionContainer>
 				<SubTitle>Our categories</SubTitle>
@@ -56,7 +55,9 @@ export default async function HomePage() {
 			</SectionContainer>
 			<SectionContainer>
 				<SubTitle>Our collections</SubTitle>
-				<CollectionsList collections={allCollection} />
+				<Suspense>
+					<CollectionsList collections={allCollection} />
+				</Suspense>
 			</SectionContainer>
 		</div>
 	);

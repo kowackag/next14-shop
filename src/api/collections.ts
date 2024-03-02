@@ -2,29 +2,26 @@ import { type ProductResponseItem, executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetByCollectionSlugDocument,
 	type ProductsGetByCollectionSlugQuery,
-	ProductsGetCollectionDocument,
-	type ProductsGetCollectionQuery,
+	CollectionsGetListDocument,
+	type CollectionsGetListQuery,
 } from "@/gql/graphql";
 
 export const getProductsCollections = async (): Promise<
-	ProductsGetCollectionQuery["collections"]
+	CollectionsGetListQuery["collections"]
 > => {
-	const graphqlResponse = await executeGraphql(
-		ProductsGetCollectionDocument,
-		{},
-	);
+	const graphqlResponse = await executeGraphql(CollectionsGetListDocument, {});
 
 	return graphqlResponse.collections;
 };
 
 export const getProductsByCollectionSlug = async (
 	slug: ProductResponseItem["slug"],
-): Promise<ProductsGetByCollectionSlugQuery["collections"]> => {
+): Promise<ProductsGetByCollectionSlugQuery["collection"]> => {
 	const graphqlResponse = await executeGraphql(
 		ProductsGetByCollectionSlugDocument,
 		{
 			slug,
 		},
 	);
-	return graphqlResponse.collections;
+	return graphqlResponse.collection;
 };

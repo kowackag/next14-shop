@@ -18,7 +18,7 @@ const nextConfig = {
 		remotePatterns: [
 			{
 				protocol: "https",
-				hostname: "media.graphassets.com",
+				hostname: "static-ourstore.hyperfunctor.com",
 			},
 		],
 	},

@@ -1,0 +1,13 @@
+query CategoriesGetList {
+	categories {
+		data {
+			name
+			slug
+			products {
+				images {
+					url
+				}
+			}
+		}
+	}
+}

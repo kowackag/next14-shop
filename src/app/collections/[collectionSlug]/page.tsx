@@ -12,14 +12,14 @@ type CollectionsPageType = {
 };
 
 export const generateMetadata = async ({ params }: CollectionsPageType) => {
-	const [collection] = await getProductsByCollectionSlug(params.collectionSlug);
+	const collection = await getProductsByCollectionSlug(params.collectionSlug);
 	return {
 		title: collection ? collection.name : "fassion",
 	};
 };
 
 export default async function CollectionsPage({ params }: CollectionsPageType) {
-	const [collection] = await getProductsByCollectionSlug(params.collectionSlug);
+	const collection = await getProductsByCollectionSlug(params.collectionSlug);
 
 	if (!collection) {
 		throw notFound();

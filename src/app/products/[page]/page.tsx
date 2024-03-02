@@ -14,7 +14,7 @@ export default async function ProductsPage({ params }: ProductPageType) {
 	// const offset = (Number(params.page) - 1) * 4 + 1;
 	const products = await getProducts();
 	const productsOnPage = selectProductsOnPage(
-		products,
+		products.data,
 		params.page,
 		productsNumberOnPage,
 	);
@@ -24,7 +24,7 @@ export default async function ProductsPage({ params }: ProductPageType) {
 			<Title>Our products</Title>
 			<ProductList products={productsOnPage} />
 			<Pagination
-				pages={products.length}
+				pages={products.data.length}
 				productsNumberOnPage={productsNumberOnPage}
 				path="products"
 			/>

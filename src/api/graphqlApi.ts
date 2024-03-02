@@ -4,11 +4,11 @@ export const executeGraphql = async <TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
 	variables: TVariables,
 ): Promise<TResult> => {
-	if (!process.env.GRAPHQL_URL) {
-		throw TypeError("GRAPHQL_URL is not defined");
-	}
+	// if (!process.env.GRAPHQL_URL) {
+	// 	throw TypeError("GRAPHQL_URL is not defined");
+	// }
 
-	const res = await fetch(process.env.GRAPHQL_URL, {
+	const res = await fetch("https://graphql.hyperfunctor.com/graphql", {
 		method: "POST",
 		body: JSON.stringify({
 			query,
@@ -24,7 +24,7 @@ export const executeGraphql = async <TResult, TVariables>(
 		| { data: T; errors?: undefined };
 
 	const graphqlResponse = (await res.json()) as GraphQLResponse<TResult>;
-
+	// console.log(7, graphqlResponse.errors && graphqlResponse.errors[0]);
 	if (graphqlResponse.errors) {
 		throw TypeError(`GraphQL Errors`, {
 			cause: graphqlResponse.errors[0]?.message,

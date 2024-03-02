@@ -14,7 +14,7 @@ import {
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();
-	return categories.map((category) => ({
+	return categories.data.map((category) => ({
 		slug: category.slug,
 		name: category.name,
 		images:
@@ -36,13 +36,9 @@ type ProductPageType = {
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
 	const allCategories = await getProductsCategories();
-	if (!allCategories) {
-		throw notFound();
-	}
-
 	const category = await getProductsByCategorySlug(params.categorySlug);
 
-	if (!category) {
+	if (!category || !allCategories) {
 		throw notFound();
 	}
 

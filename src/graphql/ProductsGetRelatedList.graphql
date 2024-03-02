@@ -1,13 +1,7 @@
-query ProductsGetRelatedList ($cat: String, $id: ID) {
-	products(first: 10 where: {categories_some: {name: $cat} id_not: $id}) {
-		id
-	name
-	price
-	categories(first: 1) {
-		name
-	}
-	images(first: 1) {
-		url
-	}
-	}
+query ProductsGetRelatedList($catSlug: String) {
+  category(slug: $catSlug) {
+    products {
+      ...ProductListItem
+    }
+  }
 }
