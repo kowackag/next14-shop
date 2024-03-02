@@ -1,7 +1,15 @@
 query ProductsGetByQuery($query: String) {
 	products(search: $query) {
 		data {
-			...ProductListItem
+			id
+			name
+			price
+			categories {
+				name
+			}
+			images {
+				url
+			}
 		}
 	}
 }

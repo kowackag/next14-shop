@@ -7,7 +7,7 @@ query ProductGetById($id: ID!) {
 		description
 		rating
 		categories {
-			id
+			slug
 			name
 		}
 		images {

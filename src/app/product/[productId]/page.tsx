@@ -53,10 +53,7 @@ export default async function SingleProductPage({ params }: ProductPageType) {
 			</SectionContainer>
 			<SectionContainer>
 				<Suspense fallback={<Loading />}>
-					<RelatedProductsList
-						category={product.categories[0]?.name}
-						id={params.productId}
-					/>
+					<RelatedProductsList category={product.categories[0]?.slug} />
 				</Suspense>
 			</SectionContainer>
 		</>

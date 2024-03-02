@@ -287,7 +287,7 @@ export type ProductGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, name: string, price: number, slug: string, description: string, rating?: number | null, categories: Array<{ id: string, name: string }>, images: Array<{ url: string }> } | null };
+export type ProductGetByIdQuery = { product?: { id: string, name: string, price: number, slug: string, description: string, rating?: number | null, categories: Array<{ slug: string, name: string }>, images: Array<{ url: string }> } | null };
 
 export type ProductListItemFragment = { id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> };
 
@@ -318,12 +318,11 @@ export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } };
 
 export type ProductsGetRelatedListQueryVariables = Exact<{
-  cat?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
+  catSlug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type ProductsGetRelatedListQuery = { products: { data: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } };
+export type ProductsGetRelatedListQuery = { category?: { products: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -392,7 +391,7 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     description
     rating
     categories {
-      id
+      slug
       name
     }
     images {
@@ -481,9 +480,9 @@ export const ProductsGetListDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
 export const ProductsGetRelatedListDocument = new TypedDocumentString(`
-    query ProductsGetRelatedList($cat: String, $id: ID) {
-  products(take: 40, search: $cat) {
-    data {
+    query ProductsGetRelatedList($catSlug: String) {
+  category(slug: $catSlug) {
+    products {
       ...ProductListItem
     }
   }

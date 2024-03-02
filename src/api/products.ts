@@ -31,21 +31,19 @@ export const getProductById = async (
 
 export const getRelatedProducts = async ({
 	category,
-	id,
 }: {
 	category: string;
-	id: string;
 }) => {
 	const graphqlResponse = await executeGraphql(ProductsGetRelatedListDocument, {
-		cat: category,
-		id,
+		catSlug: category,
 	});
-	return graphqlResponse.products;
+	return graphqlResponse.category;
 };
 
 export const getProductsByQuery = async (
 	query: string,
 ): Promise<ProductsGetByQueryQuery["products"]> => {
+	console.log(query)
 	const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
 		query,
 	});

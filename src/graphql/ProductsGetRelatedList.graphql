@@ -1,7 +1,7 @@
-query ProductsGetRelatedList ($cat: String, $id: ID) {
-	products (take:40 search: $cat ) {
-    data {
-      ...ProductListItem 
+query ProductsGetRelatedList($catSlug: String) {
+  category(slug: $catSlug) {
+    products {
+      ...ProductListItem
     }
   }
 }

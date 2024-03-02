@@ -10,19 +10,15 @@ export const SearchField = () => {
 
 	const searchParams = useSearchParams();
 	const query = searchParams.get("query") ?? "";
-	const [searchPhrase, setSearchPhrase] = useState(query);
-	// const [searchPhrase, setSearchPhrase] = useState("");
 
+	const [searchPhrase, setSearchPhrase] = useState(query);
 	const debouncedPhrase = useDebounce<string>(searchPhrase, 500);
-	// const params = new URLSearchParams(searchParams.toString());
 
 	useEffect(() => {
 		if (!debouncedPhrase) return;
-		// if (debouncedPhrase) {
-		router.push(`/search?query=${debouncedPhrase}`);
-		setSearchPhrase('')
-		// router.replace(`/search?query=${debouncedPhrase}`);
-		// }
+		if (debouncedPhrase.length > 1) {
+			router.push(`/search?query=${debouncedPhrase}`);
+		}
 	}, [debouncedPhrase, router]);
 
 	const handleChangePhrase = (e: React.ChangeEvent<HTMLInputElement>) => {

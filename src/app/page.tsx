@@ -10,23 +10,21 @@ import { getProductsCategories } from "@/api/categories";
 import { SubTitle } from "@/ui/atoms/Title";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@/api/products";
-// import { Suspense } from "react";
+import { Suspense } from "react";
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();
 	return categories.data.map((category) => ({
 		slug: category.slug,
 		name: category.name,
-		images:
-			category.products[0] && category.products[0].images[0]
-				? category.products[0].images[0].url
-				: "Fassion",
+		images: category.products[0]
+			? category.products[0].images[0]?.url
+			: "Fassion",
 	}));
 };
 
 export default async function HomePage() {
 	const allCategories = await getProductsCategories();
-	console.log(allCategories);
 	const allCollection = await getProductsCollections();
 	const products = await getProducts();
 
@@ -48,9 +46,8 @@ export default async function HomePage() {
 			</div>
 			<SectionContainer>
 				<SubTitle>Our products</SubTitle>
-				{/* <Suspense> */}
+
 				<ProductList products={products.data.slice(-4)} />
-				{/* </Suspense> */}
 			</SectionContainer>
 			<SectionContainer>
 				<SubTitle>Our categories</SubTitle>
@@ -58,7 +55,9 @@ export default async function HomePage() {
 			</SectionContainer>
 			<SectionContainer>
 				<SubTitle>Our collections</SubTitle>
-				<CollectionsList collections={allCollection} />
+				<Suspense>
+					<CollectionsList collections={allCollection} />
+				</Suspense>
 			</SectionContainer>
 		</div>
 	);

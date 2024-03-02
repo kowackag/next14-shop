@@ -23,11 +23,11 @@ export default async function ProductsPage({
 
 	return (
 		<SectionContainer>
-			{products.length ? (
+			{products.data.length ? (
 				<>
 					<Title>{`Products for phrase: ${query}`}</Title>
 					<Suspense fallback={<Loading />}>
-						<ProductList products={products} />
+						<ProductList products={products.data} />
 					</Suspense>
 				</>
 			) : (
