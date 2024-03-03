@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import NextImage from "next/image";
 
+import { Suspense } from "react";
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { CollectionsList } from "@/ui/organisms/CollectionsList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
@@ -10,7 +11,6 @@ import { getProductsCategories } from "@/api/categories";
 import { SubTitle } from "@/ui/atoms/Title";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@/api/products";
-import { Suspense } from "react";
 
 export const generateStaticParams = async () => {
 	const categories = await getProductsCategories();

@@ -33,7 +33,7 @@ export const SearchField = () => {
 			</label>
 			<div>
 				<input
-					className="rounded-lg border-[1px] px-2 py-1 text-sm outline-none placeholder:italic"
+					className=" border-[1px] px-2 py-1 text-sm outline-none placeholder:italic"
 					onChange={handleChangePhrase}
 					placeholder="Search product"
 					id="search"

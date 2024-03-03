@@ -1,6 +1,6 @@
 import { CollectionListItem } from "@/ui/molecules/CollectionListItem";
 
-import { CollectionsGetListQuery } from "@/gql/graphql";
+import { type CollectionsGetListQuery } from "@/gql/graphql";
 
 export const CollectionsList = ({
 	collections,

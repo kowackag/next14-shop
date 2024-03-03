@@ -43,7 +43,6 @@ export const getRelatedProducts = async ({
 export const getProductsByQuery = async (
 	query: string,
 ): Promise<ProductsGetByQueryQuery["products"]> => {
-	console.log(query)
 	const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
 		query,
 	});
