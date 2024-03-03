@@ -27,8 +27,8 @@ export const Pagination = ({
 					<li key={item.href} className="text-zinc-400">
 						<ActiveLink
 							href={item.href as Route}
-							className="inline-flex items-center border-t-4 border-transparent px-6 py-4 text-sm  hover:border-cyan-200"
-							activeClassName="text-cyan-200 font-semibold"
+							className="inline-flex items-center border-t-4 border-transparent px-6 py-4 text-sm  hover:border-cyan-600"
+							activeClassName="text-cyan-700 font-semibold"
 							exact={true}
 							aria-label={`pagination ${item.pageNumber}`}
 						>
