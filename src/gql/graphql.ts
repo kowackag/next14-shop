@@ -179,7 +179,8 @@ export type ProductList = {
 export type ProductSortBy =
   | 'DEFAULT'
   | 'NAME'
-  | 'PRICE';
+  | 'PRICE'
+  | 'RATING';
 
 export type Query = {
   cart?: Maybe<Cart>;
@@ -272,6 +273,22 @@ export type SortDirection =
   | 'ASC'
   | 'DESC';
 
+export type CartFindOrCreateAndAddProductMutationVariables = Exact<{
+  productId: Scalars['String']['input'];
+  quantity?: InputMaybe<Scalars['Int']['input']>;
+  cartId?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type CartFindOrCreateAndAddProductMutation = { cartFindOrCreate: { id: string, items: Array<{ quantity: number, product: { id: string, name: string } }> } };
+
+export type CartGetByIdQueryVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+}>;
+
+
+export type CartGetByIdQuery = { order?: { id: string } | null };
+
 export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -351,6 +368,30 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CartFindOrCreateAndAddProductDocument = new TypedDocumentString(`
+    mutation CartFindOrCreateAndAddProduct($productId: String!, $quantity: Int, $cartId: ID) {
+  cartFindOrCreate(
+    input: {items: {productId: $productId, quantity: $quantity}}
+    id: $cartId
+  ) {
+    id
+    items {
+      quantity
+      product {
+        id
+        name
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartFindOrCreateAndAddProductMutation, CartFindOrCreateAndAddProductMutationVariables>;
+export const CartGetByIdDocument = new TypedDocumentString(`
+    query CartGetById($cartId: ID!) {
+  order(id: $cartId) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList {
   categories {
@@ -445,21 +486,19 @@ export const ProductsGetByQueryDocument = new TypedDocumentString(`
     query ProductsGetByQuery($query: String) {
   products(search: $query) {
     data {
-      ...ProductListItem
+      id
+      name
+      price
+      categories {
+        name
+      }
+      images {
+        url
+      }
     }
   }
 }
-    fragment ProductListItem on Product {
-  id
-  name
-  price
-  categories {
-    name
-  }
-  images {
-    url
-  }
-}`) as unknown as TypedDocumentString<ProductsGetByQueryQuery, ProductsGetByQueryQueryVariables>;
+    `) as unknown as TypedDocumentString<ProductsGetByQueryQuery, ProductsGetByQueryQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
   products(take: 40) {

@@ -10,7 +10,7 @@ export const RelatedProductsList = async ({
 }) => {
 	if (!category) return;
 	const relatedProducts = await getRelatedProducts({ category: category });
-	if (!relatedProducts) return;
+	if (!relatedProducts) return null;
 	return (
 		<div data-testid="related-products">
 			<SubTitle>Related products</SubTitle>

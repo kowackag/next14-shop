@@ -7,6 +7,7 @@ import {
 	type ProductListItemFragment,
 	type ProductGetByIdQuery,
 	type ProductsGetByQueryQuery,
+	type ProductsGetRelatedListQuery,
 	ProductsGetRelatedListDocument,
 	ProductsGetByQueryDocument,
 } from "@/gql/graphql";
@@ -33,7 +34,7 @@ export const getRelatedProducts = async ({
 	category,
 }: {
 	category: string;
-}) => {
+}): Promise<ProductsGetRelatedListQuery["category"]> => {
 	const graphqlResponse = await executeGraphql(ProductsGetRelatedListDocument, {
 		catSlug: category,
 	});

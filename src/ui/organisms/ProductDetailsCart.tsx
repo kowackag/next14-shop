@@ -22,10 +22,10 @@ export const ProductDetailsCart = ({
 			</div>
 			<div className="mb-8 w-full">
 				<Title>{product.name}</Title>
-				<p className="mb-6">Rating: 5</p>
+				{product.rating && <p className="mb-6">Rating: {Math.round(product.rating*100)/100}</p>}
 				<p className="mb-6 text-2xl">{formatMoney(product.price / 100)}</p>
 				<p className="mb-8">{product.description}</p>
-				<AddToCartForm />
+				<AddToCartForm id={product.id}/>
 			</div>
 		</section>
 	);

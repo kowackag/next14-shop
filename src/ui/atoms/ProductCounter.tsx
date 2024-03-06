@@ -22,6 +22,7 @@ export const ProductCounter = () => {
 				type="number"
 				readOnly
 				id="product-amount"
+				name="quantity"
 				value={productAmount}
 				className="inline-block w-14 border-zinc-100 pl-4 text-center outline-none"
 			/>

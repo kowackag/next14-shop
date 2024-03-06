@@ -19,7 +19,7 @@ export const Pagination = ({
 
 	return (
 		<nav
-			className="mt-6 flex items-center justify-between border-t border-zinc-200 px-4 align-middle sm:px-0"
+			className="mt-8 flex items-center justify-between border-t border-zinc-100 px-4 align-middle sm:px-0"
 			aria-label="pagination"
 		>
 			<ul className="mx-auto hidden md:-mt-px md:flex">

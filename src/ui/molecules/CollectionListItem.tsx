@@ -27,7 +27,7 @@ export const CollectionListItem = ({
 
 	return (
 		<li
-			className="w-1/2 border-[1px] border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md"
+			className="border-[1px] border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md"
 			key={slug}
 		>
 			<Link
