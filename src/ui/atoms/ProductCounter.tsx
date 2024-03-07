@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 export const ProductCounter = () => {
-	const [productAmount, setProductAmount] = useState(0);
+	const [productAmount, setProductAmount] = useState(1);
 	const decreaseAmount = () => {
-		if (productAmount > 0) {
+		if (productAmount > 1) {
 			setProductAmount((amount) => amount - 1);
 		}
 	};

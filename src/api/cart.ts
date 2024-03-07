@@ -1,16 +1,23 @@
 import {
+	CartAddProductDocument,
+	CartAddProductMutation,
 	CartFindOrCreateAndAddProductDocument,
 	CartFindOrCreateAndAddProductMutation,
 	CartGetByIdDocument,
+	CartChangeProductQuantityDocument,
+	CartChangeProductQuantityMutation,
+	type CartAddProductMutationVariables,
+	type CartChangeProductQuantityMutationVariables,
 } from "@/gql/graphql";
 import { executeGraphql } from "./graphqlApi";
+import { notFound } from "next/navigation";
 
 export const getCartById = async (id: string) => {
 	const graphqlResponse = await executeGraphql(CartGetByIdDocument, {
 		cartId: id,
 	});
 
-	return graphqlResponse.order;
+	return graphqlResponse.cart;
 };
 
 export const findOrCreateCartAndAddProduct = async (
@@ -27,7 +34,6 @@ export const findOrCreateCartAndAddProduct = async (
 				cartId,
 			},
 		);
-
 		return graphqlResponse.cartFindOrCreate;
 	}
 	const graphqlResponse = await executeGraphql(
@@ -37,10 +43,47 @@ export const findOrCreateCartAndAddProduct = async (
 			quantity,
 		},
 	);
-	console.log(777, graphqlResponse.cartFindOrCreate);
+
+	if (!graphqlResponse) {
+		throw notFound();
+	}
+
 	return graphqlResponse.cartFindOrCreate;
 };
 
-export const createCart = async () => {
-	console.log(5555555555555555);
+export const addProductToCart = async ({
+	cartId,
+	productId,
+	quantity,
+}: CartAddProductMutationVariables): Promise<
+	CartAddProductMutation["cartAddItem"]
+> => {
+	const graphqlResponse = await executeGraphql(CartAddProductDocument, {
+		cartId,
+		productId,
+		quantity,
+	});
+	return graphqlResponse.cartAddItem;
+};
+
+export const changeProductQuantityInCart = async ({
+	cartId,
+	productId,
+	quantity,
+}: CartChangeProductQuantityMutationVariables): Promise<
+	CartChangeProductQuantityMutation["cartChangeItemQuantity"]
+> => {
+	const graphqlResponse = await executeGraphql(
+		CartChangeProductQuantityDocument,
+		{
+			cartId,
+			productId,
+			quantity,
+		},
+	);
+	if (!graphqlResponse) {
+		throw notFound();
+	}
+
+	return graphqlResponse.cartChangeItemQuantity;
 };

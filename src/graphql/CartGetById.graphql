@@ -1,5 +1,6 @@
 query CartGetById($cartId: ID!) {
-	order(id: $cartId) {
+	cart(id: $cartId) {
 		id
+		...CartItems
 	}
 }

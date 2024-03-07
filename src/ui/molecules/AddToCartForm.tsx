@@ -1,4 +1,7 @@
 import {
+	addProductToCart,
+	changeProductQuantityInCart,
+	findOrCreateCartAndAddProduct,
 	// createCart,
 	// findOrCreateCartAndAddProduct,
 	getCartById,
@@ -8,22 +11,16 @@ import { ProductCounter } from "@/ui/atoms/ProductCounter";
 import { cookies } from "next/headers";
 
 export const AddToCartForm = ({ id }: { id: string }) => {
-	
 	const addToCartAction = async (formData: FormData) => {
 		"use server";
-		console.log(formData, id)
-		// const cart = await findOrCreateCart(items);
-		// console.log(444, cart);
-		// if (!cart) {
-		// } else {
-		// 	cookies().set("cartId", cart.id);
-		// 	console.log(5, cart);
-		// }
 
-		// addToCart(cart.id, {
-		// 	productId: id,
-		// 	quantity: formData.values,
-		// });
+		console.log(formData);
+		const quantity = Number(formData.get("quantity"));
+		const cart = await findOrCreateCart(id, quantity);
+		if (!cart) {
+		} else {
+			cookies().set("cartId", cart.id);
+		}
 	};
 	return (
 		<form action={addToCartAction}>
@@ -36,25 +33,21 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 	);
 };
 
-// async function findOrCreateCart(items) {
-// 	const cartId = cookies().get("cartId")?.value;
+async function findOrCreateCart(productId: string, quantity: number) {
+	const cartId = cookies().get("cartId")?.value;
+	// console.log(cartId);
+	if (cartId) {
+		const cart = await getCartById(cartId);
+		if (cart) {
+			const exist = cart.items.some(
+				(element) => element.product.id === productId,
+			);
+			return exist
+				? changeProductQuantityInCart({ cartId, productId, quantity: 7 })
+				: addProductToCart({ cartId, productId, quantity });
+		}
+		return findOrCreateCartAndAddProduct(productId, quantity, cartId);
+	}
 
-// 	if (cartId) {
-// 		const cart = await getCartById(cartId);
-// 		if (cart) {
-// 			return cart;
-// 		}
-// 		// return findOrCreateCartAndAddProduct (items);
-// 	}
-
-// 	// return findOrCreateCartAndAddProduct(items);
-// }
-// function addToCart(
-// 	cartId: string,
-// 	arg1: {
-// 		productId: string;
-// 		quantity: () => IterableIterator<FormDataEntryValue>;
-// 	},
-// ) {
-// 	throw new Error("Function not implemented.");
-// }
+	return findOrCreateCartAndAddProduct(productId, quantity);
+}
