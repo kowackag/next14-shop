@@ -9,19 +9,23 @@ import {
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
 import { ProductCounter } from "@/ui/atoms/ProductCounter";
 import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
 export const AddToCartForm = ({ id }: { id: string }) => {
 	const addToCartAction = async (formData: FormData) => {
 		"use server";
 
-		console.log(formData);
-		const quantity = Number(formData.get("quantity"));
-		const cart = await findOrCreateCart(id, quantity);
-		if (!cart) {
-		} else {
-			cookies().set("cartId", cart.id);
+		try {
+			const product = {
+				productId: id,
+				quantity: Number(formData.get("quantity")),
+			};
+			findOrCreateCartAndAddProductToCart(product);
+		} catch (err) {
+			return notFound();
 		}
 	};
+
 	return (
 		<form action={addToCartAction}>
 			<div className="mb-6 flex items-center">
@@ -33,21 +37,33 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 	);
 };
 
-async function findOrCreateCart(productId: string, quantity: number) {
+async function findOrCreateCartAndAddProductToCart({
+	productId,
+	quantity,
+}: {
+	productId: string;
+	quantity: number;
+}) {
 	const cartId = cookies().get("cartId")?.value;
-	// console.log(cartId);
-	if (cartId) {
+	if (!cartId) {
+		return findOrCreateCartAndAddProduct(productId, quantity);
+	} else {
 		const cart = await getCartById(cartId);
-		if (cart) {
-			const exist = cart.items.some(
-				(element) => element.product.id === productId,
-			);
-			return exist
-				? changeProductQuantityInCart({ cartId, productId, quantity: 7 })
-				: addProductToCart({ cartId, productId, quantity });
-		}
-		return findOrCreateCartAndAddProduct(productId, quantity, cartId);
-	}
 
-	return findOrCreateCartAndAddProduct(productId, quantity);
+		if (!cart) {
+			throw Error();
+		}
+
+		const productToUpdate = cart.items.find(
+			(element) => element.product.id === productId,
+		);
+
+		productToUpdate
+			? changeProductQuantityInCart({
+					cartId,
+					productId,
+					quantity: productToUpdate.quantity + quantity,
+				})
+			: addProductToCart({ cartId, productId, quantity });
+	}
 }

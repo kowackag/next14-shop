@@ -28,3 +28,5 @@ export const selectProductsOnPage = (
 	const start = (Number(page) - 1) * perPage;
 	return products.slice(start, perPage + start);
 };
+
+

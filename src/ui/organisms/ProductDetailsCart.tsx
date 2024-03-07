@@ -13,6 +13,7 @@ export const ProductDetailsCart = ({
 	if (!product) {
 		return <p>There is no such product</p>;
 	}
+
 	return (
 		<section className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:w-2/3">
 			<div className="mb-8 w-full">
@@ -22,10 +23,14 @@ export const ProductDetailsCart = ({
 			</div>
 			<div className="mb-8 w-full">
 				<Title>{product.name}</Title>
-				{product.rating && <p className="mb-6">Rating: {Math.round(product.rating*100)/100}</p>}
+				{product.rating && (
+					<p className="mb-6">
+						Rating: {Math.round(product.rating * 100) / 100}
+					</p>
+				)}
 				<p className="mb-6 text-2xl">{formatMoney(product.price / 100)}</p>
 				<p className="mb-8">{product.description}</p>
-				<AddToCartForm id={product.id}/>
+				<AddToCartForm id={product.id} />
 			</div>
 		</section>
 	);

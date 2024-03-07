@@ -17,7 +17,9 @@ export const ProductCounter = () => {
 			<label className="hidden" htmlFor="product-amount">
 				Amount
 			</label>
-			<button onClick={decreaseAmount}>-</button>
+			<button type="button" onClick={decreaseAmount}>
+				-
+			</button>
 			<input
 				type="number"
 				readOnly
@@ -26,7 +28,9 @@ export const ProductCounter = () => {
 				value={productAmount}
 				className="inline-block w-14 border-zinc-100 pl-4 text-center outline-none"
 			/>
-			<button onClick={increaseAmount}>+</button>
+			<button type="button" onClick={increaseAmount}>
+				+
+			</button>
 		</div>
 	);
 };
