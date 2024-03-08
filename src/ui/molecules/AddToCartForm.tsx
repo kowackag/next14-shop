@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 import {
 	addProductToCart,
 	changeProductQuantityInCart,
@@ -8,8 +10,6 @@ import {
 } from "@/api/cart";
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
 import { ProductCounter } from "@/ui/atoms/ProductCounter";
-import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 
 export const AddToCartForm = ({ id }: { id: string }) => {
 	const addToCartAction = async (formData: FormData) => {
@@ -20,7 +20,8 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 				productId: id,
 				quantity: Number(formData.get("quantity")),
 			};
-			findOrCreateCartAndAddProductToCart(product);
+			const cart = await findOrCreateCartAndAddProductToCart(product);
+			cookies().set("cartId", cart.id);
 		} catch (err) {
 			return notFound();
 		}
@@ -58,7 +59,7 @@ async function findOrCreateCartAndAddProductToCart({
 			(element) => element.product.id === productId,
 		);
 
-		productToUpdate
+		return productToUpdate
 			? changeProductQuantityInCart({
 					cartId,
 					productId,

@@ -1,16 +1,16 @@
+import { notFound } from "next/navigation";
+import { executeGraphql } from "./graphqlApi";
 import {
 	CartAddProductDocument,
-	CartAddProductMutation,
+	type CartAddProductMutation,
 	CartFindOrCreateAndAddProductDocument,
-	CartFindOrCreateAndAddProductMutation,
+	type CartFindOrCreateAndAddProductMutation,
 	CartGetByIdDocument,
 	CartChangeProductQuantityDocument,
-	CartChangeProductQuantityMutation,
+	type CartChangeProductQuantityMutation,
 	type CartAddProductMutationVariables,
 	type CartChangeProductQuantityMutationVariables,
 } from "@/gql/graphql";
-import { executeGraphql } from "./graphqlApi";
-import { notFound } from "next/navigation";
 
 export const getCartById = async (id: string) => {
 	const graphqlResponse = await executeGraphql(CartGetByIdDocument, {
