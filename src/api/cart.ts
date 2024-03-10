@@ -84,6 +84,6 @@ export const changeProductQuantityInCart = async ({
 	if (!graphqlResponse) {
 		throw notFound();
 	}
-
+	console.log(6, graphqlResponse.cartChangeItemQuantity);
 	return graphqlResponse.cartChangeItemQuantity;
 };
