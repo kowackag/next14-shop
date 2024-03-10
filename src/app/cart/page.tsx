@@ -26,8 +26,8 @@ export default async function CartPage() {
 
 	return (
 		<SectionContainer>
-			<Title>Cart</Title>
-			<CartTable products={cart.items} cartId={cart.id}/>
+			<Title>Shoping Cart</Title>
+			<CartTable products={cart.items} cartId={cart.id} />
 		</SectionContainer>
 	);
 }

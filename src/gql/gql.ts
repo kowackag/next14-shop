@@ -19,6 +19,7 @@ const documents = {
     "mutation CartFindOrCreateAndAddProduct($productId: String!, $quantity: Int, $cartId: ID) {\n  cartFindOrCreate(\n    input: {items: {productId: $productId, quantity: $quantity}}\n    id: $cartId\n  ) {\n    id\n    items {\n      quantity\n      product {\n        id\n        name\n      }\n    }\n  }\n}": types.CartFindOrCreateAndAddProductDocument,
     "query CartGetById($cartId: ID!) {\n  cart(id: $cartId) {\n    id\n    ...CartItems\n  }\n}": types.CartGetByIdDocument,
     "fragment CartItems on Cart {\n  items {\n    product {\n      id\n      name\n      slug\n      price\n      images {\n        url\n      }\n    }\n    quantity\n  }\n}": types.CartItemsFragmentDoc,
+    "query CartQuantityGetById($cartId: ID!) {\n  cart(id: $cartId) {\n    id\n    items {\n      quantity\n    }\n  }\n}": types.CartQuantityGetByIdDocument,
     "query CategoriesGetList {\n  categories {\n    data {\n      name\n      slug\n      products {\n        images {\n          url\n        }\n      }\n    }\n  }\n}": types.CategoriesGetListDocument,
     "query CollectionsGetList {\n  collections {\n    data {\n      name\n      slug\n      products {\n        images {\n          url\n        }\n      }\n    }\n  }\n}": types.CollectionsGetListDocument,
     "query ProductGetById($id: ID!) {\n  product(id: $id) {\n    id\n    name\n    price\n    slug\n    description\n    rating\n    categories {\n      slug\n      name\n    }\n    images {\n      url\n    }\n  }\n}": types.ProductGetByIdDocument,
@@ -50,6 +51,10 @@ export function graphql(source: "query CartGetById($cartId: ID!) {\n  cart(id: $
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "fragment CartItems on Cart {\n  items {\n    product {\n      id\n      name\n      slug\n      price\n      images {\n        url\n      }\n    }\n    quantity\n  }\n}"): typeof import('./graphql').CartItemsFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CartQuantityGetById($cartId: ID!) {\n  cart(id: $cartId) {\n    id\n    items {\n      quantity\n    }\n  }\n}"): typeof import('./graphql').CartQuantityGetByIdDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

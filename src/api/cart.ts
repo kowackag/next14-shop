@@ -10,10 +10,19 @@ import {
 	type CartChangeProductQuantityMutation,
 	type CartAddProductMutationVariables,
 	type CartChangeProductQuantityMutationVariables,
+	CartQuantityGetByIdDocument,
 } from "@/gql/graphql";
 
 export const getCartById = async (id: string) => {
 	const graphqlResponse = await executeGraphql(CartGetByIdDocument, {
+		cartId: id,
+	});
+
+	return graphqlResponse.cart;
+};
+
+export const getCartQuantityById = async (id: string) => {
+	const graphqlResponse = await executeGraphql(CartQuantityGetByIdDocument, {
 		cartId: id,
 	});
 
@@ -84,6 +93,5 @@ export const changeProductQuantityInCart = async ({
 	if (!graphqlResponse) {
 		throw notFound();
 	}
-	console.log(6, graphqlResponse.cartChangeItemQuantity);
 	return graphqlResponse.cartChangeItemQuantity;
 };
