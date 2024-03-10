@@ -36,17 +36,26 @@ export default async function HomePage() {
 		<div>
 			<div className="relative md:px-6 md:py-6">
 				<NextImage
-					className="m-auto h-[400px] w-full  max-w-screen-2xl object-cover object-center md:h-[500px] lg:h-[600px] xl:h-[800px]"
+					className="m-auto h-[400px] w-full max-w-screen-2xl object-cover object-center md:h-[500px] lg:h-[600px] xl:h-[800px]"
 					src="/portrait-home-page.jpg"
 					alt="woman wearing dress"
 					width={1536}
 					height={600}
 					priority={true}
 				/>
+				<div className="lg:py-18 absolute bottom-0 left-0 top-0 px-4 py-6 text-zinc-200 sm:w-1/3 md:w-1/2 md:p-12">
+					<h1 className="text-3xl md:text-4xl lg:text-6xl">
+						<span className="font-semibold tracking-wider">Fashion</span> is our
+						passion
+					</h1>
+					<p className="my-4 md:my-8">New collection 2024</p>
+					<button className="border border-zinc-300 p-2 px-6 uppercase sm:py-4">
+						Shop now
+					</button>
+				</div>
 			</div>
 			<SectionContainer>
 				<SubTitle>Our products</SubTitle>
-
 				<ProductList products={products.data.slice(-4)} />
 			</SectionContainer>
 			<SectionContainer>

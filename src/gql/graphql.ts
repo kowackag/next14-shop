@@ -310,6 +310,13 @@ export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: n
 
 export type CartItemsFragment = { items: Array<{ quantity: number, product: { id: string, name: string, slug: string, price: number, images: Array<{ url: string }> } }> };
 
+export type CartQuantityGetByIdQueryVariables = Exact<{
+  cartId: Scalars['ID']['input'];
+}>;
+
+
+export type CartQuantityGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number }> } | null };
+
 export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -488,6 +495,16 @@ export const CartGetByIdDocument = new TypedDocumentString(`
     quantity
   }
 }`) as unknown as TypedDocumentString<CartGetByIdQuery, CartGetByIdQueryVariables>;
+export const CartQuantityGetByIdDocument = new TypedDocumentString(`
+    query CartQuantityGetById($cartId: ID!) {
+  cart(id: $cartId) {
+    id
+    items {
+      quantity
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CartQuantityGetByIdQuery, CartQuantityGetByIdQueryVariables>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList {
   categories {

@@ -3,8 +3,10 @@ import { type CartItemsFragment } from "@/gql/graphql";
 
 export const CartTable = ({
 	products,
+	cartId,
 }: {
 	products: CartItemsFragment["items"];
+	cartId: string;
 }) => {
 	return (
 		<table className="w-full border-t border-zinc-200">
@@ -24,6 +26,7 @@ export const CartTable = ({
 							key={item.product.id}
 							product={item.product}
 							quantity={item.quantity}
+							cartId={cartId}
 						/>
 					),
 				)}

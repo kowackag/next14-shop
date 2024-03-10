@@ -4,8 +4,6 @@ import {
 	addProductToCart,
 	changeProductQuantityInCart,
 	findOrCreateCartAndAddProduct,
-	// createCart,
-	// findOrCreateCartAndAddProduct,
 	getCartById,
 } from "@/api/cart";
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
@@ -21,7 +19,10 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 				quantity: Number(formData.get("quantity")),
 			};
 			const cart = await findOrCreateCartAndAddProductToCart(product);
-			cookies().set("cartId", cart.id);
+			cookies().set("cartId", cart.id, {
+				httpOnly: true,
+				sameSite: "lax",
+			});
 		} catch (err) {
 			return notFound();
 		}
