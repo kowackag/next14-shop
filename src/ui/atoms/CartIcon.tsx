@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Paths } from "@/paths";
 import { cookies } from "next/headers";
+import { Paths } from "@/paths";
 import { getCartById } from "@/api/cart";
 
 export const CartIcon = async () => {

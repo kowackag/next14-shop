@@ -1,6 +1,6 @@
-import { Paths } from "@/paths";
 import NextImage from "next/image";
 import Link from "next/link";
+import { Paths } from "@/paths";
 
 export const ImageSection = () => {
 	return (

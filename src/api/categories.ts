@@ -4,7 +4,7 @@ import {
 	CategoriesGetListDocument,
 	type CategoriesGetListQuery,
 	CategoriesGetNamesDocument,
-	CategoriesGetNamesQuery,
+	type CategoriesGetNamesQuery,
 } from "@/gql/graphql";
 
 export const getProductsCategories = async (): Promise<
