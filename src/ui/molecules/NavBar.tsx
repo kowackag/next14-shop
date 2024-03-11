@@ -25,7 +25,7 @@ export const NavBar = async () => {
 		{
 			name: "Categories",
 			href: categoryFirstLink
-				? `${Paths.CATEGORIES}/${categoryFirstLink}`
+				? `${Paths.CATEGORIES}/${categoryFirstLink}/1`
 				: Paths.CATEGORIES,
 		},
 		// ...categoryLinks,
