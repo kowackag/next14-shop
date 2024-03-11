@@ -7,28 +7,28 @@ import { getProductsCategoriesNames } from "@/api/categories";
 
 export const NavBar = async () => {
 	const categoriesNames = await getProductsCategoriesNames();
-	const categoryFirstLink = categoriesNames?.data[0]?.slug;
+	// const categoryFirstLink = categoriesNames?.data[0]?.slug;
 
-	// const categoryLinks = categoriesNames.data.map((item) => {
-	// 	return {
-	// 		name: item.name,
-	// 		href: `/categories/${item.slug}/1`,
-	// 		exact: false,
-	// 	};
-	// });
+	const categoryLinks = categoriesNames.data.map((item) => {
+		return {
+			name: item.name,
+			href: `/categories/${item.slug}/1`,
+			exact: false,
+		};
+	});
 
 	const navigationLinks = [
 		{ name: "Home", href: Paths.HOME, exact: true },
 		// { name: "About us", href: Paths.ABOUT },
 		// { name: "Contact", href: Paths.CONTACT },
 		{ name: "All", href: Paths.PRODUCTS, exact: false },
-		{
-			name: "Categories",
-			href: categoryFirstLink
-				? `${Paths.CATEGORIES}/${categoryFirstLink}/1`
-				: Paths.CATEGORIES,
-		},
-		// ...categoryLinks,
+		// {
+		// 	name: "Categories",
+		// 	href: categoryFirstLink
+		// 		? `${Paths.CATEGORIES}/${categoryFirstLink}/1`
+		// 		: Paths.CATEGORIES,
+		// },
+		...categoryLinks,
 	];
 
 	return (
