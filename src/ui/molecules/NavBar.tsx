@@ -4,15 +4,17 @@ import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 import { Paths } from "@/paths";
 
-const navigationLinks = [
+
+
+export const NavBar = () => {
+
+	const navigationLinks = [
 	{ name: "Home", href: Paths.HOME, exact: true },
 	// { name: "About us", href: Paths.ABOUT },
 	// { name: "Contact", href: Paths.CONTACT },
 	{ name: "All", href: Paths.PRODUCTS },
 	{ name: "Categories", href: Paths.CATEGORIES },
 ];
-
-export const NavBar = () => {
 	return (
 		<nav className="hidden md:flex md:justify-center">
 			<ul className="flex items-center justify-center">

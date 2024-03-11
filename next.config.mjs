@@ -7,11 +7,6 @@ const nextConfig = {
 				destination: "/products/1",
 				permanent: true,
 			},
-			{
-				source: "/categories",
-				destination: "/categories/t-shirts/1",
-				permanent: true,
-			},
 		];
 	},
 	images: {
