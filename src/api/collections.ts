@@ -14,6 +14,7 @@ export const getProductsCollections = async (): Promise<
 	return graphqlResponse.collections;
 };
 
+
 export const getProductsByCollectionSlug = async (
 	slug: string,
 ): Promise<ProductsGetByCollectionSlugQuery["collection"]> => {

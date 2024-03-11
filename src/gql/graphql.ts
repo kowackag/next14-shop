@@ -322,6 +322,11 @@ export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CategoriesGetListQuery = { categories: { data: Array<{ name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> } };
 
+export type CategoriesGetNamesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoriesGetNamesQuery = { categories: { data: Array<{ name: string, slug: string }> } };
+
 export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -520,6 +525,16 @@ export const CategoriesGetListDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CategoriesGetListQuery, CategoriesGetListQueryVariables>;
+export const CategoriesGetNamesDocument = new TypedDocumentString(`
+    query CategoriesGetNames {
+  categories {
+    data {
+      name
+      slug
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CategoriesGetNamesQuery, CategoriesGetNamesQueryVariables>;
 export const CollectionsGetListDocument = new TypedDocumentString(`
     query CollectionsGetList {
   collections {

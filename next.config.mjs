@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
 	async redirects() {
 		return [
@@ -8,8 +9,8 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
-				source: "/categories",
-				destination: "/categories/t-shirts/1",
+				source: "/categories/:categorySlug",
+				destination: "/categories/:categorySlug/1",
 				permanent: true,
 			},
 		];
