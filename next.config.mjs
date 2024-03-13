@@ -8,11 +8,11 @@ const nextConfig = {
 				destination: "/products/1",
 				permanent: true,
 			},
-			{
-				source: "/categories/:categorySlug",
-				destination: "/categories/:categorySlug/1",
-				permanent: true,
-			},
+			// {
+			// 	source: "/categories/:categorySlug",
+			// 	destination: "/categories/:categorySlug/1",
+			// 	permanent: true,
+			// },
 		];
 	},
 	images: {
