@@ -29,7 +29,7 @@ export const NavBar = async () => {
 		// 		: Paths.CATEGORIES,
 		// },
 		// ...categoryLinks,
-		{ name: "Categories", href: Paths.CATEGORIES },
+		{ name: "Categories", href: Paths.CATEGORIES, exact: false },
 	];
 
 	return (
