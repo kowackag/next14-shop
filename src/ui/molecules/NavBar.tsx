@@ -7,7 +7,7 @@ import { getProductsCategoriesNames } from "@/api/categories";
 
 export const NavBar = async () => {
 	const categoriesNames = await getProductsCategoriesNames();
-	// const categoryFirstLink = categoriesNames?.data[0]?.slug;
+	//  const categoryFirstLink = categoriesNames?.data[0]?.slug;
 
 	const categoryLinks = categoriesNames.data.map((item) => {
 		return {
@@ -22,12 +22,7 @@ export const NavBar = async () => {
 		// { name: "About us", href: Paths.ABOUT },
 		// { name: "Contact", href: Paths.CONTACT },
 		{ name: "All", href: Paths.PRODUCTS, exact: false },
-		// {
-		// 	name: "Categories",
-		// 	href: categoryFirstLink
-		// 		? `${Paths.CATEGORIES}/${categoryFirstLink}/1`
-		// 		: Paths.CATEGORIES,
-		// },
+		// { name: "Categories", href: Paths.CATEGORIES },
 		...categoryLinks,
 	];
 
