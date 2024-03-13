@@ -18,9 +18,9 @@ export const generateStaticParams = async () => {
 		slug: category.slug,
 		name: category.name,
 		images:
-			category.products[0] && category.products[0].images[0]
-				? category.products[0].images[0].url
-				: null,
+			category.products[0] &&
+			category.products[0].images[0] &&
+			category.products[0].images[0].url,
 	}));
 };
 
