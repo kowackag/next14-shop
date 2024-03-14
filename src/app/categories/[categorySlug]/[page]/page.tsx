@@ -9,20 +9,20 @@ import { SubTitle, Title } from "@/ui/atoms/Title";
 
 import {
 	getProductsByCategorySlug,
-	getProductsCategories,
+	// getProductsCategories,
 } from "@/api/categories";
 
-export const generateStaticParams = async () => {
-	const categories = await getProductsCategories();
-	return categories.data.map((category) => ({
-		slug: category.slug,
-		name: category.name,
-		images:
-			category.products[0] &&
-			category.products[0].images[0] &&
-			category.products[0].images[0].url,
-	}));
-};
+// export const generateStaticParams = async () => {
+// 	const categories = await getProductsCategories();
+// 	return categories.data.map((category) => ({
+// 		slug: category.slug,
+// 		name: category.name,
+// 		images:
+// 			category.products[0] &&
+// 			category.products[0].images[0] &&
+// 			category.products[0].images[0].url,
+// 	}));
+// };
 
 export const metadata: Metadata = {
 	title: "Categories",
