@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { notFound } from "next/navigation";
 import { executeGraphql } from "@/api/graphqlApi";
 import {
@@ -23,11 +23,14 @@ export const changeProductQuantityInCart = async ({
 			productId,
 			quantity,
 		},
+		next: {
+			tags: ["cart"],
+		},
 	});
 	if (!graphqlResponse) {
 		throw notFound();
 	}
-	revalidatePath("/cart");
+	revalidateTag("/cart");
 
 	return graphqlResponse.cartChangeItemQuantity;
 };

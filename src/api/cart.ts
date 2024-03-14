@@ -49,6 +49,9 @@ export const findOrCreateCartAndAddProduct = async (
 				quantity,
 				cartId,
 			},
+			next: {
+				tags: ["cart"],
+			},
 		});
 		return graphqlResponse.cartFindOrCreate;
 	}
