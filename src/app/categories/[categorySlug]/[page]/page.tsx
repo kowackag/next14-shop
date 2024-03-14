@@ -35,20 +35,23 @@ type ProductPageType = {
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
-	const allCategories = await getProductsCategories();
+	// const allCategories = await getProductsCategories();
 	const category = await getProductsByCategorySlug(params.categorySlug);
 
-	if (!category || !allCategories) {
+	// if (!category || !allCategories) {
+	// 	throw notFound();
+	// }
+	if (!category) {
 		throw notFound();
 	}
 
 	return (
 		<SectionContainer>
 			<Title>Categories</Title>
-			<CategoriesList
+			{/* <CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
-			/>
+			/> */}
 			<SubTitle>{category.name}</SubTitle>
 			<ProductList products={category.products} />
 			<Pagination
