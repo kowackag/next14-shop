@@ -7,7 +7,7 @@ import { CartIcon } from "@/ui/atoms/CartIcon";
 
 export const Header = () => {
 	return (
-		<header className="px-4 shadow-md ">
+		<header className="border-b border-zinc-100 px-4 ">
 			<div className="m-auto flex max-w-screen-2xl items-center justify-between  ">
 				<p className="pb-2 text-3xl font-semibold sm:text-4xl">eminent</p>
 				<NavBar />

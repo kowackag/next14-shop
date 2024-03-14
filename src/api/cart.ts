@@ -12,18 +12,25 @@ import {
 	type CartChangeProductQuantityMutationVariables,
 	CartQuantityGetByIdDocument,
 } from "@/gql/graphql";
+import { cookies } from "next/headers";
 
 export const getCartById = async (id: string) => {
-	const graphqlResponse = await executeGraphql(CartGetByIdDocument, {
-		cartId: id,
+	const graphqlResponse = await executeGraphql({
+		query: CartGetByIdDocument,
+		variables: {
+			cartId: id,
+		},
 	});
 
 	return graphqlResponse.cart;
 };
 
 export const getCartQuantityById = async (id: string) => {
-	const graphqlResponse = await executeGraphql(CartQuantityGetByIdDocument, {
-		cartId: id,
+	const graphqlResponse = await executeGraphql({
+		query: CartQuantityGetByIdDocument,
+		variables: {
+			cartId: id,
+		},
 	});
 
 	return graphqlResponse.cart;
@@ -35,23 +42,23 @@ export const findOrCreateCartAndAddProduct = async (
 	cartId?: string,
 ): Promise<CartFindOrCreateAndAddProductMutation["cartFindOrCreate"]> => {
 	if (cartId) {
-		const graphqlResponse = await executeGraphql(
-			CartFindOrCreateAndAddProductDocument,
-			{
+		const graphqlResponse = await executeGraphql({
+			query: CartFindOrCreateAndAddProductDocument,
+			variables: {
 				productId,
 				quantity,
 				cartId,
 			},
-		);
+		});
 		return graphqlResponse.cartFindOrCreate;
 	}
-	const graphqlResponse = await executeGraphql(
-		CartFindOrCreateAndAddProductDocument,
-		{
+	const graphqlResponse = await executeGraphql({
+		query: CartFindOrCreateAndAddProductDocument,
+		variables: {
 			productId,
 			quantity,
 		},
-	);
+	});
 
 	if (!graphqlResponse) {
 		throw notFound();
@@ -67,10 +74,13 @@ export const addProductToCart = async ({
 }: CartAddProductMutationVariables): Promise<
 	CartAddProductMutation["cartAddItem"]
 > => {
-	const graphqlResponse = await executeGraphql(CartAddProductDocument, {
-		cartId,
-		productId,
-		quantity,
+	const graphqlResponse = await executeGraphql({
+		query: CartAddProductDocument,
+		variables: {
+			cartId,
+			productId,
+			quantity,
+		},
 	});
 	return graphqlResponse.cartAddItem;
 };
@@ -82,16 +92,53 @@ export const changeProductQuantityInCart = async ({
 }: CartChangeProductQuantityMutationVariables): Promise<
 	CartChangeProductQuantityMutation["cartChangeItemQuantity"]
 > => {
-	const graphqlResponse = await executeGraphql(
-		CartChangeProductQuantityDocument,
-		{
+	const graphqlResponse = await executeGraphql({
+		query: CartChangeProductQuantityDocument,
+		variables: {
 			cartId,
 			productId,
 			quantity,
 		},
-	);
+	});
 	if (!graphqlResponse) {
 		throw notFound();
 	}
 	return graphqlResponse.cartChangeItemQuantity;
 };
+
+export async function findOrCreateCartAndAddProductToCart({
+	productId,
+	quantity,
+}: {
+	productId: string;
+	quantity: number;
+}) {
+	const cartId = cookies().get("cartId")?.value;
+	if (!cartId) {
+		const cart = await findOrCreateCartAndAddProduct(productId, quantity);
+
+		cookies().set("cartId", cart.id, {
+			httpOnly: true,
+			sameSite: "lax",
+		});
+		return cart;
+	} else {
+		const cart = await getCartById(cartId);
+
+		if (!cart) {
+			throw Error();
+		}
+
+		const productToUpdate = cart.items.find(
+			(element) => element.product.id === productId,
+		);
+
+		return productToUpdate
+			? changeProductQuantityInCart({
+					cartId,
+					productId,
+					quantity: productToUpdate.quantity + quantity,
+				})
+			: addProductToCart({ cartId, productId, quantity });
+	}
+}

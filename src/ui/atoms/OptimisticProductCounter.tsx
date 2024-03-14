@@ -1,6 +1,6 @@
 "use client";
 
-import { useOptimistic } from "react";
+import { useOptimistic, startTransition } from "react";
 import { changeProductQuantityInCart } from "@/app/cart/actions";
 
 export const OptimisticProductCounter = ({
@@ -15,16 +15,22 @@ export const OptimisticProductCounter = ({
 	const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(quantity);
 
 	const decrementQuantity = async () => {
-		setOptimisticQuantity(optimisticQuantity - 1);
-		await changeProductQuantityInCart({
-			cartId,
-			productId,
-			quantity: optimisticQuantity - 1,
-		});
+		if (optimisticQuantity > 1) {
+			startTransition(() => {
+				setOptimisticQuantity(optimisticQuantity - 1);
+			});
+			await changeProductQuantityInCart({
+				cartId,
+				productId,
+				quantity: optimisticQuantity - 1,
+			});
+		}
 	};
 
 	const incrementQuantity = async () => {
-		setOptimisticQuantity(optimisticQuantity + 1);
+		startTransition(() => {
+			setOptimisticQuantity(optimisticQuantity + 1);
+		});
 		await changeProductQuantityInCart({
 			cartId,
 			productId,
@@ -36,18 +42,14 @@ export const OptimisticProductCounter = ({
 			<label className="hidden" htmlFor="product-amount">
 				Amount
 			</label>
-			<button type="submit" onClick={decrementQuantity} data-testid="decrement">
+			<button
+				type="submit"
+				onClick={decrementQuantity}
+				data-testid="decrement"
+				disabled={optimisticQuantity < 2}
+			>
 				-
 			</button>
-			{/* <input
-				// data-testid="quantity"
-				type="number"
-				readOnly
-				id="product-amount"
-				name="quantity"
-				value={optimisticQuantity}
-				
-			/>  */}
 			<span
 				className="inline-block w-14 border-zinc-100  text-center"
 				data-testid="quantity"

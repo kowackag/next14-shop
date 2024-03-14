@@ -23,7 +23,7 @@ export const CartProductListItem = ({
 	quantity: number;
 }) => {
 	return (
-		<tr className="grid grid-cols-3 items-center justify-items-center border-b border-l border-r md:grid-cols-5 md:border-zinc-200">
+		<tr className="grid grid-cols-3 items-center justify-items-center border-b border-l border-r md:grid-cols-6 md:border-zinc-200">
 			<td className="w-32 p-4">
 				{product.images[0] && (
 					<ProductImage src={product.images[0]?.url} alt={product.name} />
@@ -43,6 +43,15 @@ export const CartProductListItem = ({
 				/>
 			</td>
 			<td className=" p-4">{formatMoney((product.price / 100) * quantity)}</td>
+			<td className=" p-4">
+				<button>
+					<div className="text-zinc-400 transition hover:text-rose-700">
+						<svg width="24" height="24">
+							<use href="/icons.svg#trash"></use>
+						</svg>
+					</div>
+				</button>
+			</td>
 		</tr>
 	);
 };
