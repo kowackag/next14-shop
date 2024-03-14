@@ -16,14 +16,14 @@ export const changeProductQuantityInCart = async ({
 }: CartChangeProductQuantityMutationVariables): Promise<
 	CartChangeProductQuantityMutation["cartChangeItemQuantity"]
 > => {
-	const graphqlResponse = await executeGraphql(
-		CartChangeProductQuantityDocument,
-		{
+	const graphqlResponse = await executeGraphql({
+		query: CartChangeProductQuantityDocument,
+		variables: {
 			cartId,
 			productId,
 			quantity,
 		},
-	);
+	});
 	if (!graphqlResponse) {
 		throw notFound();
 	}

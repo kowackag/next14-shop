@@ -13,15 +13,20 @@ import {
 } from "@/gql/graphql";
 
 export const getProducts = async () => {
-	const graphqlResponse = await executeGraphql(ProductsGetListDocument, {});
+	const graphqlResponse = await executeGraphql({
+		query: ProductsGetListDocument,
+	});
 	return graphqlResponse.products;
 };
 
 export const getProductById = async (
 	id: ProductListItemFragment["id"],
 ): Promise<ProductGetByIdQuery["product"]> => {
-	const { product } = await executeGraphql(ProductGetByIdDocument, {
-		id,
+	const { product } = await executeGraphql({
+		query: ProductGetByIdDocument,
+		variables: {
+			id,
+		},
 	});
 	if (!product) {
 		throw notFound();
@@ -35,8 +40,11 @@ export const getRelatedProducts = async ({
 }: {
 	category: string;
 }): Promise<ProductsGetRelatedListQuery["category"]> => {
-	const graphqlResponse = await executeGraphql(ProductsGetRelatedListDocument, {
-		catSlug: category,
+	const graphqlResponse = await executeGraphql({
+		query: ProductsGetRelatedListDocument,
+		variables: {
+			catSlug: category,
+		},
 	});
 	return graphqlResponse.category;
 };
@@ -44,8 +52,11 @@ export const getRelatedProducts = async ({
 export const getProductsByQuery = async (
 	query: string,
 ): Promise<ProductsGetByQueryQuery["products"]> => {
-	const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
-		query,
+	const graphqlResponse = await executeGraphql({
+		query: ProductsGetByQueryDocument,
+		variables: {
+			query,
+		},
 	});
 	return graphqlResponse.products;
 };
