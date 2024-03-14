@@ -3,16 +3,27 @@ import { type Route } from "next";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
 import { Paths } from "@/paths";
+import { getProductsCategoriesNames } from "@/api/categories";
 
-const navigationLinks = [
-	{ name: "Home", href: Paths.HOME, exact: true },
-	// { name: "About us", href: Paths.ABOUT },
-	// { name: "Contact", href: Paths.CONTACT },
-	{ name: "All", href: Paths.PRODUCTS },
-	{ name: "Categories", href: Paths.CATEGORIES },
-];
+export const NavBar = async () => {
+	const categoriesNames = await getProductsCategoriesNames();
 
-export const NavBar = () => {
+	const categoryLinks = categoriesNames.data.map((item) => {
+		return {
+			name: item.name,
+			href: `/categories/${item.slug}`,
+			exact: false,
+		};
+	});
+
+	const navigationLinks = [
+		{ name: "Home", href: Paths.HOME, exact: true },
+		// { name: "About us", href: Paths.ABOUT },
+		// { name: "Contact", href: Paths.CONTACT },
+		{ name: "All", href: Paths.PRODUCTS, exact: false },
+		...categoryLinks.reverse(),
+	];
+
 	return (
 		<nav className="hidden md:flex md:justify-center">
 			<ul className="flex items-center justify-center">
