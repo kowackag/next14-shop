@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CategoriesList } from "@/ui/organisms/CategoriesList";
+// import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
