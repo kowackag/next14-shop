@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
-// import { CategoriesList } from "@/ui/organisms/CategoriesList";
+import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
@@ -9,7 +9,7 @@ import { SubTitle, Title } from "@/ui/atoms/Title";
 
 import {
 	getProductsByCategorySlug,
-	// getProductsCategories,
+	getProductsCategories,
 } from "@/api/categories";
 
 // export const generateStaticParams = async () => {
@@ -35,23 +35,23 @@ type ProductPageType = {
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
-	// const allCategories = await getProductsCategories();
+	const allCategories = await getProductsCategories();
 	const category = await getProductsByCategorySlug(params.categorySlug);
 
-	// if (!category || !allCategories) {
-	// 	throw notFound();
-	// }
-	if (!category) {
+	if (!category || !allCategories) {
 		throw notFound();
 	}
+	// if (!category) {
+	// 	throw notFound();
+	// }
 
 	return (
 		<SectionContainer>
 			<Title>Categories</Title>
-			{/* <CategoriesList
+			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
-			/> */}
+			/>
 			<SubTitle>{category.name}</SubTitle>
 			<ProductList products={category.products} />
 			<Pagination
