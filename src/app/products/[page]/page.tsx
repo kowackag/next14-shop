@@ -11,7 +11,6 @@ type ProductPageType = {
 };
 export default async function ProductsPage({ params }: ProductPageType) {
 	const productsNumberOnPage = 4;
-	// const offset = (Number(params.page) - 1) * 4 + 1;
 	const products = await getProducts();
 	const productsOnPage = selectProductsOnPage(
 		products.data,

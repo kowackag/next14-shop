@@ -5,58 +5,55 @@ import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
-import { SubTitle, Title } from "@/ui/atoms/Title";
+import { Title } from "@/ui/atoms/Title";
 
 import {
 	getProductsByCategorySlug,
 	getProductsCategories,
 } from "@/api/categories";
+import { selectProductsOnPage } from "@/utils/helpers";
 
-// export const generateStaticParams = async () => {
-// 	const categories = await getProductsCategories();
-// 	return categories.data.map((category) => ({
-// 		slug: category.slug,
-// 		name: category.name,
-// 		images:
-// 			category.products[0] &&
-// 			category.products[0].images[0] &&
-// 			category.products[0].images[0].url,
-// 	}));
-// };
+export async function generateMetadata({
+	params,
+}: ProductPageType): Promise<Metadata> {
+	const category = await getProductsByCategorySlug(params.categorySlug);
 
-export const metadata: Metadata = {
-	title: "Categories",
-	description: "Modern products",
-};
+	return {
+		title: category?.name,
+		description: "Modern products",
+	};
+}
 
 type ProductPageType = {
-	readonly params: { categorySlug: string };
+	readonly params: { categorySlug: string; page: number };
 	readonly searchParams: { [key: string]: string | string[] };
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
+	const productsNumberOnPage = 4;
 	const allCategories = await getProductsCategories();
 	const category = await getProductsByCategorySlug(params.categorySlug);
 
 	if (!category || !allCategories) {
 		throw notFound();
 	}
-	// if (!category) {
-	// 	throw notFound();
-	// }
+	const productsOnPage = selectProductsOnPage(
+		category.products,
+		params.page,
+		productsNumberOnPage,
+	);
 
 	return (
 		<SectionContainer>
-			<Title>Categories</Title>
 			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
 			/>
-			<SubTitle>{category.name}</SubTitle>
-			<ProductList products={category.products} />
+			<Title>{category.name}</Title>
+			<ProductList products={productsOnPage} />
 			<Pagination
 				pages={category.products.length}
-				productsNumberOnPage={4}
+				productsNumberOnPage={productsNumberOnPage}
 				path={`categories/${params.categorySlug}`}
 			/>
 		</SectionContainer>
