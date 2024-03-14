@@ -12,17 +12,6 @@ import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@/api/products";
 import { ImageSection } from "@/ui/molecules/ImageSection";
 
-// export const generateStaticParams = async () => {
-// 	const categories = await getProductsCategories();
-// 	return categories.data.map((category) => ({
-// 		slug: category.slug,
-// 		name: category.name,
-// 		images: category.products[0]
-// 			? category.products[0].images[0]?.url
-// 			: "Fassion",
-// 	}));
-// };
-
 export default async function HomePage() {
 	const allCategories = await getProductsCategories();
 	const allCollection = await getProductsCollections();
