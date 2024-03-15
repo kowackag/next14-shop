@@ -11,8 +11,9 @@ import {
 	type CartAddProductMutationVariables,
 	type CartChangeProductQuantityMutationVariables,
 	CartQuantityGetByIdDocument,
+	CartRemoveProductMutationVariables,
+	CartRemoveProductDocument,
 } from "@/gql/graphql";
-import { cookies } from "next/headers";
 
 export const getCartById = async (id: string) => {
 	const graphqlResponse = await executeGraphql({
@@ -109,39 +110,19 @@ export const changeProductQuantityInCart = async ({
 	return graphqlResponse.cartChangeItemQuantity;
 };
 
-export async function findOrCreateCartAndAddProductToCart({
+export const RemoveProductFromCart = async ({
+	id,
 	productId,
-	quantity,
-}: {
-	productId: string;
-	quantity: number;
-}) {
-	const cartId = cookies().get("cartId")?.value;
-	if (!cartId) {
-		const cart = await findOrCreateCartAndAddProduct(productId, quantity);
-
-		cookies().set("cartId", cart.id, {
-			httpOnly: true,
-			sameSite: "lax",
-		});
-		return cart;
-	} else {
-		const cart = await getCartById(cartId);
-
-		if (!cart) {
-			throw Error();
-		}
-
-		const productToUpdate = cart.items.find(
-			(element) => element.product.id === productId,
-		);
-
-		return productToUpdate
-			? changeProductQuantityInCart({
-					cartId,
-					productId,
-					quantity: productToUpdate.quantity + quantity,
-				})
-			: addProductToCart({ cartId, productId, quantity });
+}: CartRemoveProductMutationVariables) => {
+	const graphqlResponse = await executeGraphql({
+		query: CartRemoveProductDocument,
+		variables: {
+			id,
+			productId,
+		},
+	});
+	if (!graphqlResponse) {
+		throw notFound();
 	}
-}
+	return graphqlResponse.cartRemoveItem;
+};

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { findOrCreateCartAndAddProductToCart } from "@/api/cart";
+import { findOrCreateCartAndAddProductToCart } from "@/app/cart/actions";
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
 import { ProductCounter } from "@/ui/atoms/ProductCounter";
 import { revalidateTag } from "next/cache";

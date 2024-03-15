@@ -317,6 +317,14 @@ export type CartQuantityGetByIdQueryVariables = Exact<{
 
 export type CartQuantityGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number }> } | null };
 
+export type CartRemoveProductMutationVariables = Exact<{
+  productId: Scalars['ID']['input'];
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartRemoveProductMutation = { cartRemoveItem: { id: string } };
+
 export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -331,6 +339,18 @@ export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CollectionsGetListQuery = { collections: { data: Array<{ name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> } };
+
+export type CommentAddToProductMutationVariables = Exact<{
+  description: Scalars['String']['input'];
+  author: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  productId: Scalars['ID']['input'];
+  rating: Scalars['Int']['input'];
+  title: Scalars['String']['input'];
+}>;
+
+
+export type CommentAddToProductMutation = { reviewCreate: { id: string } };
 
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -510,6 +530,13 @@ export const CartQuantityGetByIdDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartQuantityGetByIdQuery, CartQuantityGetByIdQueryVariables>;
+export const CartRemoveProductDocument = new TypedDocumentString(`
+    mutation CartRemoveProduct($productId: ID!, $id: ID!) {
+  cartRemoveItem(productId: $productId, id: $id) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartRemoveProductMutation, CartRemoveProductMutationVariables>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList {
   categories {
@@ -550,6 +577,20 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
+export const CommentAddToProductDocument = new TypedDocumentString(`
+    mutation CommentAddToProduct($description: String!, $author: String!, $email: String!, $productId: ID!, $rating: Int!, $title: String!) {
+  reviewCreate(
+    description: $description
+    productId: $productId
+    rating: $rating
+    title: $title
+    author: $author
+    email: $email
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CommentAddToProductMutation, CommentAddToProductMutationVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {

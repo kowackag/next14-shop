@@ -4,6 +4,7 @@ import { ProductImage } from "../atoms/ProductImage";
 import { OptimisticProductCounter } from "../atoms/OptimisticProductCounter";
 import { formatMoney } from "@/utils/helpers";
 import { Paths } from "@/paths";
+import { RemoveProductButton } from "../atoms/RemoveProductButton";
 
 export const CartProductListItem = ({
 	cartId,
@@ -44,13 +45,7 @@ export const CartProductListItem = ({
 			</td>
 			<td className=" p-4">{formatMoney((product.price / 100) * quantity)}</td>
 			<td className=" p-4">
-				<button>
-					<div className="text-zinc-400 transition hover:text-rose-700">
-						<svg width="24" height="24">
-							<use href="/icons.svg#trash"></use>
-						</svg>
-					</div>
-				</button>
+				<RemoveProductButton productId={product.id} cartId={cartId} />
 			</td>
 		</tr>
 	);
