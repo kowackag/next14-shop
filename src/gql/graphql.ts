@@ -317,6 +317,14 @@ export type CartQuantityGetByIdQueryVariables = Exact<{
 
 export type CartQuantityGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number }> } | null };
 
+export type CartRemoveProductMutationVariables = Exact<{
+  productId: Scalars['ID']['input'];
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type CartRemoveProductMutation = { cartRemoveItem: { id: string } };
+
 export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -332,12 +340,24 @@ export type CollectionsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CollectionsGetListQuery = { collections: { data: Array<{ name: string, slug: string, products: Array<{ images: Array<{ url: string }> }> }> } };
 
+export type CommentAddToProductMutationVariables = Exact<{
+  description: Scalars['String']['input'];
+  author: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  productId: Scalars['ID']['input'];
+  rating: Scalars['Int']['input'];
+  title: Scalars['String']['input'];
+}>;
+
+
+export type CommentAddToProductMutation = { reviewCreate: { id: string } };
+
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type ProductGetByIdQuery = { product?: { id: string, name: string, price: number, slug: string, description: string, rating?: number | null, categories: Array<{ slug: string, name: string }>, images: Array<{ url: string }> } | null };
+export type ProductGetByIdQuery = { product?: { id: string, name: string, price: number, slug: string, description: string, rating?: number | null, categories: Array<{ slug: string, name: string }>, images: Array<{ url: string }>, reviews: Array<{ id: string, createdAt: unknown, rating: number, author: string, description: string }> } | null };
 
 export type ProductListItemFragment = { id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> };
 
@@ -373,6 +393,13 @@ export type ProductsGetRelatedListQueryVariables = Exact<{
 
 
 export type ProductsGetRelatedListQuery = { category?: { products: Array<{ id: string, name: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } | null };
+
+export type ReviewsGetByProductIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ReviewsGetByProductIdQuery = { product?: { reviews: Array<{ id: string, createdAt: unknown, rating: number, author: string, description: string }> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -510,6 +537,13 @@ export const CartQuantityGetByIdDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CartQuantityGetByIdQuery, CartQuantityGetByIdQueryVariables>;
+export const CartRemoveProductDocument = new TypedDocumentString(`
+    mutation CartRemoveProduct($productId: ID!, $id: ID!) {
+  cartRemoveItem(productId: $productId, id: $id) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CartRemoveProductMutation, CartRemoveProductMutationVariables>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList {
   categories {
@@ -550,6 +584,20 @@ export const CollectionsGetListDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<CollectionsGetListQuery, CollectionsGetListQueryVariables>;
+export const CommentAddToProductDocument = new TypedDocumentString(`
+    mutation CommentAddToProduct($description: String!, $author: String!, $email: String!, $productId: ID!, $rating: Int!, $title: String!) {
+  reviewCreate(
+    description: $description
+    productId: $productId
+    rating: $rating
+    title: $title
+    author: $author
+    email: $email
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CommentAddToProductMutation, CommentAddToProductMutationVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {
@@ -565,6 +613,13 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
     }
     images {
       url
+    }
+    reviews {
+      id
+      createdAt
+      rating
+      author
+      description
     }
   }
 }
@@ -665,3 +720,16 @@ export const ProductsGetRelatedListDocument = new TypedDocumentString(`
     url
   }
 }`) as unknown as TypedDocumentString<ProductsGetRelatedListQuery, ProductsGetRelatedListQueryVariables>;
+export const ReviewsGetByProductIdDocument = new TypedDocumentString(`
+    query ReviewsGetByProductId($id: ID!) {
+  product(id: $id) {
+    reviews {
+      id
+      createdAt
+      rating
+      author
+      description
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewsGetByProductIdQuery, ReviewsGetByProductIdQueryVariables>;

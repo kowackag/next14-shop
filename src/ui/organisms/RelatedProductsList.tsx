@@ -2,6 +2,7 @@ import { ProductList } from "@/ui/organisms/ProductList";
 import { SubTitle } from "@/ui/atoms/Title";
 
 import { getRelatedProducts } from "@/api/products";
+import { SectionContainer } from "../atoms/SectionContainer";
 
 export const RelatedProductsList = async ({
 	category,
@@ -12,9 +13,9 @@ export const RelatedProductsList = async ({
 	const relatedProducts = await getRelatedProducts({ category: category });
 	if (!relatedProducts) return null;
 	return (
-		<div data-testid="related-products">
+		<SectionContainer data-testid="related-products">
 			<SubTitle>Related products</SubTitle>
 			<ProductList products={relatedProducts.products} />
-		</div>
+		</SectionContainer>
 	);
 };

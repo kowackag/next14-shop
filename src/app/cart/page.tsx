@@ -13,7 +13,7 @@ export default async function CartPage() {
 	if (!cartId) {
 		return (
 			<SectionContainer>
-				<p>No products</p>
+				<p>Your shoping cart is empty</p>
 			</SectionContainer>
 		);
 	}

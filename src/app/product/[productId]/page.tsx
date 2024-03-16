@@ -4,7 +4,6 @@ import { type Metadata } from "next";
 
 import { ProductDetailsCart } from "@/ui/organisms/ProductDetailsCart";
 import { RelatedProductsList } from "@/ui/organisms/RelatedProductsList";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Loading } from "@/ui/atoms/Loading";
 
 import { getProductById, getProducts } from "@/api/products";
@@ -48,14 +47,10 @@ export default async function SingleProductPage({ params }: ProductPageType) {
 	}
 	return (
 		<>
-			<SectionContainer>
-				<ProductDetailsCart product={product} />
-			</SectionContainer>
-			<SectionContainer>
-				<Suspense fallback={<Loading />}>
-					<RelatedProductsList category={product.categories[0]?.slug} />
-				</Suspense>
-			</SectionContainer>
+			<ProductDetailsCart product={product} />
+			<Suspense fallback={<Loading />}>
+				<RelatedProductsList category={product.categories[0]?.slug} />
+			</Suspense>
 		</>
 	);
 }
