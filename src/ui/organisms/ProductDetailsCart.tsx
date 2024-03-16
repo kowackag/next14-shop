@@ -1,10 +1,12 @@
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
+import { AddCommentForm } from "@/ui/molecules/AddCommentForm";
 import { SubTitle, Title } from "@/ui/atoms/Title";
 import { ProductImage } from "@/ui/atoms/ProductImage";
+import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
 import { type ProductGetByIdQuery } from "@/gql/graphql";
 import { formatMoney } from "@/utils/helpers";
-import { AddCommentForm } from "../molecules/AddCommentForm";
+import { Fragment } from "react";
 
 export const ProductDetailsCart = ({
 	product,
@@ -16,7 +18,7 @@ export const ProductDetailsCart = ({
 	}
 
 	return (
-		<div className="w-full">
+		<SectionContainer>
 			<article className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
 				<div className="mb-8 w-full">
 					{product.images[0] && (
@@ -42,8 +44,19 @@ export const ProductDetailsCart = ({
 				</div>
 				<div className="mb-8 w-full">
 					<SubTitle>Reviews</SubTitle>
+					{product.reviews.map((review) => (
+						<Fragment key={review.id}>
+							<div className="flex py-2">
+								<p>{review.author}</p>
+								<p>{review.rating}</p>
+							</div>
+							<div className="flex">
+								<p>{review.description}</p>
+							</div>
+						</Fragment>
+					))}
 				</div>
 			</article>
-		</div>
+		</SectionContainer>
 	);
 };

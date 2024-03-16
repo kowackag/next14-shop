@@ -27,7 +27,7 @@ export const addCommentToProduct = async ({
 			rating,
 		},
 		next: {
-			tags: ["/product"],
+			tags: ["product"],
 		},
 	});
 	return graphqlResponse.reviewCreate;

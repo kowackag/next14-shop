@@ -21,15 +21,21 @@ export const CartTable = ({
 				</tr>
 			</thead>
 			<tbody data-testid="products-list">
-				{products.map((item) =>
-					!item.product ? null : (
-						<CartProductListItem
-							key={item.product.id}
-							product={item.product}
-							quantity={item.quantity}
-							cartId={cartId}
-						/>
-					),
+				{products.length ? (
+					products.map((item) =>
+						!item.product ? null : (
+							<CartProductListItem
+								key={item.product.id}
+								product={item.product}
+								quantity={item.quantity}
+								cartId={cartId}
+							/>
+						),
+					)
+				) : (
+					<tr className="grid grid-cols-1 justify-items-center border-b border-l border-r py-4 md:border-zinc-200">
+						<td>Your shoping cart is empty</td>
+					</tr>
 				)}
 			</tbody>
 		</table>

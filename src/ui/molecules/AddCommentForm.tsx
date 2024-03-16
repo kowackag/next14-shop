@@ -19,21 +19,21 @@ export const AddCommentForm = ({ id }: { id: string }) => {
 	// 		rating: 5,
 	// 	},
 	// });
-	// const addToCartAction = async (formData: FormData) => {
-	// 	console.log(formData.get("title"));
-	// 	try {
-	// 		const data = {
-	// 			productId: id,
-	// 			title: formData.get("headline"),
-	// 			description: formData.get("content"),
-	// 			author: formData.get("name"),
-	// 			email: formData.get("email"),
-	// 			rating: Number(formData.get("rating")),
-	// 		};
-	// 		console.log(data);
-	// 		//addCommentToProduct(data);
-	// 	} catch (err) {}
-	// };
+	const addToCartAction = async (formData: FormData) => {
+		console.log(formData.get("title"));
+		try {
+			const data = {
+				productId: id,
+				title: formData.get("headline"),
+				description: formData.get("content"),
+				author: formData.get("name"),
+				email: formData.get("email"),
+				rating: Number(formData.get("rating")),
+			};
+			console.log(666, data);
+			// addCommentToProduct(data);
+		} catch (err) {}
+	};
 
 	return (
 		<form data-testid="add-review-form">
@@ -100,7 +100,13 @@ export const AddCommentForm = ({ id }: { id: string }) => {
 				/>
 			</div>
 
-			<button className="my-6 border px-4 py-2">Add comment</button>
+			<button
+				formAction={addToCartAction}
+				type="submit"
+				className="my-6 border px-4 py-2"
+			>
+				Add comment
+			</button>
 		</form>
 	);
 };

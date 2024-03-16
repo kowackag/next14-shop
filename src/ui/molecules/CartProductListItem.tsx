@@ -35,7 +35,9 @@ export const CartProductListItem = ({
 					{product.name}
 				</Link>
 			</td>
-			<td className="p-4">{formatMoney(product.price / 100)}</td>
+			<td className="p-4" data-testid="product-price">
+				{formatMoney(product.price / 100)}
+			</td>
 			<td className="p-4">
 				<OptimisticProductCounter
 					cartId={cartId}

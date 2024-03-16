@@ -13,5 +13,12 @@ query ProductGetById($id: ID!) {
 		images {
 			url
 		}
+		reviews {
+			id
+			createdAt
+			rating
+			author
+			description
+		}
 	}
 }
