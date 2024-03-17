@@ -15,7 +15,6 @@ export const addCommentToProduct = async ({
 }: CommentAddToProductMutationVariables): Promise<
 	CommentAddToProductMutation["reviewCreate"]
 > => {
-	console.log(productId, title, description, author, email, rating);
 	const graphqlResponse = await executeGraphql({
 		query: CommentAddToProductDocument,
 		variables: {

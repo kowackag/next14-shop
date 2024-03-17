@@ -12,9 +12,9 @@ export default async function CartPage() {
 
 	if (!cartId) {
 		return (
-			<SectionContainer>
-				<p>Your shoping cart is empty</p>
-			</SectionContainer>
+			<p className="m-auto max-w-screen-xl px-6 py-8">
+				Your shoping cart is empty
+			</p>
 		);
 	}
 

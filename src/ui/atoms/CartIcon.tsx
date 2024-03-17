@@ -31,7 +31,7 @@ export const CartIcon = async () => {
 					<use href="/icons.svg#shoping-card"></use>
 				</svg>
 
-				<p className="absolute bottom-3 right-0 mr-2 h-5 w-5 rounded-full bg-rose-500 py-[2px] text-center align-middle text-xs text-neutral-100">
+				<p className="absolute bottom-3 right-0 mr-2 h-5 w-5 rounded-full bg-rose-700 py-[2px] text-center align-middle text-xs text-neutral-100">
 					{quantity}
 				</p>
 			</div>

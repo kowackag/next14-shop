@@ -24,18 +24,6 @@ export async function generateMetadata({
 	};
 }
 
-// export const generateStaticParams = async () => {
-// 	const categories = await getProductsCategories();
-// 	return categories.data.map((category) => ({
-// 		slug: category.slug,
-// 		name: category.name,
-// 		images:
-// 			category.products[0] &&
-// 			category.products[0].images[0] &&
-// 			category.products[0].images[0].url,
-// 	}));
-// };
-
 type ProductPageType = {
 	readonly params: { categorySlug: string; page: number };
 	readonly searchParams: { [key: string]: string | string[] };
