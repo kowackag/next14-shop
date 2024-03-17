@@ -20,12 +20,16 @@ export const CartIcon = async () => {
 
 	const cart = await getCartById(cartId);
 
-	const quantity = cart?.items.reduce((acc, product) => {
+	const quantity = cart?.items.reduce((acc:number, product) => {
 		return acc + product.quantity;
 	}, 0);
 
 	return (
-		<Link className="cursor-pointer" href={Paths.CART}>
+		<Link
+			className="cursor-pointer"
+			href={Paths.CART}
+			aria-label="go to shoping cart"
+		>
 			<div className="relative flex h-[76px] items-center justify-center px-2">
 				<svg width="32px" height="32px">
 					<use href="/icons.svg#shoping-card"></use>

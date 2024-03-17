@@ -11,7 +11,7 @@ import {
 	type CartAddProductMutationVariables,
 	type CartChangeProductQuantityMutationVariables,
 	CartQuantityGetByIdDocument,
-	CartRemoveProductMutationVariables,
+	type CartRemoveProductMutationVariables,
 	CartRemoveProductDocument,
 } from "@/gql/graphql";
 

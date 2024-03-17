@@ -2,13 +2,13 @@
 
 import { revalidateTag } from "next/cache";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { executeGraphql } from "@/api/graphqlApi";
 import {
 	CartChangeProductQuantityDocument,
 	type CartChangeProductQuantityMutation,
 	type CartChangeProductQuantityMutationVariables,
 } from "@/gql/graphql";
-import { cookies } from "next/headers";
 import { addProductToCart, findOrCreateCartAndAddProduct, getCartById } from "@/api/cart";
 
 export const changeProductQuantityInCart = async ({

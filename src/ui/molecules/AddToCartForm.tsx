@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
+import { revalidateTag } from "next/cache";
 import { findOrCreateCartAndAddProductToCart } from "@/app/cart/actions";
 import { AnimatedButton } from "@/ui/atoms/AnimatedButton";
 import { ProductCounter } from "@/ui/atoms/ProductCounter";
-import { revalidateTag } from "next/cache";
 
 export const AddToCartForm = ({ id }: { id: string }) => {
 	const addToCartAction = async (formData: FormData) => {
@@ -26,7 +26,7 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 				<p className="mr-2">Quantity:</p>
 				<ProductCounter />
 			</div>
-			<AnimatedButton>Add to cart</AnimatedButton>aria-label
+			<AnimatedButton>Add to cart</AnimatedButton>
 		</form>
 	);
 };
