@@ -18,9 +18,12 @@ export const ImageSection = () => {
 					<span className="block tracking-wider md:mb-2">Fashion</span>Passion
 				</h1>
 				<p className="my-4 md:my-10 lg:my-14 lg:text-xl">Eminent collection</p>
-				<button className="border border-zinc-300 p-2 md:px-5 lg:px-7 lg:py-3">
-					<Link href={Paths.PRODUCTS}>Shop now</Link>
-				</button>
+				<Link
+					className="border border-zinc-300 p-2 md:px-5 lg:px-7 lg:py-3"
+					href={Paths.PRODUCTS}
+				>
+					Shop now
+				</Link>
 			</div>
 		</div>
 	);

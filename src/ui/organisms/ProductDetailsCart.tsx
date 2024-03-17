@@ -1,12 +1,12 @@
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
-import { AddCommentForm } from "@/ui/molecules/AddCommentForm";
+import { AddCommentForm } from "@/ui/molecules/AddCommentForm/AddCommentForm";
 import { SubTitle, Title } from "@/ui/atoms/Title";
 import { ProductImage } from "@/ui/atoms/ProductImage";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
 import { type ProductGetByIdQuery } from "@/gql/graphql";
 import { formatMoney } from "@/utils/helpers";
-import { Fragment } from "react";
+import { ReviewsList } from "../molecules/ReviewsList";
 
 export const ProductDetailsCart = ({
 	product,
@@ -37,26 +37,13 @@ export const ProductDetailsCart = ({
 					<AddToCartForm id={product.id} />
 				</div>
 			</article>
-			<article className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
-				<div className="mb-8 w-full">
+			<section className="grid w-full grid-cols-1 gap-10 lg:grid-cols-5">
+				<ReviewsList reviews={product.reviews} />
+				<div className="col-span-2 mb-8 w-full">
 					<SubTitle>Add comment</SubTitle>
 					<AddCommentForm id={product.id} />
 				</div>
-				<div className="mb-8 w-full">
-					<SubTitle>Reviews</SubTitle>
-					{product.reviews.map((review) => (
-						<Fragment key={review.id}>
-							<div className="flex py-2">
-								<p>{review.author}</p>
-								<p>{review.rating}</p>
-							</div>
-							<div className="flex">
-								<p>{review.description}</p>
-							</div>
-						</Fragment>
-					))}
-				</div>
-			</article>
+			</section>
 		</SectionContainer>
 	);
 };

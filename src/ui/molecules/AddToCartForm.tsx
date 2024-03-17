@@ -26,7 +26,7 @@ export const AddToCartForm = ({ id }: { id: string }) => {
 				<p className="mr-2">Quantity:</p>
 				<ProductCounter />
 			</div>
-			<AnimatedButton>Add to cart</AnimatedButton>
+			<AnimatedButton>Add to cart</AnimatedButton>aria-label
 		</form>
 	);
 };

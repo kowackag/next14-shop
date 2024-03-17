@@ -14,20 +14,21 @@ export const ProductCounter = ({ initValue = 1 }: { initValue?: number }) => {
 	};
 	return (
 		<div className="flex max-w-max border-[1px] border-zinc-200 p-2">
-			<label className="hidden" htmlFor="product-amount">
-				Amount
+			<label className="hidden" htmlFor="quantity">
+				Quantity
 			</label>
 			<button type="button" onClick={decreaseAmount} data-testid="decrement">
 				-
 			</button>
 			<input
-				// data-testid="quantity"
+				data-testid="quantity"
 				type="number"
 				readOnly
-				id="product-amount"
+				id="quantity"
 				name="quantity"
 				value={productAmount}
-				className="inline-block w-14 border-zinc-100 pl-4 text-center outline-none"
+				aria-label="quantity"
+				className="inline-block w-14 border-zinc-100  pl-2  text-center outline-none"
 			/>
 			<button type="button" onClick={increaseAmount} data-testid="increment">
 				+

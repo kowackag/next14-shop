@@ -30,23 +30,25 @@ export const CartProductListItem = ({
 					<ProductImage src={product.images[0]?.url} alt={product.name} />
 				)}
 			</td>
-			<td className="col-span-2 p-4 font-semibold md:col-span-1 md:font-normal ">
+			<td className="p-4 font-semibold md:font-normal ">
 				<Link href={`${Paths.PRODUCT}/${product.id}` as Route}>
 					{product.name}
 				</Link>
 			</td>
-			<td className="p-4" data-testid="product-price">
+			<td className="order-2 p-4" data-testid="product-price">
 				{formatMoney(product.price / 100)}
 			</td>
-			<td className="p-4">
+			<td className="order-3 p-4">
 				<OptimisticProductCounter
 					cartId={cartId}
 					productId={product.id}
 					quantity={quantity}
 				/>
 			</td>
-			<td className=" p-4">{formatMoney((product.price / 100) * quantity)}</td>
-			<td className=" p-4">
+			<td className="order-4 p-4">
+				{formatMoney((product.price / 100) * quantity)}
+			</td>
+			<td className="order-1 p-4 md:order-last">
 				<RemoveProductButton productId={product.id} cartId={cartId} />
 			</td>
 		</tr>
