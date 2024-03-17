@@ -1,8 +1,8 @@
 "use client";
 
-import { RemoveProductFromCart } from "@/api/cart";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
+import { RemoveProductFromCart } from "@/api/cart";
 
 export const RemoveProductButton = ({
 	productId,

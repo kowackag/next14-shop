@@ -1,3 +1,4 @@
+import { ReviewsList } from "../molecules/ReviewsList";
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
 import { AddCommentForm } from "@/ui/molecules/AddCommentForm/AddCommentForm";
 import { SubTitle, Title } from "@/ui/atoms/Title";
@@ -6,7 +7,6 @@ import { SectionContainer } from "@/ui/atoms/SectionContainer";
 
 import { type ProductGetByIdQuery } from "@/gql/graphql";
 import { formatMoney } from "@/utils/helpers";
-import { ReviewsList } from "../molecules/ReviewsList";
 
 export const ProductDetailsCart = ({
 	product,

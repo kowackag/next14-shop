@@ -1,11 +1,11 @@
 "use server";
 
+import { notFound } from "next/navigation";
 import { executeGraphql } from "@/api/graphqlApi";
 import {
 	CartRemoveProductDocument,
-	CartRemoveProductMutationVariables,
+	type CartRemoveProductMutationVariables,
 } from "@/gql/graphql";
-import { notFound } from "next/navigation";
 
 export const RemoveProductFromCart = async ({
 	id,

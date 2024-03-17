@@ -1,7 +1,7 @@
 "use server";
 
-import { addCommentToProduct } from "@/api/comment";
 import { commentSchema } from "./commentSchema";
+import { addCommentToProduct } from "@/api/comment";
 
 export type AddCommentActionTypes<TData = unknown> =
 	| {
@@ -31,7 +31,7 @@ export const addCommentAction = async (data: FormData, productId: string) => {
 			email: parsedData.data.email,
 			rating: Number(parsedData.data.rating),
 		};
-		addCommentToProduct(data);
+		await addCommentToProduct(data);
 		// return {
 		// 	success: true,
 		// 	errors: false,

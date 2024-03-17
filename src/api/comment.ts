@@ -1,9 +1,9 @@
+import { executeGraphql } from "./graphqlApi";
 import {
 	CommentAddToProductDocument,
-	CommentAddToProductMutation,
-	CommentAddToProductMutationVariables,
+	type CommentAddToProductMutation,
+	type CommentAddToProductMutationVariables,
 } from "@/gql/graphql";
-import { executeGraphql } from "./graphqlApi";
 
 export const addCommentToProduct = async ({
 	productId,

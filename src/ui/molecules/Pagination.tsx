@@ -6,10 +6,12 @@ export const Pagination = ({
 	pages,
 	path,
 	productsNumberOnPage,
+	params,
 }: {
 	pages: number;
 	path: string;
 	productsNumberOnPage: number;
+	params?: string;
 }) => {
 	const paginationPagelinks = createPaginationLinks(
 		Number(pages),
@@ -26,7 +28,7 @@ export const Pagination = ({
 				{paginationPagelinks.map((item) => (
 					<li key={item.href} className="text-zinc-400">
 						<ActiveLink
-							href={item.href as Route}
+							href={`${item.href}${params ?? ""}` as Route}
 							className="inline-flex items-center border-t-4 border-transparent px-6 py-4 text-sm  hover:border-cyan-600"
 							activeClassName="text-cyan-700 font-semibold"
 							exact={true}

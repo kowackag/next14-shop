@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { sortedUniqBy } from "lodash";
 import { executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetListDocument,
@@ -10,11 +11,28 @@ import {
 	type ProductsGetRelatedListQuery,
 	ProductsGetRelatedListDocument,
 	ProductsGetByQueryDocument,
+	ProductsGetSortedListDocument,
+	type ProductsGetSortedListQueryVariables,
 } from "@/gql/graphql";
 
 export const getProducts = async () => {
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetListDocument,
+	});
+	return graphqlResponse.products;
+};
+
+export const getSortedByPriceProducts = async (
+	sorted: ProductsGetSortedListQueryVariables["sortBy"],
+) => {
+	if (!sortedUniqBy) return notFound();
+
+	const graphqlResponse = await executeGraphql({
+		query: ProductsGetSortedListDocument,
+		variables: { sortBy: sorted },
+		// next: {
+		// 	tags: ["products"],
+		// },
 	});
 	return graphqlResponse.products;
 };

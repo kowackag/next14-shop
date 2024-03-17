@@ -2,9 +2,9 @@ import Link from "next/link";
 import { type Route } from "next";
 import { ProductImage } from "../atoms/ProductImage";
 import { OptimisticProductCounter } from "../atoms/OptimisticProductCounter";
+import { RemoveProductButton } from "../atoms/RemoveProductButton";
 import { formatMoney } from "@/utils/helpers";
 import { Paths } from "@/paths";
-import { RemoveProductButton } from "../atoms/RemoveProductButton";
 
 export const CartProductListItem = ({
 	cartId,

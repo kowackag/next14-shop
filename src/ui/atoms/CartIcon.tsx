@@ -20,7 +20,7 @@ export const CartIcon = async () => {
 
 	const cart = await getCartById(cartId);
 
-	const quantity = cart?.items.reduce((acc, product) => {
+	const quantity = cart?.items.reduce((acc:number, product) => {
 		return acc + product.quantity;
 	}, 0);
 

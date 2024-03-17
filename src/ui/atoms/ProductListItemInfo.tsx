@@ -6,7 +6,7 @@ type ProductListItemInfoProps = {
 };
 
 export const ProductListItemInfo = ({
-	product: { name, price, categories },
+	product: { name, price, categories, rating },
 }: ProductListItemInfoProps) => {
 	return (
 		<div className="pb-3 pt-5 text-sm">
@@ -14,10 +14,13 @@ export const ProductListItemInfo = ({
 				<p className="text-xs text-stone-600">{categories[0].name}</p>
 			)}
 			<h3 className="pb-4 uppercase text-stone-800">{name}</h3>
-			<p className="font-light text-stone-600">
+			<div className="flex justify-between font-light text-stone-600">
 				<span className="sr-only">Price:</span>
-				{formatMoney(price / 100)}
-			</p>
+				<p data-testid="product-price">{formatMoney(price / 100)}</p>
+				<p>
+					Rating: <span data-testid="product-rating">{rating?.toFixed(2)}</span>
+				</p>
+			</div>
 		</div>
 	);
 };

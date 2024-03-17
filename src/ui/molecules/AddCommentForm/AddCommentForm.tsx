@@ -2,9 +2,9 @@
 
 import { useFormState } from "react-dom";
 
+import { addCommentAction } from "./actions";
 import { StarsRadioField } from "@/ui/atoms/StarsRadioField";
 
-import { addCommentAction } from "./actions";
 
 export const AddCommentForm = ({ id }: { id: string }) => {
 	const [_state, formAction] = useFormState(
