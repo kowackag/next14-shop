@@ -1,6 +1,6 @@
 "use client";
 
-import { useOptimistic, startTransition } from "react";
+import { useOptimistic } from "react";
 import { changeProductQuantityInCart } from "@/app/cart/actions";
 
 export const OptimisticProductCounter = ({
@@ -16,9 +16,9 @@ export const OptimisticProductCounter = ({
 
 	const decrementQuantity = async () => {
 		if (optimisticQuantity > 1) {
-			startTransition(() => {
-				setOptimisticQuantity(optimisticQuantity - 1);
-			});
+			// startTransition(() => {
+			setOptimisticQuantity(optimisticQuantity - 1);
+			// });
 			await changeProductQuantityInCart({
 				cartId,
 				productId,
@@ -28,9 +28,9 @@ export const OptimisticProductCounter = ({
 	};
 
 	const incrementQuantity = async () => {
-		startTransition(() => {
-			setOptimisticQuantity(optimisticQuantity + 1);
-		});
+		// startTransition(() => {
+		setOptimisticQuantity(optimisticQuantity + 1);
+		// });
 		await changeProductQuantityInCart({
 			cartId,
 			productId,
@@ -44,7 +44,8 @@ export const OptimisticProductCounter = ({
 			</label>
 			<button
 				type="submit"
-				onClick={decrementQuantity}
+				formAction={decrementQuantity}
+				// onClick={decrementQuantity}
 				data-testid="decrement"
 				disabled={optimisticQuantity < 2}
 			>
