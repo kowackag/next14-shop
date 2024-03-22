@@ -22,11 +22,12 @@ export const RemoveProductButton = ({
 	};
 
 	return (
-		<button disabled={isPending} onClick={handleOnClick}>
-			<div
-				className="text-zinc-400 transition hover:text-rose-700"
-				
-			>
+		<button
+			disabled={isPending}
+			onClick={handleOnClick}
+			aria-label="remove product"
+		>
+			<div className="text-zinc-400 transition hover:text-rose-700">
 				<svg width="24" height="24">
 					<use href="/icons.svg#trash"></use>
 				</svg>

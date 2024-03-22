@@ -2,17 +2,17 @@ import { notFound } from "next/navigation";
 import { executeGraphql } from "./graphqlApi";
 import {
 	CartAddProductDocument,
-	type CartAddProductMutation,
+	CartQuantityGetByIdDocument,
 	CartFindOrCreateAndAddProductDocument,
-	type CartFindOrCreateAndAddProductMutation,
+	CartRemoveProductDocument,
 	CartGetByIdDocument,
 	CartChangeProductQuantityDocument,
 	type CartChangeProductQuantityMutation,
 	type CartAddProductMutationVariables,
-	type CartChangeProductQuantityMutationVariables,
-	CartQuantityGetByIdDocument,
 	type CartRemoveProductMutationVariables,
-	CartRemoveProductDocument,
+	type CartAddProductMutation,
+	type CartFindOrCreateAndAddProductMutation,
+	type CartChangeProductQuantityMutationVariables,
 } from "@/gql/graphql";
 
 export const getCartById = async (id: string) => {
@@ -21,6 +21,7 @@ export const getCartById = async (id: string) => {
 		variables: {
 			cartId: id,
 		},
+		cache: "no-store",
 	});
 
 	return graphqlResponse.cart;
@@ -32,6 +33,7 @@ export const getCartQuantityById = async (id: string) => {
 		variables: {
 			cartId: id,
 		},
+		cache: "no-store",
 	});
 
 	return graphqlResponse.cart;
@@ -50,6 +52,7 @@ export const findOrCreateCartAndAddProduct = async (
 				quantity,
 				cartId,
 			},
+			cache: "no-store",
 			next: {
 				tags: ["cart"],
 			},
@@ -62,6 +65,7 @@ export const findOrCreateCartAndAddProduct = async (
 			productId,
 			quantity,
 		},
+		cache: "no-store",
 	});
 
 	if (!graphqlResponse) {
@@ -85,6 +89,7 @@ export const addProductToCart = async ({
 			productId,
 			quantity,
 		},
+		cache: "no-store",
 	});
 	return graphqlResponse.cartAddItem;
 };
@@ -103,6 +108,7 @@ export const changeProductQuantityInCart = async ({
 			productId,
 			quantity,
 		},
+		cache: "no-store",
 	});
 	if (!graphqlResponse) {
 		throw notFound();
@@ -120,6 +126,7 @@ export const RemoveProductFromCart = async ({
 			id,
 			productId,
 		},
+		cache: "no-store",
 	});
 	if (!graphqlResponse) {
 		throw notFound();
