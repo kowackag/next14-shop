@@ -6,6 +6,7 @@ import { SectionContainer } from "@/ui/atoms/SectionContainer";
 import { Title } from "@/ui/atoms/Title";
 
 import { getCartById } from "@/api/cart";
+import { CartSummary } from "@/ui/organisms/CartSummary";
 
 export default async function CartPage() {
 	const cartId = cookies().get("cartId")?.value;
@@ -28,6 +29,7 @@ export default async function CartPage() {
 		<SectionContainer>
 			<Title>Shoping Cart</Title>
 			<CartTable products={cart.items} cartId={cart.id} />
+			<CartSummary cartId={cart.id} />
 		</SectionContainer>
 	);
 }
