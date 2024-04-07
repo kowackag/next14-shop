@@ -1,15 +1,21 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import Stripe from "stripe";
+
 import { executeGraphql } from "@/api/graphqlApi";
 import {
 	CartChangeProductQuantityDocument,
 	type CartChangeProductQuantityMutation,
 	type CartChangeProductQuantityMutationVariables,
 } from "@/gql/graphql";
-import { addProductToCart, findOrCreateCartAndAddProduct, getCartById } from "@/api/cart";
+import {
+	addProductToCart,
+	findOrCreateCartAndAddProduct,
+	getCartById,
+} from "@/api/cart";
 
 export const changeProductQuantityInCart = async ({
 	cartId,
@@ -73,3 +79,55 @@ export async function findOrCreateCartAndAddProductToCart({
 			: addProductToCart({ cartId, productId, quantity });
 	}
 }
+
+export const handleStripePaymentAction = async () => {
+	"use server";
+
+	const cartId = cookies().get("cartId")?.value;
+	if (!cartId) {
+		return;
+	}
+	const cart = await getCartById(cartId);
+	if (!cart) {
+		return;
+	}
+
+	if (!process.env.STRIPE_SECRET_KEY) {
+		throw new Error("Missing STRIPE_SECRET_KEY env variable");
+	}
+	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+		apiVersion: "2023-10-16",
+		typescript: true,
+	});
+
+	const session = await stripe.checkout.sessions.create({
+		payment_method_types: ["card"],
+		metadata: {
+			cartId: cart.id,
+		},
+		line_items: cart.items
+			.map((item) => {
+				if (!item.product) null;
+				return {
+					price_data: {
+						currency: "usd",
+						product_data: {
+							name: item.product.name,
+							description: item.product.name,
+							images: item.product.images.map((i) => i.url),
+						},
+						unit_amount: item.product.price,
+					},
+					quantity: item.quantity,
+				};
+			})
+			.filter(Boolean),
+		mode: "payment",
+		success_url: `http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		cancel_url: `http://localhost:3000/cart/canceled`,
+	});
+	if (session?.url) {
+		cookies().set("cartId", "");
+		redirect(session.url);
+	}
+};
