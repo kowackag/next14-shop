@@ -28,6 +28,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".graphqlrc.ts", "tailwind.config.ts"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".graphqlrc.ts", "tailwind.config.ts", "../stackoverflow-tags/src/utils/useDebounce.ts"],
 	"exclude": ["node_modules"]
 }

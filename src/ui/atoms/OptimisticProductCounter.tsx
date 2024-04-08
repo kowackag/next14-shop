@@ -38,26 +38,33 @@ export const OptimisticProductCounter = ({
 		});
 	};
 	return (
-		<form className="flex max-w-max border-[1px] border-zinc-200 p-2">
+		<form className="flex max-w-max border-[1px] border-zinc-200 py-2">
 			<label className="hidden" htmlFor="product-amount">
 				Amount
 			</label>
 			<button
+				className="px-2"
 				type="submit"
 				formAction={decrementQuantity}
 				// onClick={decrementQuantity}
 				data-testid="decrement"
+				aria-label="decrease quantity"
 				disabled={optimisticQuantity < 2}
 			>
 				-
 			</button>
 			<span
-				className="inline-block w-14 border-zinc-100  text-center"
+				className="inline-block w-10 border-zinc-100 text-center"
 				data-testid="quantity"
 			>
 				{optimisticQuantity}
 			</span>
-			<button formAction={incrementQuantity} data-testid="increment">
+			<button
+				className="px-2"
+				formAction={incrementQuantity}
+				data-testid="increment"
+				aria-label="increase quantity"
+			>
 				+
 			</button>
 		</form>
