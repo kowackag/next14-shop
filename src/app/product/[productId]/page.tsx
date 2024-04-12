@@ -29,11 +29,11 @@ export async function generateMetadata({
 	const product = await getProductById(params.productId);
 
 	return {
-		metadataBase: new URL("http://localhost:3000"),
-		title: product?.name,
+		// metadataBase: new URL("http://localhost:3000"),
+		title: `${product?.name} - Sklep internetowy`,
 		description: product?.description,
 		openGraph: {
-			title: product?.name,
+			title: `${product?.name} - Sklep internetowy`,
 			description: product?.description,
 			images: product?.images[0]?.url,
 		},
