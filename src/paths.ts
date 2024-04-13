@@ -7,4 +7,6 @@ export enum Paths {
 	CATEGORIES = "/categories",
 	COLLECTIONS = "/collections",
 	CART = "/cart",
+	POLICY="/policy",
+	TERMS="/terms"
 }

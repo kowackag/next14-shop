@@ -1,0 +1,8 @@
+query CollectionsGetNames {
+	collections {
+		data {
+			name
+			slug
+		}
+	}
+}
