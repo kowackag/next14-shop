@@ -4,6 +4,8 @@ import {
 	type ProductsGetByCollectionSlugQuery,
 	CollectionsGetListDocument,
 	type CollectionsGetListQuery,
+	CollectionsGetNamesQuery,
+	CollectionsGetNamesDocument,
 } from "@/gql/graphql";
 
 export const getProductsCollections = async (): Promise<
@@ -15,6 +17,17 @@ export const getProductsCollections = async (): Promise<
 
 	return graphqlResponse.collections;
 };
+
+export const getProductsCollectionsNames = async (): Promise<
+	CollectionsGetNamesQuery["collections"]
+> => {
+	const graphqlResponse = await executeGraphql({
+		query: CollectionsGetNamesDocument,
+	});
+
+	return graphqlResponse.collections;
+};
+
 
 export const getProductsByCollectionSlug = async (
 	slug: string,
