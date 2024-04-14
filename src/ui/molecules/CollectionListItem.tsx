@@ -6,6 +6,7 @@ import { Paths } from "@/paths";
 
 export const CollectionListItem = ({
 	collection: { slug, name, products },
+	className,
 }: {
 	collection: {
 		name: string;
@@ -16,6 +17,7 @@ export const CollectionListItem = ({
 			}[];
 		}[];
 	};
+	className?: string;
 }) => {
 	const dataCollection = {
 		slug: slug,
@@ -27,7 +29,7 @@ export const CollectionListItem = ({
 
 	return (
 		<li
-			className="border-[1px] border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md"
+			className={`carousel__cell number-slide border border-solid border-zinc-200 p-3 transition-shadow hover:shadow-md ${className || ""}`}
 			key={slug}
 		>
 			<Link
@@ -37,13 +39,15 @@ export const CollectionListItem = ({
 				<h3 className="z-10 m-auto py-2 font-semibold">{name}</h3>
 				<div className="flex h-full">
 					{dataCollection.images.length ? (
-						dataCollection.images.slice(-2).map((img) => (
-							<ProductImage
-								key={img}
-								src={img}
-								alt={`Colection ${dataCollection.name}`}
-							/>
-						))
+						dataCollection.images
+							.slice(-2)
+							.map((img) => (
+								<ProductImage
+									key={img}
+									src={img}
+									alt={`Colection ${dataCollection.name}`}
+								/>
+							))
 					) : (
 						<ProductImage src="/icons.svg" alt="eye and question mark" />
 					)}

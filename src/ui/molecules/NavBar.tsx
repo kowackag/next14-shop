@@ -22,6 +22,7 @@ export const NavBar = async () => {
 		// { name: "Contact", href: Paths.CONTACT },
 		{ name: "All", href: Paths.PRODUCTS, exact: false },
 		...categoryLinks.reverse(),
+		{ name: "Collections", href: Paths.COLLECTIONS, exact: false },
 	];
 
 	return (

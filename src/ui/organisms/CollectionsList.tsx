@@ -1,16 +1,32 @@
-import { CollectionListItem } from "@/ui/molecules/CollectionListItem";
+"use client";
 
-import { type CollectionsGetListQuery } from "@/gql/graphql";
+import { CollectionListItem } from "@/ui/molecules/CollectionListItem";
+import "keen-slider/keen-slider.min.css";
+import { useOwnKeenSLider } from "@/utils/useOwnKeenSlider";
 
 export const CollectionsList = ({
 	collections,
+	slider,
 }: {
-	collections: CollectionsGetListQuery["collections"];
+	collections: Array<{
+		name: string;
+		slug: string;
+		products: Array<{ images: Array<{ url: string }> }>;
+	}>;
+	slider: boolean;
 }) => {
+	const sliderRef = useOwnKeenSLider();
 	return (
-		<ul className="grid w-full grid-cols-1 gap-8 sm:grid sm:grid-cols-2 sm:gap-10 md:grid-cols-3 lg:grid-cols-4">
-			{collections.data.map((collection) => (
-				<CollectionListItem key={collection.slug} collection={collection} />
+		<ul
+			className={`${slider ? "keen-slider" : "grid gap-4 md:grid-cols-2 lg:grid-cols-4"}`}
+			ref={slider ? sliderRef : null}
+		>
+			{collections.map((collection, ind) => (
+				<CollectionListItem
+					key={collection.slug}
+					collection={collection}
+					className={`keen-slider__slide number-slide${ind + 1}`}
+				/>
 			))}
 		</ul>
 	);
