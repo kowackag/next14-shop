@@ -18,7 +18,7 @@ export const ProductListItemInfo = ({
 				<span className="sr-only">Price:</span>
 				<p data-testid="product-price">{formatMoney(price / 100)}</p>
 				<p>
-					Rating: <span data-testid="product-rating">{rating?.toFixed(2)}</span>
+					<span data-testid="product-rating">{`${rating?.toFixed(1)}/5`}</span>
 				</p>
 			</div>
 		</div>

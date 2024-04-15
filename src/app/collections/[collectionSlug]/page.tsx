@@ -2,9 +2,13 @@ import { notFound } from "next/navigation";
 
 import { ProductList } from "@/ui/organisms/ProductList";
 import { SectionContainer } from "@/ui/atoms/SectionContainer";
-import { Title } from "@/ui/atoms/Title";
+import { SubTitle, Title } from "@/ui/atoms/Title";
 
-import { getProductsByCollectionSlug } from "@/api/collections";
+import {
+	getProductsByCollectionSlug,
+	getProductsCollections,
+} from "@/api/collections";
+import { CollectionsList } from "@/ui/organisms/CollectionsList";
 
 type CollectionsPageType = {
 	readonly params: { collectionSlug: string };
@@ -19,6 +23,10 @@ export const generateMetadata = async ({ params }: CollectionsPageType) => {
 };
 
 export default async function CollectionsPage({ params }: CollectionsPageType) {
+	const collectionList = await getProductsCollections();
+	const narrowedCollectionList = collectionList.data.filter(
+		(item) => item.slug !== params.collectionSlug,
+	);
 	const collection = await getProductsByCollectionSlug(params.collectionSlug);
 
 	if (!collection) {
@@ -27,6 +35,8 @@ export default async function CollectionsPage({ params }: CollectionsPageType) {
 
 	return (
 		<SectionContainer>
+			<SubTitle>Collections</SubTitle>
+			<CollectionsList collections={narrowedCollectionList} slider={false} />
 			<Title>{collection.name}</Title>
 			<ProductList products={collection.products} />
 		</SectionContainer>
