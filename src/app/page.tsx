@@ -11,6 +11,7 @@ import { SubTitle } from "@/ui/atoms/Title";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getProducts } from "@/api/products";
 import { ImageSection } from "@/ui/molecules/ImageSection";
+import { Values } from "@/ui/molecules/Values";
 
 export default async function HomePage() {
 	const allCategories = await getProductsCategories();
@@ -22,24 +23,25 @@ export default async function HomePage() {
 	}
 
 	return (
-		<div>
+		<>
 			<ImageSection />
 			<SectionContainer>
 				<SubTitle>Our products</SubTitle>
 				<ProductList products={products.data.slice(-4)} />
 			</SectionContainer>
-			<SectionContainer className="grid  grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10">
-				<div>
+			<div className="m-auto grid max-w-screen-xl grid-cols-1 gap-8 px-6 py-8 md:grid-cols-2 md:gap-8 2xl:px-0">
+				<section>
 					<SubTitle>Our collections</SubTitle>
 					<Suspense>
 						<CollectionsList collections={allCollection.data} slider={true} />
 					</Suspense>
-				</div>
-			</SectionContainer>
+				</section>
+				<Values />
+			</div>
 			<SectionContainer>
 				<SubTitle>Our categories</SubTitle>
 				<CategoriesList categories={allCategories} />
 			</SectionContainer>
-		</div>
+		</>
 	);
 }
