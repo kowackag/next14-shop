@@ -1,5 +1,4 @@
 import { ValueListItem } from "@/ui/atoms/ValueListItem";
-import { SectionContainer } from "../atoms/SectionContainer";
 
 type ValueListItemType = { href: string; name: string; description: string };
 
@@ -30,7 +29,7 @@ export const Values = () => {
 	return (
 		<article className="flex justify-center lg:items-center">
 			<h2 className="sr-only">Shop Values</h2>
-			<ul className="grid sm:grid-cols-2 gap-4 lg:gap-8">
+			<ul className="grid gap-4 sm:grid-cols-2 lg:gap-8">
 				{shopValues.map((value) => (
 					<li key={value.name}>
 						<ValueListItem
