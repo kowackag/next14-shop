@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { CartTable } from "@/ui/organisms/CartTable";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Section } from "@/ui/atoms/Section";
 import { Title } from "@/ui/atoms/Title";
 
 import { getCartById } from "@/api/cart";
@@ -26,10 +26,10 @@ export default async function CartPage() {
 	}
 
 	return (
-		<SectionContainer>
+		<Section>
 			<Title>Shoping Cart</Title>
 			<CartTable products={cart.items} cartId={cart.id} />
 			<CartSummary cartId={cart.id} />
-		</SectionContainer>
+		</Section>
 	);
 }

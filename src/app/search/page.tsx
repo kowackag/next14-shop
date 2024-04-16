@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import { Suspense } from "react";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Section } from "@/ui/atoms/Section";
 import { Title } from "@/ui/atoms/Title";
 
 import { getProductsByQuery } from "@/api/products";
@@ -22,7 +22,7 @@ export default async function ProductsPage({
 	}
 
 	return (
-		<SectionContainer>
+		<Section>
 			{products.data.length ? (
 				<>
 					<Title>{`Products for phrase: ${query}`}</Title>
@@ -33,6 +33,6 @@ export default async function ProductsPage({
 			) : (
 				<p>{`No results for phrase: ${query}`}</p>
 			)}
-		</SectionContainer>
+		</Section>
 	);
 }

@@ -2,7 +2,7 @@ import { getProducts, getSortedByPriceProducts } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
 import { selectProductsOnPage } from "@/utils/helpers";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Section } from "@/ui/atoms/Section";
 import { Title } from "@/ui/atoms/Title";
 import { SortByPriceProductsButton } from "@/ui/atoms/SortByPriceProductsButton";
 
@@ -33,7 +33,7 @@ export default async function ProductsPage({
 	);
 
 	return (
-		<SectionContainer>
+		<Section>
 			<Title>Our products</Title>
 			<SortByPriceProductsButton />
 			<ProductList products={productsOnPage} />
@@ -43,6 +43,6 @@ export default async function ProductsPage({
 				path="products"
 				params={sorted ? `?sorted=${sorted}` : ""}
 			/>
-		</SectionContainer>
+		</Section>
 	);
 }

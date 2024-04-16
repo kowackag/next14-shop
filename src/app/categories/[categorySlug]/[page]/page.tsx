@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { CategoriesList } from "@/ui/organisms/CategoriesList";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { Pagination } from "@/ui/molecules/Pagination";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Section } from "@/ui/atoms/Section";
 import { Title } from "@/ui/atoms/Title";
 
 import {
@@ -44,7 +44,7 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 	);
 
 	return (
-		<SectionContainer>
+		<Section>
 			<CategoriesList
 				categories={allCategories}
 				activeCategory={params.categorySlug}
@@ -56,6 +56,6 @@ export default async function SingleCategoryPage({ params }: ProductPageType) {
 				productsNumberOnPage={productsNumberOnPage}
 				path={`categories/${params.categorySlug}`}
 			/>
-		</SectionContainer>
+		</Section>
 	);
 }
