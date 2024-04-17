@@ -3,7 +3,7 @@ export const StarsBox = ({ rating }: { rating: number }) => {
 	return (
 		<div className="flex text-zinc-800">
 			{starsList.map((ind) => (
-				<svg width="24px" height="24px">
+				<svg key={ind} width="24px" height="24px">
 					<use
 						className={rating > ind ? "fill-amber-500" : "fill-none"}
 						href="/icons.svg#star"
