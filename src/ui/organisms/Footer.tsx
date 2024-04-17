@@ -1,4 +1,4 @@
-import { Address } from "@/ui/atoms/Address";
+import { Address } from "@/ui/molecules/Address";
 import { Legal } from "@/ui/atoms/Legal";
 import { ProductsLinks } from "@/ui/atoms/ProductsLink";
 import { Container } from "@/ui/atoms/Container";

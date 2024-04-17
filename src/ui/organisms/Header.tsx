@@ -17,7 +17,9 @@ export const Header = () => {
 						<SearchField />
 					</Suspense>
 					<MobileMenuButton />
-					<CartIcon />
+					<Suspense>
+						<CartIcon />
+					</Suspense>
 				</div>
 			</Container>
 		</header>

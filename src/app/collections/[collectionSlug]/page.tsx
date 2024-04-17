@@ -12,7 +12,6 @@ import { CollectionsList } from "@/ui/organisms/CollectionsList";
 
 type CollectionsPageType = {
 	readonly params: { collectionSlug: string };
-	readonly searchParams: { [key: string]: string | string[] };
 };
 
 export const generateMetadata = async ({ params }: CollectionsPageType) => {

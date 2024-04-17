@@ -26,7 +26,6 @@ export async function generateMetadata({
 
 type ProductPageType = {
 	readonly params: { categorySlug: string; page: number };
-	readonly searchParams: { [key: string]: string | string[] };
 };
 
 export default async function SingleCategoryPage({ params }: ProductPageType) {
