@@ -22,6 +22,7 @@ Link: [https://next14-shop.vercel.app/](https://next14-shop.vercel.app/)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)![Eslint](https://img.shields.io/badge/-Prettier-black?style=for-the-badge&logo=Prettier&logoColor=white)![Vercel](https://camo.githubusercontent.com/b9ff564d8c311812747f1aacea54cf703d850756f9179f9eff6899da20a701a2/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f76657263656c2d2532333030303030302e7376673f7374796c653d666f722d7468652d6261646765266c6f676f3d76657263656c266c6f676f436f6c6f723d7768697465)
 
+
 REMARKS: 
  - API was provided during the course [NEXTJS.MASTERS](https://www.nextjsmasters.pl/)
 
