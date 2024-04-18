@@ -1,9 +1,9 @@
-import { ReviewsList } from "../molecules/ReviewsList";
+import { ReviewsList } from "@/ui/molecules/ReviewsList";
 import { AddToCartForm } from "@/ui/molecules/AddToCartForm";
 import { AddCommentForm } from "@/ui/molecules/AddCommentForm/AddCommentForm";
 import { SubTitle, Title } from "@/ui/atoms/Title";
 import { ProductImage } from "@/ui/atoms/ProductImage";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Section } from "@/ui/atoms/Section";
 
 import { type ProductGetByIdQuery } from "@/gql/graphql";
 import { formatMoney } from "@/utils/helpers";
@@ -18,7 +18,7 @@ export const ProductDetailsCart = ({
 	}
 
 	return (
-		<SectionContainer>
+		<Section>
 			<article className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
 				<div className="mb-8 w-full">
 					{product.images[0] && (
@@ -44,6 +44,6 @@ export const ProductDetailsCart = ({
 					<AddCommentForm id={product.id} />
 				</div>
 			</section>
-		</SectionContainer>
+		</Section>
 	);
 };

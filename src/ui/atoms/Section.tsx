@@ -1,4 +1,4 @@
-export const SectionContainer = ({
+export const Section = ({
 	children,
 	className,
 	...props

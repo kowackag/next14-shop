@@ -1,5 +1,5 @@
 import { Paths } from "@/paths";
-import { SectionContainer } from "@/ui/atoms/SectionContainer";
+import { Container } from "@/ui/atoms/Container";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
@@ -25,7 +25,7 @@ export default async function CartSuccessPage({
 	);
 
 	return (
-		<SectionContainer>
+		<Container>
 			<p>
 				Your payment status is:
 				<span className="font-bold uppercase text-sky-600">
@@ -38,6 +38,6 @@ export default async function CartSuccessPage({
 			>
 				Buy more
 			</Link>
-		</SectionContainer>
+		</Container>
 	);
 }

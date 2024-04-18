@@ -31,14 +31,14 @@ export const ProductsLinks = async () => {
 			<ul>
 				{categoryLinks.map((link) => (
 					<li key={link.name}>
-						<Link className="my-2 block text-sm" href={link.href as Route}>
+						<Link className="py-2 block text-sm" href={link.href as Route}>
 							{link.name}
 						</Link>
 					</li>
 				))}
 				{collectionLinks.map((link) => (
 					<li key={link.name}>
-						<Link className="my-2 block text-sm" href={link.href as Route}>
+						<Link className="py-2 block text-sm" href={link.href as Route}>
 							{link.name}
 						</Link>
 					</li>

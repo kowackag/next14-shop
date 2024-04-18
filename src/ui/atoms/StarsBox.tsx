@@ -1,36 +1,15 @@
 export const StarsBox = ({ rating }: { rating: number }) => {
+	const starsList = new Array(5).fill(1).map((_item, ind) => ind);
 	return (
 		<div className="flex text-zinc-800">
-			<svg width="24px" height="24px">
-				<use
-					className={rating > 0 ? "fill-amber-500" : "fill-none"}
-					href="/icons.svg#star"
-				></use>
-			</svg>
-			<svg width="24px" height="24px">
-				<use
-					className={rating > 1 ? "fill-amber-500" : "fill-none"}
-					href="/icons.svg#star"
-				></use>
-			</svg>
-			<svg width="24px" height="24px">
-				<use
-					className={rating > 2 ? "fill-amber-500" : "fill-none"}
-					href="/icons.svg#star"
-				></use>
-			</svg>
-			<svg width="24px" height="24px">
-				<use
-					className={rating > 3 ? "fill-amber-500" : "fill-none"}
-					href="/icons.svg#star"
-				></use>
-			</svg>
-			<svg width="24px" height="24px">
-				<use
-					className={rating > 4 ? "fill-amber-500" : "fill-none"}
-					href="/icons.svg#star"
-				></use>
-			</svg>
+			{starsList.map((ind) => (
+				<svg key={ind} width="24px" height="24px">
+					<use
+						className={rating > ind ? "fill-amber-500" : "fill-none"}
+						href="/icons.svg#star"
+					></use>
+				</svg>
+			))}
 		</div>
 	);
 };
