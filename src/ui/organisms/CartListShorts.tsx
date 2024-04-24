@@ -1,9 +1,8 @@
-import { type CartItemsFragment } from "@/gql/graphql";
-import { Paths } from "@/paths";
-
+import { CartShortsProductListItem } from "@/ui/molecules/CartShortsProductListItem";
 import { CustomLink } from "@/ui/atoms/CustomLink";
 
-import { CartShortsProductListItem } from "@/ui/molecules/CartShortsProductListItem";
+import { type CartItemsFragment } from "@/gql/graphql";
+import { Paths } from "@/paths";
 
 export const CartListShorts = async ({
 	products,

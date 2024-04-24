@@ -1,8 +1,10 @@
-import { getCartById } from "@/api/cart";
+import { cookies } from "next/headers";
+
+import { CartListShorts } from "@/ui/organisms/CartListShorts";
 import { CartEmptyInfo } from "@/ui/atoms/CartEmptyInfo";
 import { SubTitle } from "@/ui/atoms/Title";
-import { CartListShorts } from "@/ui/organisms/CartListShorts";
-import { cookies } from "next/headers";
+
+import { getCartById } from "@/api/cart";
 
 export default async function CartModalPage() {
 	const cartId = cookies().get("cartId")?.value;
