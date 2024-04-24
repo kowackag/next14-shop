@@ -16,7 +16,7 @@ export const CartIcon = async () => {
 					href={Paths.CART}
 					aria-label="go to shoping cart"
 				>
-					<Icon href="/icons.svg#shoping-card" width="32px" height="32px" />
+					<Icon href="/icons.svg#shopping-cart" width="32px" height="32px" />
 				</Link>
 			</div>
 		);
@@ -35,7 +35,7 @@ export const CartIcon = async () => {
 				href={Paths.CART}
 				aria-label="go to shoping cart"
 			>
-				<Icon href="/icons.svg#shoping-card" width="32px" height="32px" />
+				<Icon href="/icons.svg#shopping-cart" width="32px" height="32px" />
 				<p className="absolute bottom-3 right-0 mr-2 h-5 w-5 rounded-full bg-rose-700 py-0.5 text-center align-middle text-xs text-neutral-100">
 					{quantity}
 				</p>

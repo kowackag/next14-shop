@@ -37,10 +37,7 @@ export default async function Image() {
 				<p tw="m-0 mt-2">Shop</p>
 			</div>
 		),
-		// ImageResponse options
 		{
-			// For convenience, we can re-use the exported opengraph-image
-			// size config to also set the ImageResponse's width and height.
 			...size,
 		},
 	);
