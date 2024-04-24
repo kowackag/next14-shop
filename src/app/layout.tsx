@@ -7,14 +7,20 @@ import { Footer } from "@/ui/organisms/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://next14-shop.vercel.app"),
 	title: "Fashion",
 	description: "Modern products",
+	openGraph: {
+		images: "/og-image.png",
+	},
 };
 
 export default function RootLayout({
 	children,
+	modal,
 }: Readonly<{
 	children: React.ReactNode;
+	modal: React.ReactNode;
 }>) {
 	return (
 		<html lang="en">
@@ -22,6 +28,7 @@ export default function RootLayout({
 				<Header />
 				<main>{children}</main>
 				<Footer />
+				{modal}
 			</body>
 		</html>
 	);

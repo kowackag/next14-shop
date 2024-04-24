@@ -5,8 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: "*",
 			allow: "/",
-			disallow: ["/admin/", "public"],
 		},
-		sitemap: "http://localhost:3000/sitemap.xml",
+		sitemap: "https://next14-shop.vercel.app/sitemap.xml",
 	};
 }

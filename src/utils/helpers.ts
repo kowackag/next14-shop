@@ -1,4 +1,7 @@
-import { type ProductListItemFragment } from "../gql/graphql";
+import {
+	CartItemsFragment,
+	type ProductListItemFragment,
+} from "../gql/graphql";
 
 export const formatMoney = (amount: number) => {
 	return new Intl.NumberFormat("en-US", {
@@ -29,4 +32,8 @@ export const selectProductsOnPage = (
 	return products.slice(start, perPage + start);
 };
 
-
+export const countTotalPrice = (products: CartItemsFragment["items"]) => {
+	return products.reduce((acc, elem) => {
+		return acc + elem.quantity * elem.product.price;
+	}, 0);
+};

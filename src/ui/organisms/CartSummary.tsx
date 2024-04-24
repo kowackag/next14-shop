@@ -1,14 +1,21 @@
 import { getCartById } from "@/api/cart";
 import { SubTitle } from "../atoms/Title";
-import { formatMoney } from "@/utils/helpers";
+import { countTotalPrice, formatMoney } from "@/utils/helpers";
 import { handleStripePaymentAction } from "@/app/cart/actions";
+import { CustomLink } from "@/ui/atoms/CustomLink";
+import { Paths } from "@/paths";
 
 export const CartSummary = async ({ cartId }: { cartId: string }) => {
 	const cart = await getCartById(cartId);
-	const totalPrice = cart?.items.reduce((acc, elem) => {
-		return acc + elem.quantity * elem.product.price;
-	}, 0);
 
+	if (!cart || !cart.items.length) {
+		return (
+			<div className="my-4 flex justify-end">
+				<CustomLink href={Paths.PRODUCTS}>Add products</CustomLink>
+			</div>
+		);
+	}
+	const totalPrice = countTotalPrice(cart.items);
 	return (
 		<div className="my-6 ml-auto w-full max-w-96 justify-end">
 			<div>

@@ -29,7 +29,7 @@ export async function generateMetadata({
 	const product = await getProductById(params.productId);
 
 	return {
-		// metadataBase: new URL("http://localhost:3000"),
+		metadataBase: new URL("https://next14-shop.vercel.app"),
 		title: `${product?.name} - Sklep internetowy`,
 		description: product?.description,
 		openGraph: {

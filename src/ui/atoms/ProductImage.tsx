@@ -10,7 +10,7 @@ export const ProductImage = ({
 	className?: string;
 }) => {
 	return (
-		<div className="m-auto h-full w-full items-center overflow-hidden marker:max-w-96">
+		<div className="m-auto h-full items-center overflow-hidden marker:max-w-96">
 			<NextImage
 				alt={alt}
 				src={src}
