@@ -14,11 +14,11 @@ export async function executeGraphql<TResult, TVariables>({
 } & (TVariables extends { [key: string]: never }
 	? { variables?: never }
 	: { variables: TVariables })): Promise<TResult> {
-	if (!process.env.GRAPHQL_URL) {
-		throw TypeError("GRAPHQL_URL is not defined");
-	}
+	// if (!process.env.GRAPHQL_URL) {
+	// 	throw TypeError("GRAPHQL_URL is not defined");
+	// }
 
-	const res = await fetch(process.env.GRAPHQL_URL, {
+	const res = await fetch("https://graphql.hyperfunctor.com/graphql", {
 		method: "POST",
 		body: JSON.stringify({
 			query,
