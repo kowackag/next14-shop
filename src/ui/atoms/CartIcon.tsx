@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 import { cookies } from "next/headers";
+import { Icon } from "./Icon";
 import { Paths } from "@/paths";
 import { getCartById } from "@/api/cart";
-import { Icon } from "./Icon";
 
 export const CartIcon = async () => {
 	const cartId = cookies().get("cartId")?.value;

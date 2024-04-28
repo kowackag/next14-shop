@@ -1,5 +1,5 @@
-import { Paths } from "@/paths";
 import Link from "next/link";
+import { Paths } from "@/paths";
 
 export const Legal = () => {
 	return (

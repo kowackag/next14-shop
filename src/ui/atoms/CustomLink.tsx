@@ -1,5 +1,5 @@
-import { Route } from "next";
-import { ReactNode } from "react";
+import { type Route } from "next";
+import { type ReactNode } from "react";
 
 export const CustomLink = ({
 	href,

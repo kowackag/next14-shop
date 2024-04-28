@@ -1,7 +1,7 @@
-import { Paths } from "@/paths";
 import Link from "next/link";
+import { type Route } from "next";
+import { Paths } from "@/paths";
 import { getProductsCategoriesNames } from "@/api/categories";
-import { Route } from "next";
 import { getProductsCollectionsNames } from "@/api/collections";
 
 export const ProductsLinks = async () => {

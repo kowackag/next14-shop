@@ -1,5 +1,5 @@
-import { getCartById } from "@/api/cart";
 import { SubTitle } from "../atoms/Title";
+import { getCartById } from "@/api/cart";
 import { countTotalPrice, formatMoney } from "@/utils/helpers";
 import { handleStripePaymentAction } from "@/app/cart/actions";
 import { CustomLink } from "@/ui/atoms/CustomLink";
