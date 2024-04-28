@@ -1,8 +1,8 @@
-import { Paths } from "@/paths";
-import { Container } from "@/ui/atoms/Container";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import { Container } from "@/ui/atoms/Container";
+import { Paths } from "@/paths";
 
 export default async function CartSuccessPage({
 	searchParams,

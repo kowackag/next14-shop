@@ -4,7 +4,7 @@ import {
 	type ProductsGetByCollectionSlugQuery,
 	CollectionsGetListDocument,
 	type CollectionsGetListQuery,
-	CollectionsGetNamesQuery,
+	type CollectionsGetNamesQuery,
 	CollectionsGetNamesDocument,
 } from "@/gql/graphql";
 

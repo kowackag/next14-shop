@@ -1,5 +1,5 @@
 import {
-	CartItemsFragment,
+	type CartItemsFragment,
 	type ProductListItemFragment,
 } from "../gql/graphql";
 
