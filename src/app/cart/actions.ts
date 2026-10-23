@@ -81,8 +81,6 @@ export async function findOrCreateCartAndAddProductToCart({
 }
 
 export const handleStripePaymentAction = async () => {
-	"use server";
-
 	const cartId = cookies().get("cartId")?.value;
 	if (!cartId) {
 		return;
@@ -91,9 +89,12 @@ export const handleStripePaymentAction = async () => {
 	if (!cart) {
 		return;
 	}
-
 	if (!process.env.STRIPE_SECRET_KEY) {
 		throw new Error("Missing STRIPE_SECRET_KEY env variable");
+	}
+	const baseUrl = process.env.BASE_URL;
+	if (!baseUrl) {
+		throw new Error("Missing BASE_URL env variable");
 	}
 	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 		apiVersion: "2023-10-16",
@@ -107,7 +108,6 @@ export const handleStripePaymentAction = async () => {
 		},
 		line_items: cart.items
 			.map((item) => {
-				if (!item.product) null;
 				return {
 					price_data: {
 						currency: "usd",
@@ -120,13 +120,12 @@ export const handleStripePaymentAction = async () => {
 					},
 					quantity: item.quantity,
 				};
-			})
-			.filter(Boolean),
+			}),
 		mode: "payment",
-		success_url: `http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
-		cancel_url: `http://localhost:3000/cart/canceled`,
+		success_url: `${baseUrl}/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		cancel_url: `${baseUrl}/cart`,
 	});
-	if (session?.url) {
+	if (session.url) {
 		cookies().set("cartId", "");
 		redirect(session.url);
 	}
