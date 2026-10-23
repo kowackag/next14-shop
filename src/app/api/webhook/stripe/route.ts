@@ -11,7 +11,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 		throw new Error("Missing STRIPE_WEBHOOK_SECRET");
 	}
 
-	const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET, {
+	const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 		apiVersion: "2023-10-16",
 		typescript: true,
 	});
@@ -21,23 +21,29 @@ export async function POST(request: NextRequest): Promise<Response> {
 		return new Response("No signature", { status: 401 });
 	}
 
-	const event = stripe.webhooks.constructEvent(
-		await request.text(),
-		signature,
-		process.env.STRIPE_WEBHOOK_SECRET,
-	) as Stripe.DiscriminatedEvent;
+	let event: Stripe.DiscriminatedEvent;
+	try {
+		event = stripe.webhooks.constructEvent(
+			await request.text(),
+			signature,
+			process.env.STRIPE_WEBHOOK_SECRET,
+		) as Stripe.DiscriminatedEvent;
+	} catch {
+		return new Response("Invalid signature", { status: 400 });
+	}
 
 	switch (event.type) {
 		case "checkout.session.completed": {
-			event.data.object.metadata?.cartId;
+			const cartId = event.data.object.metadata?.cartId;
+			console.log(`Payment completed for cart: ${cartId ?? "unknown"}`);
+			break;
 		}
-		case "checkout.session.expired": {
-		}
+		case "checkout.session.expired":
 		case "checkout.session.async_payment_failed": {
+			console.log(`Payment not completed: ${event.type}`);
+			break;
 		}
 	}
-
-	console.log(event);
 
 	return new Response(null, { status: 204 });
 }
