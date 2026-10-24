@@ -106,27 +106,25 @@ export const handleStripePaymentAction = async () => {
 		metadata: {
 			cartId: cart.id,
 		},
-		line_items: cart.items
-			.map((item) => {
-				return {
-					price_data: {
-						currency: "usd",
-						product_data: {
-							name: item.product.name,
-							description: item.product.name,
-							images: item.product.images.map((i) => i.url),
-						},
-						unit_amount: item.product.price,
+		line_items: cart.items.map((item) => {
+			return {
+				price_data: {
+					currency: "usd",
+					product_data: {
+						name: item.product.name,
+						description: item.product.name,
+						images: item.product.images.map((i) => i.url),
 					},
-					quantity: item.quantity,
-				};
-			}),
+					unit_amount: item.product.price,
+				},
+				quantity: item.quantity,
+			};
+		}),
 		mode: "payment",
-		success_url: `${baseUrl}/cart/success?sessionId={CHECKOUT_SESSION_ID}`,
+		success_url: `${baseUrl}/api/checkout/success?sessionId={CHECKOUT_SESSION_ID}`,
 		cancel_url: `${baseUrl}/cart`,
 	});
 	if (session.url) {
-		cookies().set("cartId", "");
 		redirect(session.url);
 	}
 };
