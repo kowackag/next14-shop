@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 
-import { sortedUniqBy } from "lodash";
 import { executeGraphql } from "./graphqlApi";
 import {
 	ProductsGetListDocument,
@@ -28,8 +27,6 @@ export const getProducts = async () => {
 export const getSortedByPriceProducts = async (
 	sorted: ProductsGetSortedListQueryVariables["sortBy"],
 ) => {
-	if (!sortedUniqBy) return notFound();
-
 	const graphqlResponse = await executeGraphql({
 		query: ProductsGetSortedListDocument,
 		variables: { sortBy: sorted },
