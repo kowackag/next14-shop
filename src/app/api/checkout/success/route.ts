@@ -25,5 +25,5 @@ export async function GET(request: NextRequest): Promise<Response> {
 		cookies().delete("cartId");
 	}
 
-	 redirect(`/cart/success?sessionId=${sessionId}`);
+	redirect(`/cart/success?sessionId=${sessionId}`);
 }
